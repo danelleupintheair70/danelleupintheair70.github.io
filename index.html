@@ -266,11 +266,61 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
     <p class="small">This diagnosis is based on the current KKday workflow supplied by Zev. No time-saved or error-rate claim is made yet; those remain to be measured.</p>
   </section>
 
+
+  <section>
+    <h2>Bottleneck 3 diagnosis — manual supplier dispatch</h2>
+    <p>For a normal fixed-supplier booking, supplier assignment depends on staff knowledge, a reference spreadsheet, manual email preparation, and later confirmation follow-up.</p>
+
+    <div class="flow" style="margin-top:18px">
+      <span class="step">Internal booking ready</span>
+      <span class="arrow">→</span>
+      <span class="step">Recall supplier from memory or check supplier Excel sheet</span>
+      <span class="arrow">→</span>
+      <span class="step">Forward booking email</span>
+      <span class="arrow">→</span>
+      <span class="step">Manually remove pricing / branding / sensitive content</span>
+      <span class="arrow">→</span>
+      <span class="step">Send via Gmail / Google Workspace</span>
+      <span class="arrow">→</span>
+      <span class="step">Supplier replies “order confirmed”</span>
+    </div>
+
+    <h3>Representative fixed-supplier flow</h3>
+    <table>
+      <thead>
+        <tr><th>Step</th><th>Current As-Is activity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1. Select supplier</td><td>CS identifies the appropriate supplier from memory or checks the supplier Excel sheet.</td></tr>
+        <tr><td>2. Prepare dispatch email</td><td>CS forwards the booking email but manually removes information that should not be sent onward, including pricing, Ecwid branding and other redundant or sensitive content.</td></tr>
+        <tr><td>3. Send order</td><td>The cleaned booking email is sent to the supplier through Gmail / Google Workspace.</td></tr>
+        <tr><td>4. Confirm assignment</td><td>The supplier replies by email with a confirmation such as “order confirmed.”</td></tr>
+        <tr><td>5. Follow up if confirmation is missing</td><td>One day before the service date, CS sends a follow-up message in the supplier’s WhatsApp / LINE / WeChat group to check whether the order is confirmed.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Root cause</h3>
+    <div class="callout">
+      <strong>Supplier assignment and confirmation are not managed through a single structured dispatch workflow.</strong>
+      <p>Supplier selection depends partly on staff memory or a spreadsheet, booking details are manually sanitized before forwarding, and confirmation status is monitored through email plus separate supplier messaging groups.</p>
+    </div>
+
+    <h3>Operational implications</h3>
+    <div class="grid">
+      <div class="card"><strong>Knowledge dependency</strong>Correct supplier selection depends on staff memory or locating the right information in a spreadsheet.</div>
+      <div class="card"><strong>Manual data sanitization</strong>Every forwarded order may require staff to remove pricing, branding or other information before dispatch.</div>
+      <div class="card"><strong>Confirmation tracking across channels</strong>Initial dispatch occurs in email, while missing confirmations may be chased through WhatsApp, LINE or WeChat groups.</div>
+      <div class="card"><strong>Late visibility of non-confirmation</strong>A missing confirmation may not trigger manual follow-up until one day before service, increasing the importance of staff vigilance.</div>
+    </div>
+
+    <p class="small">This representative fixed-supplier example confirms the T-1 non-response follow-up. The exact rejection-handling path is not specified here and should not be inferred from this example alone.</p>
+  </section>
+
   <section>
     <h2>Next analysis step</h2>
     <div class="callout">
-      <span class="status">Task 3 — Bottleneck 3 root-cause diagnosis</span>
-      <p>Map one representative supplier-dispatch flow from internal booking creation to confirmed assignment, including the supplier-selection rule, communication channel, acceptance / rejection handling, and escalation path.</p>
+      <span class="status">Task 4 — Deep root-cause analysis</span>
+      <p>Run a 5 Whys analysis on Bottleneck 1 first: why CS must remain the manual relay between customer and supplier / driver.</p>
     </div>
   </section>
 
@@ -281,7 +331,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
       <tbody>
         <tr><td>Task 1 — Define flagship process</td><td><strong>Complete</strong></td></tr>
         <tr><td>Task 2 — Extract clean As-Is inventory</td><td><strong>Complete</strong></td></tr>
-        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress — Bottlenecks 1–2 diagnosed</strong></td></tr>
+        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>Complete — three primary bottlenecks diagnosed</strong></td></tr>
         <tr><td>To-Be redesign</td><td>Not started</td></tr>
         <tr><td>Human / Automation / AI decision matrix</td><td>Not started</td></tr>
         <tr><td>Prototype, evaluation, ROI, implementation</td><td>Not started</td></tr>
