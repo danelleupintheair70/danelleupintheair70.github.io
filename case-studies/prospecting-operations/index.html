@@ -89,7 +89,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 
 <section><h2>Current operating model</h2>
 <div class="flow"><span class="step">Network / invitation data</span><span class="arrow">→</span><span class="step">Message history</span><span class="arrow">→</span><span class="step">Workflow orchestration</span><span class="arrow">→</span><span class="step">Spreadsheet masters</span><span class="arrow">→</span><span class="step">AI-assisted analysis</span><span class="arrow">→</span><span class="step">Action Queue</span><span class="arrow">→</span><span class="step">Human action</span></div>
-<div class="callout" style="margin-top:18px"><strong>Diagnosis</strong>The core problem is not message generation. It is maintaining a trustworthy relationship state and continuously deciding which human action is justified under limited capacity.</div></section>
+<div class="callout" style="margin-top:18px"><strong>Diagnosis</strong> The core problem is not message generation. It is maintaining a trustworthy relationship state and continuously deciding which human action is justified under limited capacity.</div></section>
 
 <section><h2>Target operating model</h2>
 <div class="flow"><span class="step">Ingest</span><span class="arrow">→</span><span class="step">Resolve identity</span><span class="arrow">→</span><span class="step">Update canonical state</span><span class="arrow">→</span><span class="step">Eligibility gate</span><span class="arrow">→</span><span class="step">AI interpretation</span><span class="arrow">→</span><span class="step">Priority + capacity</span><span class="arrow">→</span><span class="step">Action Queue</span><span class="arrow">→</span><span class="step">Human decision</span><span class="arrow">→</span><span class="step">Reconcile</span></div>
@@ -130,13 +130,13 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 <tr><td>Unstructured relationship meaning</td><td><strong>AI</strong></td><td>Reconnect intent, message meaning, opportunity signals, relationship summary, next-action suggestion.</td></tr>
 <tr><td>External relationship decisions</td><td><strong>Human</strong></td><td>Sending outreach, resolving ambiguity, opportunity qualification, commercial judgement and sensitive overrides.</td></tr>
 </tbody></table>
-<div class="callout blue" style="margin-top:16px"><strong>Control rule</strong>AI produces evidence + confidence + proposal. Deterministic policy decides what is allowed. Human authority remains over external communication.</div></section>
+<div class="callout blue" style="margin-top:16px"><strong>Control rule</strong> AI produces evidence + confidence + proposal. Deterministic policy decides what is allowed. Human authority remains over external communication.</div></section>
 
 <section><h2>State before priority</h2>
 <p>The design intentionally separates relationship context from action eligibility.</p>
 <div class="grid"><div class="card"><strong>Relationship states</strong><ul><li>No interaction history</li><li>Outbound last / Inbound last</li><li>Active conversation</li><li>Reconnect later</li><li>Opportunity</li><li>Nurture</li><li>Do Not Contact</li><li>Closed</li></ul></div>
 <div class="card"><strong>Eligibility controls</strong><ul><li>DNC and follow-up blocks</li><li>Identity resolution</li><li>Cooldowns</li><li>Reconnect timing</li><li>Existing open actions</li><li>Newer inbound context</li><li>Active opportunity handling</li></ul></div></div>
-<div class="callout good" style="margin-top:16px"><strong>Design principle</strong>State → Eligibility → Priority → Capacity Allocation → Action. AI does not rank prohibited actions first and filter them afterward.</div></section>
+<div class="callout good" style="margin-top:16px"><strong>Design principle</strong> State → Eligibility → Priority → Capacity Allocation → Action. AI does not rank prohibited actions first and filter them afterward.</div></section>
 
 <section><h2>Capacity-aware prioritization</h2>
 <p>The weekly follow-up ceiling is a maximum, not a target. The system therefore treats operator capacity as a portfolio-allocation problem.</p>
