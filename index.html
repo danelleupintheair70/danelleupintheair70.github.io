@@ -316,11 +316,243 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
     <p class="small">This representative fixed-supplier example confirms the T-1 non-response follow-up. The exact rejection-handling path is not specified here and should not be inferred from this example alone.</p>
   </section>
 
+
+  <section>
+    <h2>Task 4 — 5 Whys: Bottleneck 1</h2>
+    <p><strong>Problem:</strong> CS / Operations must manually relay service-day updates between customers and suppliers / drivers.</p>
+
+    <h3>Why 1</h3>
+    <div class="card">
+      <strong>Why does CS have to act as the relay?</strong>
+      There is no shared system that lets customers and suppliers / drivers exchange operational status directly in a controlled way. A group-chat model, similar to some airport-transfer operations, would be too cumbersome at LuggAgent’s scale because it would create too many separate chats to manage.
+    </div>
+
+    <p class="small">Status: Why 1 confirmed by Zev.</p>
+
+    <h3>Why 2</h3>
+    <div class="card">
+      <strong>Why has a shared communication / status system not been implemented successfully?</strong>
+      The constraint is not a single technical issue. Zev identified several connected barriers:
+      <ul>
+        <li><strong>Cost and limited technical capacity:</strong> budget constraints reduce the ability to build and maintain a robust shared platform.</li>
+        <li><strong>Fragmented supplier ecosystem:</strong> drivers work through multiple third-party last-mile and airport-transfer partners rather than one controlled workforce.</li>
+        <li><strong>Lack of clear ownership:</strong> no single owner consistently carries the initiative from concept through implementation and adoption.</li>
+        <li><strong>Incomplete third-party delivery:</strong> external development / implementation efforts have been started but have stalled partway, leaving partially completed solutions.</li>
+        <li><strong>Customer adoption friction:</strong> requiring customers to learn another platform creates an additional education burden.</li>
+        <li><strong>Low-frequency customer use:</strong> a dedicated app is difficult to justify for a service most customers use infrequently.</li>
+        <li><strong>Driver adoption friction:</strong> drivers are often attached to external logistics / airport-transfer partners and may resist another tool or workflow.</li>
+      </ul>
+    </div>
+
+    <p class="small">Status: Why 2 confirmed by Zev. These are treated as contributing causes rather than forcing them into one artificial linear explanation.</p>
+
+    <h3>Why 3</h3>
+    <div class="card">
+      <strong>Why do ownership and implementation repeatedly stall before a solution reaches stable production use?</strong>
+      The company does not have a persistent senior technology / product owner with end-to-end accountability for the problem. When internal hires or external software partners are brought in, they face a steep operational-learning curve because the workflow contains many service rules, exceptions, supplier differences and judgement calls that are difficult to understand without sustained exposure to day-to-day operations.
+      <ul>
+        <li><strong>Ownership gap:</strong> there is no CTO, product manager or IT owner continuously responsible for discovery, design, delivery, adoption and maintenance.</li>
+        <li><strong>Operational knowledge gap:</strong> new technical staff and external vendors must learn a complex, exception-heavy operation before they can design the right solution.</li>
+        <li><strong>Resource constraint:</strong> limited investment in technical ownership and implementation reduces continuity and delivery quality.</li>
+        <li><strong>Project continuity risk:</strong> technology initiatives can lose momentum when the people building them leave or external engagements end before the workflow is fully implemented.</li>
+      </ul>
+    </div>
+
+    <p class="small">Public-case-study wording intentionally focuses on governance, knowledge-transfer and resourcing rather than attributing motives or using internal personnel criticism.</p>
+
+    <h3>Why 4</h3>
+    <div class="card">
+      <strong>Why is operational knowledge difficult to transfer into a maintainable product or technical specification?</strong>
+      The operating model is only partially codified. Formal rules do exist, but they are distributed across multiple spreadsheets and other tools, can change over time, and do not capture the full exception-handling knowledge used in live operations.
+      <ul>
+        <li><strong>Distributed documentation:</strong> many service rules are documented, but across multiple Excel sheets and other locations rather than one authoritative source.</li>
+        <li><strong>Changing rules:</strong> supplier requirements, service constraints and operational rules can be updated, creating version-control and knowledge-synchronization challenges.</li>
+        <li><strong>Tacit exception knowledge:</strong> unusual cases and firefighting logic often remain in the heads of operations managers rather than in structured decision rules.</li>
+        <li><strong>Limited frontline decision authority:</strong> CS staff can identify issues but may need escalation before making exceptions or policy decisions.</li>
+        <li><strong>Part-time staffing model:</strong> many frontline CS staff work part-time and may hold other jobs, making deep operational knowledge harder to build and retain consistently.</li>
+        <li><strong>Uneven destination familiarity:</strong> frontline staff have varying levels of familiarity with the cities, airports, hotels and travel contexts involved, so they may depend on managers for contextual judgement.</li>
+        <li><strong>Supplier variation:</strong> service rules and requirements differ by country and vendor.</li>
+        <li><strong>Fragmented tooling:</strong> operational information and actions are spread across multiple systems, channels and documents.</li>
+      </ul>
+    </div>
+
+    <p class="small">The public case study deliberately describes differences in experience and destination familiarity without tying capability to nationality or country of origin.</p>
+
+    <h3>Why 5</h3>
+    <div class="card">
+      <strong>Why does operational knowledge remain fragmented instead of becoming a maintained source of truth?</strong>
+      There is no formal owner or operating mechanism for continuous knowledge management. Documentation was created by previous operations leadership and is updated intermittently, while the current operations manager is primarily occupied with live firefighting and retains much of the decision authority and exception-handling knowledge.
+      <ul>
+        <li><strong>No documentation owner:</strong> maintaining operational rules, exceptions and decision logic is not an explicitly owned responsibility.</li>
+        <li><strong>Firefighting dominates capacity:</strong> the operations manager spends most available time resolving live issues rather than codifying what was learned.</li>
+        <li><strong>Key-person dependency:</strong> operational authority and contextual judgement are concentrated in one experienced manager.</li>
+        <li><strong>No exception-capture process:</strong> unusual cases are solved case by case, but the resulting decision logic is not systematically converted into reusable rules or playbooks.</li>
+        <li><strong>Tacit travel and destination knowledge:</strong> effective decisions often depend on accumulated travel experience and situational judgement that has not been translated into structured operational knowledge.</li>
+      </ul>
+    </div>
+
+    <h3>5 Whys conclusion</h3>
+    <div class="callout good">
+      <strong>Root cause: the operation lacks a governed mechanism for turning live operational knowledge into maintained, shared and executable process knowledge.</strong>
+      <p>The communication bottleneck is therefore not simply a messaging-tool problem. It is reinforced by fragmented systems, distributed supplier relationships, weak technical ownership, limited implementation capacity, and heavy dependence on tacit knowledge held by a single operations leader.</p>
+    </div>
+
+    <p class="small">Status: Bottleneck 1 5 Whys complete. The wording focuses on structural process and governance issues rather than individual blame.</p>
+  </section>
+
+
+  <section>
+    <h2>Task 4 — 5 Whys: Bottleneck 2</h2>
+    <p><strong>Problem:</strong> Distributor / OTA bookings have to be manually recreated inside LuggAgent’s internal booking flow.</p>
+
+    <h3>Why 1</h3>
+    <div class="card">
+      <strong>Why is distributor order data not flowing directly into the internal booking record?</strong>
+      LuggAgent’s internal booking record is ultimately maintained in a Google Sheet rather than in a purpose-built order-management platform. Ecwid is used as the practical order-entry layer because it is affordable, already works for the operation, and staff are familiar with the workflow. Direct API integration from distributor platforms into the internal record is currently not realistic because LuggAgent does not have the technical capacity to build and maintain those integrations.
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><strong>Budget-driven architecture</strong>Existing low-cost tools were retained because they solve the immediate operational need without requiring a custom platform.</div>
+      <div class="card"><strong>Process familiarity</strong>Staff already understand the Ecwid → email → internal-record workflow, so replacing it carries retraining and implementation cost.</div>
+      <div class="card"><strong>Technical-capacity constraint</strong>There is insufficient internal engineering capability to design, deploy and maintain API integrations across distributor channels.</div>
+      <div class="card"><strong>Spreadsheet-based system of record</strong>The downstream operational record is a Google Sheet, which limits native integration and structured workflow control compared with a dedicated OMS.</div>
+    </div>
+
+    <p class="small">Status: Bottleneck 2, Why 1 confirmed by Zev. No assumption is made yet about whether each OTA exposes a usable API; the current limitation identified here is on LuggAgent’s implementation side.</p>
+
+    <h3>Why 2</h3>
+    <div class="card">
+      <strong>Why has the operation not moved from the Google Sheet + Ecwid workflow to a more integrated order-management system?</strong>
+      Technology investment has historically received little or no dedicated budget. Available funds have been prioritized toward keeping day-to-day operations running, leaving insufficient capital for platform development, systems integration, technical ownership and ongoing maintenance.
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><strong>Capital-allocation constraint</strong>Operational expenditure has taken priority over investment in technical infrastructure.</div>
+      <div class="card"><strong>No protected technology budget</strong>There is no sustained funding pool for rebuilding the order-management layer or integrating external channels.</div>
+      <div class="card"><strong>Short-term continuity over long-term leverage</strong>The existing tools continue to work well enough to keep orders moving, so scarce resources are repeatedly directed to immediate operational needs rather than structural platform improvement.</div>
+      <div class="card"><strong>Maintenance cost matters too</strong>A new platform would require not only initial development funding but also ongoing technical ownership, support and change management.</div>
+    </div>
+
+    <p class="small">Public-case-study wording frames this as a resource-allocation and investment-priority issue rather than assigning blame to individual management decisions.</p>
+
+    <h3>Why 3</h3>
+    <div class="card">
+      <strong>Why does technology investment repeatedly lose priority to immediate operational spending?</strong>
+      The business operates under thin margins and recurring cash-flow pressure, which pushes management toward short-term operational continuity over longer-term systems investment. At the same time, there is no long-term technical leader with sufficient engineering depth to own architecture, integration strategy, rapid prototyping and ongoing maintenance.
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><strong>Thin margins</strong>Limited surplus makes it difficult to justify or sustain non-immediate technical investment.</div>
+      <div class="card"><strong>Cash-flow pressure</strong>Available funds are directed toward keeping current operations functioning rather than building future technical leverage.</div>
+      <div class="card"><strong>Short-term survival bias</strong>Management attention is pulled toward urgent operational needs, so platform work is repeatedly deferred.</div>
+      <div class="card"><strong>Technical leadership gap</strong>The company lacks a persistent technical owner with enough engineering and applied-AI capability to design pragmatic low-cost solutions, connect existing tools, and carry them through to stable production use.</div>
+    </div>
+
+    <p class="small">The public case study deliberately describes a technical-leadership capability gap rather than evaluating any individual executive’s engineering competence.</p>
+
+    <h3>Why 4</h3>
+    <div class="card">
+      <strong>Why has the company not established durable technical ownership?</strong>
+      Beyond the general funding constraint, past investment priorities have leaned heavily toward customer acquisition and subsidized pricing rather than technical capability-building. When external technical expertise has been engaged, the company has also lacked a strong internal technical-buyer function to define requirements, evaluate vendors, challenge solution design and manage delivery quality.
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><strong>Investment-priority imbalance</strong>Scarce capital has historically been directed more toward marketing, growth and subsidized pricing than toward durable technical infrastructure.</div>
+      <div class="card"><strong>Weak technical procurement capability</strong>Without a technically strong buyer, it is difficult to assess whether a vendor’s architecture, scope, estimates and implementation approach are appropriate.</div>
+      <div class="card"><strong>Requirements-quality risk</strong>External technical teams may receive incomplete or weakly challenged specifications, increasing the likelihood of partial or unsuitable solutions.</div>
+      <div class="card"><strong>Vendor-governance risk</strong>When nobody internally can independently evaluate technical progress, weak delivery can persist until the project stalls or fails to meet operational needs.</div>
+    </div>
+
+    <p class="small">Public-case-study wording focuses on organizational capability: technical procurement, requirements ownership and vendor governance.</p>
+
+    <h3>Why 5</h3>
+    <div class="card">
+      <strong>Why does the business continue accepting a workable-but-fragmented tool stack?</strong>
+      The company has historically been optimized for short-term survival and growth rather than for building scalable internal capability. Strategic attention and capital have therefore favored immediate revenue generation and operational continuity over long-horizon investments in systems, technical ownership and process infrastructure.
+    </div>
+
+    <h3>5 Whys conclusion</h3>
+    <div class="callout good">
+      <strong>Root cause: the fragmented order stack is a consequence of a short-term operating model, not simply a software-choice problem.</strong>
+      <p>The manual KKday → Ecwid → Google Sheet workflow persists because the business has repeatedly prioritized near-term growth and operational continuity over durable technical capability, while lacking the technical leadership and procurement discipline needed to modernize the stack effectively.</p>
+    </div>
+
+    <p class="small">Status: Bottleneck 2 5 Whys complete. The public case study frames this as a strategic operating-model and capability issue rather than attributing the outcome to one individual.</p>
+  </section>
+
+
+  <section>
+    <h2>Task 4 — 5 Whys: Bottleneck 3</h2>
+    <p><strong>Problem:</strong> Supplier assignment and confirmation still depend on staff memory, spreadsheets, manually cleaned emails and follow-up across messaging groups.</p>
+
+    <h3>Why 1</h3>
+    <div class="card">
+      <strong>Why does supplier assignment still depend on staff memory or a supplier spreadsheet?</strong>
+      Much of the supplier-selection logic is not formally documented because the operation has never required every decision rule to be codified, and the underlying supplier conditions change frequently.
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><strong>Incomplete codification</strong>Many supplier-selection rules and practical preferences exist as operational knowledge rather than formal decision logic.</div>
+      <div class="card"><strong>No documentation requirement</strong>There is no enforced process requiring every supplier rule, routing preference or exception to be captured in a maintained source of truth.</div>
+      <div class="card"><strong>Frequent change</strong>Supplier availability, pricing, service areas, requirements and operating conditions can change often enough that static documentation becomes stale quickly.</div>
+      <div class="card"><strong>Memory as working system</strong>Experienced staff compensate by remembering current supplier behavior and using the spreadsheet only as a reference when needed.</div>
+    </div>
+
+    <p class="small">Status: Bottleneck 3, Why 1 confirmed by Zev.</p>
+
+    <h3>Why 2–5 — synthesized from the confirmed operating context</h3>
+    <div class="card">
+      <strong>Why are supplier changes not systematically maintained?</strong>
+      There is no dedicated owner or enforced knowledge-management process for supplier routing logic. The operations manager is primarily occupied with live firefighting, so changes are captured inconsistently and experienced staff compensate through memory and ad hoc reference sheets.
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <strong>Why is knowledge ownership concentrated in Operations?</strong>
+      Operational judgement and decision authority are heavily concentrated in one experienced operations manager. Frontline CS is largely staffed by long-tenured part-timers, but execution quality is variable and they have limited authority to resolve non-standard cases independently.
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <strong>Why has the organization not built a stronger operating system around that knowledge?</strong>
+      Cross-functional operational literacy is weak. Sales and Marketing are separated from day-to-day service execution, while there is no durable product / technology function translating operational knowledge into structured systems, rules and controls.
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <strong>Why does that structure persist?</strong>
+      The company is under sustained financial pressure and operates with little room for non-immediate investment. This drives low-cost staffing and short-term operational fixes while technical capability, documentation, process governance and system modernization remain underfunded.
+    </div>
+
+    <h3>5 Whys conclusion</h3>
+    <div class="callout good">
+      <strong>Root cause: supplier dispatch is manual because the company has not built durable operational infrastructure around its supplier network.</strong>
+      <p>The visible symptoms — memory-based supplier selection, spreadsheets, manually cleaned emails and cross-channel follow-up — are downstream of the same structural issues seen elsewhere: financial constraint, key-person dependency, inconsistent frontline execution, weak cross-functional operational ownership and near-zero sustained investment in technical capability.</p>
+    </div>
+
+    <p class="small">Status: Bottleneck 3 5 Whys complete. Why 2–5 are analytical synthesis from Zev’s confirmed operating context rather than separately elicited verbatim answers.</p>
+  </section>
+
+
+  <section>
+    <h2>Systemic root-cause synthesis</h2>
+    <div class="grid">
+      <div class="card"><strong>1 · Financial constraint</strong>The business is operating under severe cash pressure, so immediate delivery and growth repeatedly take precedence over capability-building.</div>
+      <div class="card"><strong>2 · Key-person dependency</strong>Operational knowledge, exception handling and decision authority are concentrated in one operations manager.</div>
+      <div class="card"><strong>3 · Fragile frontline execution</strong>Long-tenured part-time CS staff keep the operation running, but recurring mistakes and limited decision authority increase dependence on escalation.</div>
+      <div class="card"><strong>4 · Cross-functional disconnect</strong>Commercial functions have limited operational understanding, weakening requirements quality and organizational ownership of service-process improvement.</div>
+      <div class="card"><strong>5 · Technical capability gap</strong>There is no sustained technical team, technical product owner or strong technical-buyer function, and available budgets are insufficient to attract and retain the capability required.</div>
+      <div class="card"><strong>Result</strong>The company relies on people, memory, spreadsheets, email and messaging channels to compensate for missing process infrastructure.</div>
+    </div>
+
+    <div class="callout" style="margin-top:18px">
+      <span class="status">Task 4 complete</span>
+      <p>The three bottlenecks converge on the same systemic causes. The next stage should move from diagnosis to To-Be design rather than continuing repetitive root-cause questioning.</p>
+    </div>
+  </section>
+
   <section>
     <h2>Next analysis step</h2>
     <div class="callout">
-      <span class="status">Task 4 — Deep root-cause analysis</span>
-      <p>Run a 5 Whys analysis on Bottleneck 1 first: why CS must remain the manual relay between customer and supplier / driver.</p>
+      <span class="status">Task 5 — To-Be design principles</span>
+      <p>Define the minimum viable future-state operating model that reduces manual coordination without assuming a large engineering budget or forcing customers and third-party drivers into a new app.</p>
     </div>
   </section>
 
@@ -332,6 +564,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
         <tr><td>Task 1 — Define flagship process</td><td><strong>Complete</strong></td></tr>
         <tr><td>Task 2 — Extract clean As-Is inventory</td><td><strong>Complete</strong></td></tr>
         <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>Complete — three primary bottlenecks diagnosed</strong></td></tr>
+        <tr><td>Task 4 — 5 Whys root-cause analysis</td><td><strong>Complete — all three bottlenecks analyzed and synthesized</strong></td></tr>
         <tr><td>To-Be redesign</td><td>Not started</td></tr>
         <tr><td>Human / Automation / AI decision matrix</td><td>Not started</td></tr>
         <tr><td>Prototype, evaluation, ROI, implementation</td><td>Not started</td></tr>
