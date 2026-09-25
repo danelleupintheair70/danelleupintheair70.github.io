@@ -158,11 +158,65 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
     </div>
   </section>
 
+
+  <section>
+    <h2>Bottleneck 1 diagnosis — CS as the communication relay</h2>
+    <p>The current service-day communication model requires CS / Operations to bridge two different communication environments rather than allowing a shared operational status flow.</p>
+
+    <div class="flow" style="margin-top:18px">
+      <span class="step">Customer</span>
+      <span class="arrow">→</span>
+      <span class="step">Email / Respond.io</span>
+      <span class="arrow">→</span>
+      <span class="step">CS / Operations</span>
+      <span class="arrow">→</span>
+      <span class="step">WhatsApp / LINE / WeChat group / Email</span>
+      <span class="arrow">→</span>
+      <span class="step">Supplier / Driver</span>
+    </div>
+
+    <div class="flow" style="margin-top:10px">
+      <span class="step">Supplier / Driver</span>
+      <span class="arrow">→</span>
+      <span class="step">WhatsApp / LINE / WeChat group / Email</span>
+      <span class="arrow">→</span>
+      <span class="step">CS / Operations</span>
+      <span class="arrow">→</span>
+      <span class="step">Email / Respond.io</span>
+      <span class="arrow">→</span>
+      <span class="step">Customer</span>
+    </div>
+
+    <h3>Representative updates</h3>
+    <ul>
+      <li>Customer requests a timing change.</li>
+      <li>Customer reports arrival at the airport meeting point.</li>
+      <li>Customer reports luggage has been deposited at hotel concierge.</li>
+      <li>Supplier / driver sends execution status back through supplier-side messaging or email.</li>
+    </ul>
+
+    <h3>Root cause</h3>
+    <div class="callout">
+      <strong>There is no single shared operational communication layer across customer, CS and supplier / driver.</strong>
+      <p>Customer communication is concentrated in Email / Respond.io, while supplier communication is fragmented across WhatsApp, LINE, WeChat groups and Email. CS therefore becomes the mandatory translation and relay point between the two sides.</p>
+    </div>
+
+    <h3>Operational implications</h3>
+    <div class="grid">
+      <div class="card"><strong>Repeated manual touchpoints</strong>Routine status changes require CS to read, interpret and forward information.</div>
+      <div class="card"><strong>Channel switching</strong>Staff moves between customer-facing and supplier-facing systems during the same booking.</div>
+      <div class="card"><strong>Update latency</strong>Status reaches the other party only after CS notices and relays it.</div>
+      <div class="card"><strong>Context-loss risk</strong>Information can be shortened, duplicated or missed as it is transferred between channels.</div>
+    </div>
+
+    <p class="small">No quantitative impact is claimed yet. These implications will be validated later using actual message volume, handling-time or service data where available.</p>
+  </section>
+
   <section>
     <h2>Next analysis step</h2>
     <div class="callout">
-      <span class="status">Task 3 — Bottleneck 1 root-cause diagnosis</span>
-      <p>Capture one representative communication relay from customer → CS → supplier/driver → CS → customer, including the actual channels used at each handoff.</p>
+      <span class="status">Task 3 — Bottleneck 2 root-cause diagnosis</span>
+      <p>Map one representative distributor / OTA booking from incoming notification to the final internal booking record, including every system opened and every manual copy / paste step.</p>
     </div>
   </section>
 
@@ -173,7 +227,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
       <tbody>
         <tr><td>Task 1 — Define flagship process</td><td><strong>Complete</strong></td></tr>
         <tr><td>Task 2 — Extract clean As-Is inventory</td><td><strong>Complete</strong></td></tr>
-        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress</strong></td></tr>
+        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress — Bottleneck 1 diagnosed</strong></td></tr>
         <tr><td>To-Be redesign</td><td>Not started</td></tr>
         <tr><td>Human / Automation / AI decision matrix</td><td>Not started</td></tr>
         <tr><td>Prototype, evaluation, ROI, implementation</td><td>Not started</td></tr>
