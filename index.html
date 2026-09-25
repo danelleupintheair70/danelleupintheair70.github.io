@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Global Luggage Delivery Operations Transformation</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Global Travel Logistics Operations Transformation</title>
 <style>
 :root{
   --bg:#f7f7f5;--panel:#fff;--text:#171717;--muted:#666;--line:#deded8;
@@ -55,2080 +56,1658 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 </head>
 <body>
 <main>
-
 <div class="hero">
-  <div class="kicker">Case Study · Work in Progress</div>
-  <h1>Global Luggage Delivery Operations Transformation</h1>
-  <p class="lead">From fragmented, manually coordinated fulfilment to an owned booking platform, integrated OMS/TMS, distributor APIs, automated dispatch, event-driven status updates and exception-led operations.</p>
-  <div class="meta">
-    <span class="tag">Business Transformation</span>
-    <span class="tag">Process Redesign</span>
-    <span class="tag">OMS / TMS</span>
-    <span class="tag">API Integration</span>
-    <span class="tag">Applied AI</span>
-    <span class="tag">Service Operations</span>
-  </div>
+<div class="kicker">Case Study</div>
+<h1>Global Travel Logistics Operations Transformation</h1>
+<p class="lead">From fragmented, manually coordinated fulfilment to a unified booking platform, integrated OMS/TMS, distributor APIs, automated dispatch, event-driven status updates and exception-led operations.</p>
+<div class="meta">
+<span class="tag">Business Transformation</span>
+<span class="tag">Process Redesign</span>
+<span class="tag">OMS / TMS</span>
+<span class="tag">API Integration</span>
+<span class="tag">Applied AI</span>
+<span class="tag">Service Operations</span>
 </div>
-
+</div>
 <section>
-  <h2>Transformation objective</h2>
-  <p>Redesign the end-to-end luggage-delivery operation so that orders from direct and distributor channels enter one controlled operating system, routine decisions and status updates are automated, suppliers execute against structured jobs, and CS / Operations focuses primarily on exceptions.</p>
-
-  <div class="grid">
-    <div class="card">
-      <strong>As-Is boundary</strong>
+<h2>Transformation objective</h2>
+<p>Redesign the end-to-end travel-logistics operation so that orders from direct and distributor channels enter one controlled operating system, routine decisions and status updates are automated, suppliers execute against structured jobs, and CS / Operations focuses primarily on exceptions.</p>
+<div class="grid">
+<div class="card">
+<strong>As-Is boundary</strong>
       Customer books through the direct website or an OTA / distributor channel → service is fulfilled → final handover evidence is recorded.
     </div>
-    <div class="card">
-      <strong>To-Be ambition</strong>
-      Own the booking experience and the operational system of record, while integrating distributors, logistics partners, payments and communication channels through APIs and lightweight partner interfaces.
+<div class="card">
+<strong>To-Be ambition</strong>
+      Establish a dedicated booking experience and operational system of record, while integrating distributors, logistics partners, payments and communication channels through APIs and lightweight partner interfaces.
     </div>
-  </div>
-
-  <h3>Success measures</h3>
-  <div class="grid">
-    <div class="card">Manual touchpoints per booking</div>
-    <div class="card">Operations handling time per booking</div>
-    <div class="card">Exception-resolution time</div>
-    <div class="card">SLA adherence and customer-update latency</div>
-  </div>
-  <p class="small">Baseline values remain TBD until measured from operational data.</p>
+</div>
+<h3>Success measures</h3>
+<div class="grid">
+<div class="card">Manual touchpoints per booking</div>
+<div class="card">Operations handling time per booking</div>
+<div class="card">Exception-resolution time</div>
+<div class="card">SLA adherence and customer-update latency</div>
+</div>
+<p class="small">Baseline values remain TBD until measured from operational data.</p>
 </section>
-
 <section>
-  <h2>Before — current operating model</h2>
-
-  <div class="callout">
-    <strong>Core pattern</strong>
-    <div class="flow">
-      <span class="step">Customer / OTA</span><span class="arrow">→</span>
-      <span class="step">Email / OTA backend</span><span class="arrow">→</span>
-      <span class="step">CS / Operations</span><span class="arrow">→</span>
-      <span class="step">Ecwid / Google Sheet</span><span class="arrow">→</span>
-      <span class="step">Email / supplier chat</span><span class="arrow">→</span>
-      <span class="step">Supplier / Driver</span>
+<h2>Before — current operating model</h2>
+<div class="callout">
+<strong>Core pattern</strong>
+<div class="flow">
+<span class="step">Customer / OTA</span><span class="arrow">→</span>
+<span class="step">Email / OTA backend</span><span class="arrow">→</span>
+<span class="step">CS / Operations</span><span class="arrow">→</span>
+<span class="step">legacy commerce platform / shared spreadsheet</span><span class="arrow">→</span>
+<span class="step">Email / supplier chat</span><span class="arrow">→</span>
+<span class="step">Supplier / Driver</span>
+</div>
+</div>
+<div class="grid3" style="margin-top:18px">
+<div class="card before">
+<strong>Manual order normalization</strong>
+      Distributor bookings may require CS to log into an OTA backend, retrieve booking details, validate them, and manually recreate the order through the legacy internal booking flow.
     </div>
-  </div>
-
-  <div class="grid3" style="margin-top:18px">
-    <div class="card before">
-      <strong>Manual order normalization</strong>
-      Distributor bookings may require CS to log into an OTA backend, retrieve booking details, validate them, and manually recreate the order through the internal Ecwid flow.
+<div class="card before">
+<strong>CS as communication relay</strong>
+      Customers communicate through email / customer messaging while suppliers use email, partner messaging channels. CS manually moves status information between both sides.
     </div>
-    <div class="card before">
-      <strong>CS as communication relay</strong>
-      Customers communicate through email / Respond.io while suppliers use email, WhatsApp, LINE or WeChat. CS manually moves status information between both sides.
-    </div>
-    <div class="card before">
-      <strong>Manual supplier dispatch</strong>
+<div class="card before">
+<strong>Manual supplier dispatch</strong>
       Supplier choice depends on staff knowledge or spreadsheets. Orders are manually cleaned, forwarded, confirmed and chased across multiple channels.
     </div>
-  </div>
-
-  <h3>Representative current-state journey</h3>
-  <table>
-    <thead><tr><th>Stage</th><th>Current activity</th></tr></thead>
-    <tbody>
-      <tr><td>Booking intake</td><td>Website orders arrive through Ecwid. OTA orders arrive through email and distributor backends.</td></tr>
-      <tr><td>Internal order creation</td><td>Distributor order information may be copied manually into the direct booking flow to create the internal record.</td></tr>
-      <tr><td>Validation</td><td>CS manually checks city, service area, hotel / address, timing rules, flight information, contact details and missing fields.</td></tr>
-      <tr><td>Supplier assignment</td><td>CS selects the supplier from memory or a spreadsheet, sanitizes the booking email and forwards it.</td></tr>
-      <tr><td>Supplier confirmation</td><td>Supplier replies by email; missing confirmations may be chased in partner messaging groups.</td></tr>
-      <tr><td>Service-day communication</td><td>Customer and supplier status updates are relayed manually through CS.</td></tr>
-      <tr><td>Exception handling</td><td>Pickup, waiting, address, hotel, flight and supplier exceptions are coordinated manually across channels.</td></tr>
-      <tr><td>Completion evidence</td><td>Pickup / delivery photos are used as proof of execution, with route-specific evidence requirements.</td></tr>
-    </tbody>
-  </table>
+</div>
+<h3>Representative current-state journey</h3>
+<table>
+<thead><tr><th>Stage</th><th>Current activity</th></tr></thead>
+<tbody>
+<tr><td>Booking intake</td><td>Direct website bookings arrive through the legacy commerce platform. OTA orders arrive through email and distributor backends.</td></tr>
+<tr><td>Internal order creation</td><td>Distributor order information may be copied manually into the direct booking flow to create the internal record.</td></tr>
+<tr><td>Validation</td><td>CS manually checks city, service area, hotel / address, timing rules, flight information, contact details and missing fields.</td></tr>
+<tr><td>Supplier assignment</td><td>CS selects the supplier from memory or a spreadsheet, sanitizes the booking email and forwards it.</td></tr>
+<tr><td>Supplier confirmation</td><td>Supplier replies by email; missing confirmations may be chased in partner messaging groups.</td></tr>
+<tr><td>Service-day communication</td><td>Customer and supplier status updates are relayed manually through CS.</td></tr>
+<tr><td>Exception handling</td><td>Pickup, waiting, address, hotel, flight and supplier exceptions are coordinated manually across channels.</td></tr>
+<tr><td>Completion evidence</td><td>Pickup / delivery photos are used as proof of execution, with route-specific evidence requirements.</td></tr>
+</tbody>
+</table>
 </section>
-
 <section>
-  <h2>What the diagnosis showed</h2>
-  <div class="grid">
-    <div class="card">
-      <strong>Fragmented system of record</strong>
-      Order state is distributed across the e-commerce layer, Google Sheets, Gmail, OTA systems, messaging tools and supplier channels.
+<h2>What the diagnosis showed</h2>
+<div class="grid">
+<div class="card">
+<strong>Fragmented system of record</strong>
+      Order state is distributed across the e-commerce layer, shared spreadsheets, shared email, OTA systems, messaging tools and supplier channels.
     </div>
-    <div class="card">
-      <strong>Tacit operational knowledge</strong>
+<div class="card">
+<strong>Tacit operational knowledge</strong>
       Important exception logic, routing preferences and contextual judgement are not fully represented as maintained system rules.
     </div>
-    <div class="card">
-      <strong>Key-person dependency</strong>
+<div class="card">
+<strong>Key-person dependency</strong>
       Non-standard decisions frequently require escalation to experienced Operations staff.
     </div>
-    <div class="card">
-      <strong>No structured dispatch control loop</strong>
+<div class="card">
+<strong>No structured dispatch control loop</strong>
       Assignment, acceptance, non-response, fallback and service-day status do not run through one controlled workflow.
     </div>
-  </div>
-
-  <div class="callout blue" style="margin-top:18px">
-    <strong>Design implication</strong>
-    <p>The target state should not merely automate email forwarding. It needs a proper transaction core: one booking / shipment record, a lifecycle state model, a maintained rules layer, structured partner execution and an exception-management workspace.</p>
-  </div>
+</div>
+<div class="callout blue" style="margin-top:18px">
+<strong>Design implication</strong>
+<p>The target state should not merely automate email forwarding. It needs a proper transaction core: one booking / shipment record, a lifecycle state model, a maintained rules layer, structured partner execution and an exception-management workspace.</p>
+</div>
 </section>
-
 <section>
-  <h2>After — target operating model</h2>
-  <p>The recommended future state follows the way modern logistics and commerce platforms separate the customer channel, transaction core, integration layer, partner execution and exception-management functions.</p>
-
-  <div class="arch">
-    <div class="layer">
-      <div class="layer-title">1 · Owned customer booking layer</div>
-      <div class="pills">
-        <span class="pill">Responsive web booking</span>
-        <span class="pill">Serviceability check</span>
-        <span class="pill">Dynamic service options</span>
-        <span class="pill">Stripe payment</span>
-        <span class="pill">Secure tracking link</span>
-      </div>
-      <p class="small">Own the booking experience and booking API. Keep commodity services such as payment processing external rather than rebuilding them.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">2 · Distributor integration layer</div>
-      <div class="pills">
-        <span class="pill">REST APIs</span>
-        <span class="pill">Webhooks</span>
-        <span class="pill">Scheduled API sync</span>
-        <span class="pill">CSV / email fallback adapters</span>
-        <span class="pill">Canonical data mapping</span>
-      </div>
-      <p class="small">Klook, KKday and other distributors should create or update orders directly in the internal platform without manual re-entry wherever integration capability exists.</p>
-    </div>
-
-    <div class="layer after">
-      <div class="layer-title">3 · Owned OMS / TMS core — system of record</div>
-      <div class="pills">
-        <span class="pill">Canonical Order ID</span>
-        <span class="pill">Customer & itinerary</span>
-        <span class="pill">Shipment / bag records</span>
-        <span class="pill">Status state machine</span>
-        <span class="pill">SLA timestamps</span>
-        <span class="pill">Supplier assignment</span>
-        <span class="pill">Fees / adjustments</span>
-        <span class="pill">Exception state</span>
-        <span class="pill">Audit history</span>
-      </div>
-      <p class="small">Every booking, regardless of source, resolves to one structured record. Email becomes a notification channel rather than the operational database.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">4 · Rules & master-data layer</div>
-      <div class="pills">
-        <span class="pill">Service areas</span>
-        <span class="pill">Airport timing rules</span>
-        <span class="pill">Lead times</span>
-        <span class="pill">Supplier capabilities</span>
-        <span class="pill">Route eligibility</span>
-        <span class="pill">Pricing references</span>
-        <span class="pill">Escalation rules</span>
-        <span class="pill">Version history</span>
-      </div>
-      <p class="small">Move repeatable operating rules out of memory and scattered spreadsheets into maintained configuration that the workflow can execute.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">5 · Dispatch & partner execution</div>
-      <div class="pills">
-        <span class="pill">Supplier ranking</span>
-        <span class="pill">Auto-dispatch</span>
-        <span class="pill">Accept / reject timer</span>
-        <span class="pill">Fallback supplier</span>
-        <span class="pill">Manual override</span>
-        <span class="pill">Partner API</span>
-        <span class="pill">Partner portal / secure job link</span>
-      </div>
-      <p class="small">Mature partners can integrate by API; smaller partners can use a lightweight mobile web interface or secure job link. A dedicated driver app is not mandatory.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">6 · Event-driven communication</div>
-      <div class="pills">
-        <span class="pill">Booking confirmed</span>
-        <span class="pill">Supplier assigned</span>
-        <span class="pill">Customer ready</span>
-        <span class="pill">Picked up</span>
-        <span class="pill">Delivered</span>
-        <span class="pill">Delay / exception</span>
-        <span class="pill">Email</span>
-        <span class="pill">Messaging integration</span>
-      </div>
-      <p class="small">Customers receive status automatically from structured events. CS no longer has to manually relay routine “arrived”, “picked up” or “delivered” messages.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">7 · Exception control tower</div>
-      <div class="pills">
-        <span class="pill">Exception queue</span>
-        <span class="pill">Severity / priority</span>
-        <span class="pill">Owner</span>
-        <span class="pill">SLA clock</span>
-        <span class="pill">Recommended action</span>
-        <span class="pill">Escalation</span>
-        <span class="pill">Resolution log</span>
-      </div>
-      <p class="small">CS / Operations shifts from monitoring every normal order to managing only cases that require intervention.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">8 · Chain of custody & proof of service</div>
-      <div class="pills">
-        <span class="pill">Pickup evidence</span>
-        <span class="pill">Bag / tag ID</span>
-        <span class="pill">Recipient verification</span>
-        <span class="pill">OTP / QR where appropriate</span>
-        <span class="pill">Delivery evidence</span>
-        <span class="pill">Timestamp / location metadata</span>
-      </div>
-      <p class="small">Proof should establish not only that a handover happened, but that it occurred to the correct party.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">9 · Data, analytics & process intelligence</div>
-      <div class="pills">
-        <span class="pill">Event log</span>
-        <span class="pill">Cycle time</span>
-        <span class="pill">Manual touchpoints</span>
-        <span class="pill">Supplier acceptance</span>
-        <span class="pill">SLA adherence</span>
-        <span class="pill">Exception rate</span>
-        <span class="pill">Customer update latency</span>
-      </div>
-      <p class="small">A structured event history makes operational performance measurable and enables process mining rather than relying on anecdotal diagnosis.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">10 · AI assistance layer</div>
-      <div class="pills">
-        <span class="pill">Intent extraction</span>
-        <span class="pill">Missing-information detection</span>
-        <span class="pill">Exception classification</span>
-        <span class="pill">Knowledge retrieval</span>
-        <span class="pill">Case summarization</span>
-        <span class="pill">Response drafting</span>
-      </div>
-      <p class="small">AI assists around the transaction core. It should not be the source of truth and should not autonomously approve high-risk policy, payment or recipient-verification decisions.</p>
-    </div>
-
-    <div class="layer">
-      <div class="layer-title">11 · Governance & access control</div>
-      <div class="pills">
-        <span class="pill">Role-based access</span>
-        <span class="pill">PII controls</span>
-        <span class="pill">Audit log</span>
-        <span class="pill">Rule ownership</span>
-        <span class="pill">Change history</span>
-        <span class="pill">Human override</span>
-      </div>
-    </div>
-  </div>
+<h2>After — target operating model</h2>
+<p>The recommended future state follows the way modern logistics and commerce platforms separate the customer channel, transaction core, integration layer, partner execution and exception-management functions.</p>
+<div class="arch">
+<div class="layer">
+<div class="layer-title">1 · Customer booking layer</div>
+<div class="pills">
+<span class="pill">Responsive web booking</span>
+<span class="pill">Serviceability check</span>
+<span class="pill">Dynamic service options</span>
+<span class="pill">Payment gateway</span>
+<span class="pill">Secure tracking link</span>
+</div>
+<p class="small">Provide a dedicated booking experience and booking API. Keep commodity services such as payment processing external rather than rebuilding them.</p>
+</div>
+<div class="layer">
+<div class="layer-title">2 · Distributor integration layer</div>
+<div class="pills">
+<span class="pill">REST APIs</span>
+<span class="pill">Webhooks</span>
+<span class="pill">Scheduled API sync</span>
+<span class="pill">CSV / email fallback adapters</span>
+<span class="pill">Canonical data mapping</span>
+</div>
+<p class="small">Distributor and OTA channels should create or update orders directly in the internal platform without manual re-entry wherever integration capability exists.</p>
+</div>
+<div class="layer after">
+<div class="layer-title">3 · OMS / TMS core — system of record</div>
+<div class="pills">
+<span class="pill">Canonical Order ID</span>
+<span class="pill">Customer &amp; itinerary</span>
+<span class="pill">Shipment / bag records</span>
+<span class="pill">Status state machine</span>
+<span class="pill">SLA timestamps</span>
+<span class="pill">Supplier assignment</span>
+<span class="pill">Fees / adjustments</span>
+<span class="pill">Exception state</span>
+<span class="pill">Audit history</span>
+</div>
+<p class="small">Every booking, regardless of source, resolves to one structured record. Email becomes a notification channel rather than the operational database.</p>
+</div>
+<div class="layer">
+<div class="layer-title">4 · Rules &amp; master-data layer</div>
+<div class="pills">
+<span class="pill">Service areas</span>
+<span class="pill">Airport timing rules</span>
+<span class="pill">Lead times</span>
+<span class="pill">Supplier capabilities</span>
+<span class="pill">Route eligibility</span>
+<span class="pill">Pricing references</span>
+<span class="pill">Escalation rules</span>
+<span class="pill">Version history</span>
+</div>
+<p class="small">Move repeatable operating rules out of memory and scattered spreadsheets into maintained configuration that the workflow can execute.</p>
+</div>
+<div class="layer">
+<div class="layer-title">5 · Dispatch &amp; partner execution</div>
+<div class="pills">
+<span class="pill">Supplier ranking</span>
+<span class="pill">Auto-dispatch</span>
+<span class="pill">Accept / reject timer</span>
+<span class="pill">Fallback supplier</span>
+<span class="pill">Manual override</span>
+<span class="pill">Partner API</span>
+<span class="pill">Partner portal / secure job link</span>
+</div>
+<p class="small">Mature partners can integrate by API; smaller partners can use a lightweight mobile web interface or secure job link. A dedicated driver app is not mandatory.</p>
+</div>
+<div class="layer">
+<div class="layer-title">6 · Event-driven communication</div>
+<div class="pills">
+<span class="pill">Booking confirmed</span>
+<span class="pill">Supplier assigned</span>
+<span class="pill">Customer ready</span>
+<span class="pill">Picked up</span>
+<span class="pill">Delivered</span>
+<span class="pill">Delay / exception</span>
+<span class="pill">Email</span>
+<span class="pill">Messaging integration</span>
+</div>
+<p class="small">Customers receive status automatically from structured events. CS no longer has to manually relay routine “arrived”, “picked up” or “delivered” messages.</p>
+</div>
+<div class="layer">
+<div class="layer-title">7 · Exception control tower</div>
+<div class="pills">
+<span class="pill">Exception queue</span>
+<span class="pill">Severity / priority</span>
+<span class="pill">Owner</span>
+<span class="pill">SLA clock</span>
+<span class="pill">Recommended action</span>
+<span class="pill">Escalation</span>
+<span class="pill">Resolution log</span>
+</div>
+<p class="small">CS / Operations shifts from monitoring every normal order to managing only cases that require intervention.</p>
+</div>
+<div class="layer">
+<div class="layer-title">8 · Chain of custody &amp; proof of service</div>
+<div class="pills">
+<span class="pill">Pickup evidence</span>
+<span class="pill">Bag / tag ID</span>
+<span class="pill">Recipient verification</span>
+<span class="pill">OTP / QR where appropriate</span>
+<span class="pill">Delivery evidence</span>
+<span class="pill">Timestamp / location metadata</span>
+</div>
+<p class="small">Proof should establish not only that a handover happened, but that it occurred to the correct party.</p>
+</div>
+<div class="layer">
+<div class="layer-title">9 · Data, analytics &amp; process intelligence</div>
+<div class="pills">
+<span class="pill">Event log</span>
+<span class="pill">Cycle time</span>
+<span class="pill">Manual touchpoints</span>
+<span class="pill">Supplier acceptance</span>
+<span class="pill">SLA adherence</span>
+<span class="pill">Exception rate</span>
+<span class="pill">Customer update latency</span>
+</div>
+<p class="small">A structured event history makes operational performance measurable and enables process mining rather than relying on anecdotal diagnosis.</p>
+</div>
+<div class="layer">
+<div class="layer-title">10 · AI assistance layer</div>
+<div class="pills">
+<span class="pill">Intent extraction</span>
+<span class="pill">Missing-information detection</span>
+<span class="pill">Exception classification</span>
+<span class="pill">Knowledge retrieval</span>
+<span class="pill">Case summarization</span>
+<span class="pill">Response drafting</span>
+</div>
+<p class="small">AI assists around the transaction core. It should not be the source of truth and should not autonomously approve high-risk policy, payment or recipient-verification decisions.</p>
+</div>
+<div class="layer">
+<div class="layer-title">11 · Governance &amp; access control</div>
+<div class="pills">
+<span class="pill">Role-based access</span>
+<span class="pill">PII controls</span>
+<span class="pill">Audit log</span>
+<span class="pill">Rule ownership</span>
+<span class="pill">Change history</span>
+<span class="pill">Human override</span>
+</div>
+</div>
+</div>
 </section>
-
 <section>
-  <h2>Before vs After</h2>
-  <table>
-    <thead><tr><th>Capability</th><th>Before</th><th>After</th></tr></thead>
-    <tbody>
-      <tr><td>Booking intake</td><td>Emails, OTA backends and manual re-entry</td><td>Owned booking API + distributor API / webhook ingestion</td></tr>
-      <tr><td>System of record</td><td>Ecwid + Google Sheet + email context</td><td>Owned OMS / TMS with canonical order and shipment records</td></tr>
-      <tr><td>Validation</td><td>CS manually checks service rules</td><td>Rules engine validates automatically; CS sees exceptions only</td></tr>
-      <tr><td>Supplier selection</td><td>Memory + spreadsheet</td><td>Versioned supplier master data + configurable routing rules</td></tr>
-      <tr><td>Dispatch</td><td>Manually cleaned and forwarded email</td><td>Structured job dispatch with acceptance timer and fallback</td></tr>
-      <tr><td>Supplier interface</td><td>Email and chat groups</td><td>API for capable partners; portal / secure mobile link for others</td></tr>
-      <tr><td>Customer status</td><td>CS manually relays updates</td><td>Automatic notifications generated from order events</td></tr>
-      <tr><td>CS role</td><td>Monitor and relay routine execution</td><td>Exception management and customer recovery</td></tr>
-      <tr><td>Proof of handover</td><td>Photos and manual interpretation</td><td>Structured chain-of-custody evidence with recipient verification</td></tr>
-      <tr><td>Operational knowledge</td><td>Spreadsheets + tacit knowledge</td><td>Versioned rules, master data and documented exception playbooks</td></tr>
-      <tr><td>Measurement</td><td>Limited / fragmented</td><td>Event-level audit trail, dashboards and process-intelligence metrics</td></tr>
-    </tbody>
-  </table>
+<h2>Before vs After</h2>
+<table>
+<thead><tr><th>Capability</th><th>Before</th><th>After</th></tr></thead>
+<tbody>
+<tr><td>Booking intake</td><td>Emails, OTA backends and manual re-entry</td><td>Booking API + distributor API / webhook ingestion</td></tr>
+<tr><td>System of record</td><td>legacy commerce platform + shared spreadsheet + email context</td><td>OMS / TMS with canonical order and shipment records</td></tr>
+<tr><td>Validation</td><td>CS manually checks service rules</td><td>Rules engine validates automatically; CS sees exceptions only</td></tr>
+<tr><td>Supplier selection</td><td>Memory + spreadsheet</td><td>Versioned supplier master data + configurable routing rules</td></tr>
+<tr><td>Dispatch</td><td>Manually cleaned and forwarded email</td><td>Structured job dispatch with acceptance timer and fallback</td></tr>
+<tr><td>Supplier interface</td><td>Email and chat groups</td><td>API for capable partners; portal / secure mobile link for others</td></tr>
+<tr><td>Customer status</td><td>CS manually relays updates</td><td>Automatic notifications generated from order events</td></tr>
+<tr><td>CS role</td><td>Monitor and relay routine execution</td><td>Exception management and customer recovery</td></tr>
+<tr><td>Proof of handover</td><td>Photos and manual interpretation</td><td>Structured chain-of-custody evidence with recipient verification</td></tr>
+<tr><td>Operational knowledge</td><td>Spreadsheets + tacit knowledge</td><td>Versioned rules, master data and documented exception playbooks</td></tr>
+<tr><td>Measurement</td><td>Limited / fragmented</td><td>Event-level audit trail, dashboards and process-intelligence metrics</td></tr>
+</tbody>
+</table>
 </section>
-
 <section>
-  <h2>Future-state service flow</h2>
-  <div class="flow">
-    <span class="step">Direct / OTA booking</span><span class="arrow">→</span>
-    <span class="step">API / integration layer</span><span class="arrow">→</span>
-    <span class="step">OMS/TMS order</span><span class="arrow">→</span>
-    <span class="step">Rules validation</span><span class="arrow">→</span>
-    <span class="step">Auto dispatch</span><span class="arrow">→</span>
-    <span class="step">Partner accepts</span><span class="arrow">→</span>
-    <span class="step">Execution events</span><span class="arrow">→</span>
-    <span class="step">Customer notifications</span><span class="arrow">→</span>
-    <span class="step">Proof of delivery</span>
-  </div>
-
-  <div class="flow">
-    <span class="step">Any exception</span><span class="arrow">→</span>
-    <span class="step">Exception control tower</span><span class="arrow">→</span>
-    <span class="step">AI context / rule retrieval</span><span class="arrow">→</span>
-    <span class="step">Human decision where required</span><span class="arrow">→</span>
-    <span class="step">Resolution recorded as event</span>
-  </div>
+<h2>Future-state service flow</h2>
+<div class="flow">
+<span class="step">Direct / OTA booking</span><span class="arrow">→</span>
+<span class="step">API / integration layer</span><span class="arrow">→</span>
+<span class="step">OMS/TMS order</span><span class="arrow">→</span>
+<span class="step">Rules validation</span><span class="arrow">→</span>
+<span class="step">Auto dispatch</span><span class="arrow">→</span>
+<span class="step">Partner accepts</span><span class="arrow">→</span>
+<span class="step">Execution events</span><span class="arrow">→</span>
+<span class="step">Customer notifications</span><span class="arrow">→</span>
+<span class="step">Proof of delivery</span>
+</div>
+<div class="flow">
+<span class="step">Any exception</span><span class="arrow">→</span>
+<span class="step">Exception control tower</span><span class="arrow">→</span>
+<span class="step">AI context / rule retrieval</span><span class="arrow">→</span>
+<span class="step">Human decision where required</span><span class="arrow">→</span>
+<span class="step">Resolution recorded as event</span>
+</div>
 </section>
-
 <section>
-  <h2>What should be owned vs integrated</h2>
-  <div class="grid">
-    <div class="card after">
-      <strong>Own</strong>
+<h2>Core platform vs integrated services</h2>
+<div class="grid">
+<div class="card after">
+<strong>Core platform</strong>
       Booking UX and booking API; OMS/TMS transaction core; canonical data model; lifecycle state; rules and supplier master data; dispatch logic; exception workspace; operational event log; chain-of-custody controls.
     </div>
-    <div class="card">
-      <strong>Integrate rather than rebuild</strong>
+<div class="card">
+<strong>Integrate rather than rebuild</strong>
       Payment processing, email delivery, messaging providers, mapping / geocoding, OTA channels, mature logistics-partner APIs, identity / OTP services and analytics tooling where appropriate.
     </div>
-  </div>
+</div>
 </section>
-
-
 <section>
-  <h2>Human vs Automation vs AI decision matrix</h2>
-  <p>The target model separates work by decision type rather than applying AI everywhere. Deterministic rules handle repeatable operational logic, AI handles ambiguity and unstructured information, and humans retain control where judgement, policy, safety or commercial authority is required.</p>
-
-  <div class="callout blue">
-    <strong>Decision rule</strong>
-    <p><strong>Automate</strong> when the input is structured and the rule is stable. Use <strong>AI</strong> when the input is unstructured or contextual. Keep a <strong>human</strong> in control when the decision is high-risk, policy-sensitive, irreversible or commercially discretionary.</p>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Process step</th>
-        <th>Primary owner</th>
-        <th>Role of automation</th>
-        <th>Role of AI</th>
-        <th>Human control / guardrail</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Direct / OTA booking ingestion</td>
-        <td><strong>Automation</strong></td>
-        <td>Create canonical order, map fields, deduplicate, assign source and timestamps.</td>
-        <td>Fallback extraction when source data arrives in semi-structured email or documents.</td>
-        <td>CS reviews failed mappings or incomplete orders.</td>
-      </tr>
-      <tr>
-        <td>Serviceability & timing validation</td>
-        <td><strong>Automation</strong></td>
-        <td>Execute city, lead-time, airport timing, product-type and required-field rules.</td>
-        <td>Interpret ambiguous addresses or customer-written notes when structured validation is insufficient.</td>
-        <td>Operations approves unclear or policy-edge cases.</td>
-      </tr>
-      <tr>
-        <td>Missing-information follow-up</td>
-        <td><strong>Automation + AI</strong></td>
-        <td>Detect missing required fields and trigger follow-up workflow.</td>
-        <td>Draft context-aware request using order history and customer language.</td>
-        <td>Human review only for non-standard or sensitive cases.</td>
-      </tr>
-      <tr>
-        <td>Supplier eligibility & ranking</td>
-        <td><strong>Automation</strong></td>
-        <td>Filter by service area, capability, timing, route, cost rules and availability; rank eligible suppliers.</td>
-        <td>Optional explanation of why a route is unusual or why historical supplier behavior differs.</td>
-        <td>Operations can override assignment with reason captured.</td>
-      </tr>
-      <tr>
-        <td>Supplier dispatch</td>
-        <td><strong>Automation</strong></td>
-        <td>Generate structured job, send through API / portal / secure link, start acceptance timer, trigger fallback.</td>
-        <td>No AI required for normal dispatch.</td>
-        <td>Human intervention for no-capacity, RFQ or special-service cases.</td>
-      </tr>
-      <tr>
-        <td>Supplier confirmation & reminder</td>
-        <td><strong>Automation</strong></td>
-        <td>Track accept / reject / timeout state and send reminders or escalate automatically.</td>
-        <td>Interpret free-text supplier replies if structured response is unavailable.</td>
-        <td>Operations resolves ambiguous replies.</td>
-      </tr>
-      <tr>
-        <td>Customer service-day updates</td>
-        <td><strong>Automation</strong></td>
-        <td>Trigger notifications from structured events such as ready, picked up, delayed and delivered.</td>
-        <td>Adapt wording / language and summarize relevant context.</td>
-        <td>CS handles complaints, disputes or unclear status.</td>
-      </tr>
-      <tr>
-        <td>Inbound customer messages</td>
-        <td><strong>AI + Automation</strong></td>
-        <td>Attach message to correct order and route to workflow.</td>
-        <td>Classify intent, extract requested change, detect urgency, summarize conversation and retrieve relevant rule.</td>
-        <td>CS approves actions that alter service, fees or policy.</td>
-      </tr>
-      <tr>
-        <td>Operational exception triage</td>
-        <td><strong>AI-assisted Human</strong></td>
-        <td>Create case, start SLA clock, collect order / supplier / customer context.</td>
-        <td>Classify exception, summarize evidence, retrieve playbook and propose next action.</td>
-        <td>Operations makes the actual exception decision.</td>
-      </tr>
-      <tr>
-        <td>Fee waiver / refund / policy exception</td>
-        <td><strong>Human</strong></td>
-        <td>Calculate standard entitlement where rules are explicit.</td>
-        <td>Summarize case and surface comparable precedent.</td>
-        <td>Authorized manager approves discretionary outcome.</td>
-      </tr>
-      <tr>
-        <td>Chain of custody / recipient handover</td>
-        <td><strong>Automation + Human control</strong></td>
-        <td>Use OTP / QR / tag verification, timestamps and evidence requirements.</td>
-        <td>Optional photo-quality or evidence-completeness checks.</td>
-        <td>AI does not independently decide recipient identity or release luggage in high-risk cases.</td>
-      </tr>
-      <tr>
-        <td>Knowledge retrieval</td>
-        <td><strong>AI</strong></td>
-        <td>Maintain versioned rule and supplier data sources.</td>
-        <td>Retrieve the most relevant operational rule, supplier condition or exception playbook for the current case.</td>
-        <td>Responses must cite the governed source; staff can escalate conflicting rules.</td>
-      </tr>
-      <tr>
-        <td>Performance monitoring</td>
-        <td><strong>Automation</strong></td>
-        <td>Calculate SLA, cycle time, rework, acceptance, exception and communication-latency metrics.</td>
-        <td>Summarize recurring patterns and highlight anomalous process variants.</td>
-        <td>Managers validate conclusions before changing policy or supplier strategy.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>AI guardrails</h3>
-  <div class="grid">
-    <div class="card"><strong>AI is not the system of record</strong>The OMS/TMS owns booking state, money, supplier assignment and operational timestamps.</div>
-    <div class="card"><strong>Structured rules beat AI where possible</strong>Serviceability, time windows, pricing formulas and eligibility should be deterministic when the policy is known.</div>
-    <div class="card"><strong>Ground AI in governed knowledge</strong>Operational answers should retrieve from maintained rules, supplier data and approved playbooks rather than rely on model memory.</div>
-    <div class="card"><strong>Escalate uncertainty</strong>Low-confidence extraction, conflicting rules, policy exceptions and safety-sensitive decisions route to a human.</div>
-  </div>
-
-  <h3>What this demonstrates</h3>
-  <div class="callout good">
-    <strong>AI business analysis is not “add a chatbot.”</strong>
-    <p>This design starts from process decomposition, separates deterministic logic from judgement, defines where AI actually adds value, preserves human authority for high-risk decisions, and connects the AI layer to an auditable transaction core. That is the operating model required to move an AI concept into a production business process.</p>
-  </div>
+<h2>Human vs Automation vs AI decision matrix</h2>
+<p>The target model separates work by decision type rather than applying AI everywhere. Deterministic rules handle repeatable operational logic, AI handles ambiguity and unstructured information, and humans retain control where judgement, policy, safety or commercial authority is required.</p>
+<div class="callout blue">
+<strong>Decision rule</strong>
+<p><strong>Automate</strong> when the input is structured and the rule is stable. Use <strong>AI</strong> when the input is unstructured or contextual. Keep a <strong>human</strong> in control when the decision is high-risk, policy-sensitive, irreversible or commercially discretionary.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Process step</th>
+<th>Primary owner</th>
+<th>Role of automation</th>
+<th>Role of AI</th>
+<th>Human control / guardrail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct / OTA booking ingestion</td>
+<td><strong>Automation</strong></td>
+<td>Create canonical order, map fields, deduplicate, assign source and timestamps.</td>
+<td>Fallback extraction when source data arrives in semi-structured email or documents.</td>
+<td>CS reviews failed mappings or incomplete orders.</td>
+</tr>
+<tr>
+<td>Serviceability &amp; timing validation</td>
+<td><strong>Automation</strong></td>
+<td>Execute city, lead-time, airport timing, product-type and required-field rules.</td>
+<td>Interpret ambiguous addresses or customer-written notes when structured validation is insufficient.</td>
+<td>Operations approves unclear or policy-edge cases.</td>
+</tr>
+<tr>
+<td>Missing-information follow-up</td>
+<td><strong>Automation + AI</strong></td>
+<td>Detect missing required fields and trigger follow-up workflow.</td>
+<td>Draft context-aware request using order history and customer language.</td>
+<td>Human review only for non-standard or sensitive cases.</td>
+</tr>
+<tr>
+<td>Supplier eligibility &amp; ranking</td>
+<td><strong>Automation</strong></td>
+<td>Filter by service area, capability, timing, route, cost rules and availability; rank eligible suppliers.</td>
+<td>Optional explanation of why a route is unusual or why historical supplier behavior differs.</td>
+<td>Operations can override assignment with reason captured.</td>
+</tr>
+<tr>
+<td>Supplier dispatch</td>
+<td><strong>Automation</strong></td>
+<td>Generate structured job, send through API / portal / secure link, start acceptance timer, trigger fallback.</td>
+<td>No AI required for normal dispatch.</td>
+<td>Human intervention for no-capacity, RFQ or special-service cases.</td>
+</tr>
+<tr>
+<td>Supplier confirmation &amp; reminder</td>
+<td><strong>Automation</strong></td>
+<td>Track accept / reject / timeout state and send reminders or escalate automatically.</td>
+<td>Interpret free-text supplier replies if structured response is unavailable.</td>
+<td>Operations resolves ambiguous replies.</td>
+</tr>
+<tr>
+<td>Customer service-day updates</td>
+<td><strong>Automation</strong></td>
+<td>Trigger notifications from structured events such as ready, picked up, delayed and delivered.</td>
+<td>Adapt wording / language and summarize relevant context.</td>
+<td>CS handles complaints, disputes or unclear status.</td>
+</tr>
+<tr>
+<td>Inbound customer messages</td>
+<td><strong>AI + Automation</strong></td>
+<td>Attach message to correct order and route to workflow.</td>
+<td>Classify intent, extract requested change, detect urgency, summarize conversation and retrieve relevant rule.</td>
+<td>CS approves actions that alter service, fees or policy.</td>
+</tr>
+<tr>
+<td>Operational exception triage</td>
+<td><strong>AI-assisted Human</strong></td>
+<td>Create case, start SLA clock, collect order / supplier / customer context.</td>
+<td>Classify exception, summarize evidence, retrieve playbook and propose next action.</td>
+<td>Operations makes the actual exception decision.</td>
+</tr>
+<tr>
+<td>Fee waiver / refund / policy exception</td>
+<td><strong>Human</strong></td>
+<td>Calculate standard entitlement where rules are explicit.</td>
+<td>Summarize case and surface comparable precedent.</td>
+<td>Authorized manager approves discretionary outcome.</td>
+</tr>
+<tr>
+<td>Chain of custody / recipient handover</td>
+<td><strong>Automation + Human control</strong></td>
+<td>Use OTP / QR / tag verification, timestamps and evidence requirements.</td>
+<td>Optional photo-quality or evidence-completeness checks.</td>
+<td>AI does not independently decide recipient identity or release the shipment in high-risk cases.</td>
+</tr>
+<tr>
+<td>Knowledge retrieval</td>
+<td><strong>AI</strong></td>
+<td>Maintain versioned rule and supplier data sources.</td>
+<td>Retrieve the most relevant operational rule, supplier condition or exception playbook for the current case.</td>
+<td>Responses must cite the governed source; staff can escalate conflicting rules.</td>
+</tr>
+<tr>
+<td>Performance monitoring</td>
+<td><strong>Automation</strong></td>
+<td>Calculate SLA, cycle time, rework, acceptance, exception and communication-latency metrics.</td>
+<td>Summarize recurring patterns and highlight anomalous process variants.</td>
+<td>Managers validate conclusions before changing policy or supplier strategy.</td>
+</tr>
+</tbody>
+</table>
+<h3>AI guardrails</h3>
+<div class="grid">
+<div class="card"><strong>AI is not the system of record</strong>The OMS/TMS is the authoritative source for booking state, financial status, supplier assignment and operational timestamps.</div>
+<div class="card"><strong>Structured rules beat AI where possible</strong>Serviceability, time windows, pricing formulas and eligibility should be deterministic when the policy is known.</div>
+<div class="card"><strong>Ground AI in governed knowledge</strong>Operational answers should retrieve from maintained rules, supplier data and approved playbooks rather than rely on model memory.</div>
+<div class="card"><strong>Escalate uncertainty</strong>Low-confidence extraction, conflicting rules, policy exceptions and safety-sensitive decisions route to a human.</div>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Requirements & controls</span>
-    <p>Translate the To-Be model into business requirements, functional requirements, non-functional requirements, acceptance criteria, data requirements and UAT scenarios — starting with booking intake and normalization.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Requirements — Booking Intake & Normalization</h2>
-  <p>This first requirements slice translates the target architecture into implementation-ready business analysis for the point where direct and distributor bookings enter the operating system.</p>
-
-  <h3>Business requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>BR-01</td>
-        <td>All direct and distributor bookings must resolve to one canonical internal order record.</td>
-        <td>Remove duplicate manual order creation and create one source of truth for downstream operations.</td>
-      </tr>
-      <tr>
-        <td>BR-02</td>
-        <td>The booking source must not determine how Operations processes the order after normalization.</td>
-        <td>Website, Klook, KKday and future channels should enter the same fulfilment workflow once mapped.</td>
-      </tr>
-      <tr>
-        <td>BR-03</td>
-        <td>Routine booking ingestion and validation should require no CS intervention when required data is complete and rules are satisfied.</td>
-        <td>Move CS effort away from data entry and toward true exceptions.</td>
-      </tr>
-      <tr>
-        <td>BR-04</td>
-        <td>No booking may disappear silently between an external channel and the internal OMS/TMS.</td>
-        <td>Every ingestion attempt must have an auditable success, exception or failure state.</td>
-      </tr>
-      <tr>
-        <td>BR-05</td>
-        <td>Channel-specific differences must be absorbed by the integration layer rather than by frontline staff.</td>
-        <td>Reduce process variation, training burden and transcription risk.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>System behavior</th></tr></thead>
-    <tbody>
-      <tr><td>FR-01</td><td>The platform shall accept direct bookings from the owned booking interface and distributor bookings through API, webhook, scheduled sync or controlled fallback ingestion.</td></tr>
-      <tr><td>FR-02</td><td>The integration layer shall map each source schema into a canonical order model before the order enters fulfilment.</td></tr>
-      <tr><td>FR-03</td><td>The platform shall generate one unique internal Order ID and preserve the original external source and external Order ID.</td></tr>
-      <tr><td>FR-04</td><td>The platform shall prevent duplicate creation when the same external booking is received more than once.</td></tr>
-      <tr><td>FR-05</td><td>The platform shall validate required fields such as service date/time, city, service type, customer identity/contact details, pickup/delivery location, and route-specific airport/flight information where applicable.</td></tr>
-      <tr><td>FR-06</td><td>The platform shall run deterministic serviceability and timing rules immediately after normalization.</td></tr>
-      <tr><td>FR-07</td><td>Orders that pass validation shall progress automatically to the next fulfilment state without manual re-entry.</td></tr>
-      <tr><td>FR-08</td><td>Orders with missing, conflicting or non-compliant data shall enter a structured exception queue with the failed rule and required next action.</td></tr>
-      <tr><td>FR-09</td><td>Where source data arrives in semi-structured email or documents, AI-assisted extraction may propose field values, but low-confidence or conflicting fields must require human confirmation.</td></tr>
-      <tr><td>FR-10</td><td>Every create, update, validation result, exception and manual override shall be timestamped in the audit history.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Canonical data requirements</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Order identity</strong>
+<h2>Requirements — Booking Intake &amp; Normalization</h2>
+<p>This first requirements slice translates the target architecture into implementation-ready business analysis for the point where direct and distributor bookings enter the operating system.</p>
+<h3>Business requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
+<tbody>
+<tr>
+<td>BR-01</td>
+<td>All direct and distributor bookings must resolve to one canonical internal order record.</td>
+<td>Remove duplicate manual order creation and create one source of truth for downstream operations.</td>
+</tr>
+<tr>
+<td>BR-02</td>
+<td>The booking source must not determine how Operations processes the order after normalization.</td>
+<td>Direct website, distributor and future channels should enter the same fulfilment workflow once mapped.</td>
+</tr>
+<tr>
+<td>BR-03</td>
+<td>Routine booking ingestion and validation should require no CS intervention when required data is complete and rules are satisfied.</td>
+<td>Move CS effort away from data entry and toward true exceptions.</td>
+</tr>
+<tr>
+<td>BR-04</td>
+<td>No booking may disappear silently between an external channel and the internal OMS/TMS.</td>
+<td>Every ingestion attempt must have an auditable success, exception or failure state.</td>
+</tr>
+<tr>
+<td>BR-05</td>
+<td>Channel-specific differences must be absorbed by the integration layer rather than by frontline staff.</td>
+<td>Reduce process variation, training burden and transcription risk.</td>
+</tr>
+</tbody>
+</table>
+<h3>Functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>System behavior</th></tr></thead>
+<tbody>
+<tr><td>FR-01</td><td>The platform shall accept direct bookings from the customer booking interface and distributor bookings through API, webhook, scheduled sync or controlled fallback ingestion.</td></tr>
+<tr><td>FR-02</td><td>The integration layer shall map each source schema into a canonical order model before the order enters fulfilment.</td></tr>
+<tr><td>FR-03</td><td>The platform shall generate one unique internal Order ID and preserve the original external source and external Order ID.</td></tr>
+<tr><td>FR-04</td><td>The platform shall prevent duplicate creation when the same external booking is received more than once.</td></tr>
+<tr><td>FR-05</td><td>The platform shall validate required fields such as service date/time, city, service type, customer identity/contact details, pickup/delivery location, and route-specific airport/flight information where applicable.</td></tr>
+<tr><td>FR-06</td><td>The platform shall run deterministic serviceability and timing rules immediately after normalization.</td></tr>
+<tr><td>FR-07</td><td>Orders that pass validation shall progress automatically to the next fulfilment state without manual re-entry.</td></tr>
+<tr><td>FR-08</td><td>Orders with missing, conflicting or non-compliant data shall enter a structured exception queue with the failed rule and required next action.</td></tr>
+<tr><td>FR-09</td><td>Where source data arrives in semi-structured email or documents, AI-assisted extraction may propose field values, but low-confidence or conflicting fields must require human confirmation.</td></tr>
+<tr><td>FR-10</td><td>Every create, update, validation result, exception and manual override shall be timestamped in the audit history.</td></tr>
+</tbody>
+</table>
+<h3>Canonical data requirements</h3>
+<div class="grid">
+<div class="card">
+<strong>Order identity</strong>
       Internal Order ID, source channel, source Order ID, booking timestamp, current lifecycle status.
     </div>
-    <div class="card">
-      <strong>Customer</strong>
+<div class="card">
+<strong>Customer</strong>
       Name, email, contact number, preferred communication channel / app where captured.
     </div>
-    <div class="card">
-      <strong>Service</strong>
+<div class="card">
+<strong>Service</strong>
       Service date, service time, city, service type, pickup type, delivery type.
     </div>
-    <div class="card">
-      <strong>Locations</strong>
+<div class="card">
+<strong>Locations</strong>
       Hotel / property name, address, airport, terminal, relevant location notes.
     </div>
-    <div class="card">
-      <strong>Travel context</strong>
+<div class="card">
+<strong>Travel context</strong>
       Flight number and route-specific timing information where applicable.
     </div>
-    <div class="card">
-      <strong>Operational metadata</strong>
+<div class="card">
+<strong>Operational metadata</strong>
       Validation result, failed rule, assigned supplier, SLA timestamps, exception status and audit trail.
     </div>
-  </div>
-
-  <h3>Non-functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
-    <tbody>
-      <tr><td>NFR-01</td><td><strong>Reliability:</strong> ingestion must be retryable and idempotent so retries do not create duplicate orders.</td></tr>
-      <tr><td>NFR-02</td><td><strong>Observability:</strong> failed integrations, schema-mapping errors and validation failures must be visible in an operational dashboard / queue.</td></tr>
-      <tr><td>NFR-03</td><td><strong>Auditability:</strong> the system must retain who/what changed an order, the previous value, the new value and timestamp.</td></tr>
-      <tr><td>NFR-04</td><td><strong>Security:</strong> customer PII must be role-restricted, and integrations must use controlled credentials rather than personal accounts.</td></tr>
-      <tr><td>NFR-05</td><td><strong>Maintainability:</strong> source mappings and business rules should be configurable without rewriting the full application wherever practical.</td></tr>
-      <tr><td>NFR-06</td><td><strong>Extensibility:</strong> adding a new distributor should require a new adapter / mapping, not a new fulfilment process.</td></tr>
-      <tr><td>NFR-07</td><td><strong>Performance:</strong> normal automated booking ingestion and validation should complete within an agreed operational threshold; exact SLA to be defined during implementation.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Acceptance criteria</h3>
-  <div class="grid">
-    <div class="card"><strong>AC-01 · Website booking</strong>A valid direct booking creates exactly one canonical OMS/TMS order with the correct source metadata and proceeds without CS re-entry.</div>
-    <div class="card"><strong>AC-02 · Distributor booking</strong>A valid distributor booking produces the same canonical internal structure as a direct booking while preserving the distributor Order ID.</div>
-    <div class="card"><strong>AC-03 · Duplicate event</strong>Receiving the same external booking twice updates or ignores the duplicate according to policy and never creates a second active order.</div>
-    <div class="card"><strong>AC-04 · Missing field</strong>A booking missing a required contact / route field is stopped before dispatch and appears in the exception queue with a clear reason.</div>
-    <div class="card"><strong>AC-05 · Rule failure</strong>A booking outside a configured service area or timing rule does not progress silently and is routed to the correct exception workflow.</div>
-    <div class="card"><strong>AC-06 · Audit trail</strong>An Operations user can reconstruct how the booking entered the system, what validation ran, what changed and who approved any override.</div>
-  </div>
-
-  <h3>Representative UAT scenarios</h3>
-  <table>
-    <thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>UAT-01 · Happy-path direct booking</td>
-        <td>All mandatory website fields are valid.</td>
-        <td>Customer completes payment and booking.</td>
-        <td>One canonical order is created, validation passes and the order advances automatically.</td>
-      </tr>
-      <tr>
-        <td>UAT-02 · Happy-path KKday booking</td>
-        <td>KKday sends a complete supported booking payload.</td>
-        <td>The integration receives it.</td>
-        <td>Fields are mapped correctly, the KKday Order ID is retained, and no CS copy/paste is required.</td>
-      </tr>
-      <tr>
-        <td>UAT-03 · Missing flight information</td>
-        <td>An airport-related booking requires flight data but the source does not supply it.</td>
-        <td>Validation runs.</td>
-        <td>The order enters the exception queue and a missing-information workflow is triggered.</td>
-      </tr>
-      <tr>
-        <td>UAT-04 · Duplicate OTA delivery</td>
-        <td>An external channel retries the same booking event.</td>
-        <td>The same source Order ID is received again.</td>
-        <td>No duplicate active order is created and the event is logged.</td>
-      </tr>
-      <tr>
-        <td>UAT-05 · Non-serviceable address</td>
-        <td>The destination fails the configured service-area rule.</td>
-        <td>Validation runs.</td>
-        <td>The booking is held, the failed rule is visible, and Operations is given the appropriate resolution path.</td>
-      </tr>
-      <tr>
-        <td>UAT-06 · AI extraction uncertainty</td>
-        <td>A fallback email contains an ambiguous hotel address.</td>
-        <td>AI-assisted extraction returns low confidence or conflicting candidate values.</td>
-        <td>The system does not auto-approve the field and requires human confirmation.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Control design</h3>
-  <div class="callout good">
-    <strong>Normal flow should be touchless; uncertainty should be visible.</strong>
-    <p>The objective is not to remove humans from operations. It is to make routine orders deterministic and auditable so human attention is concentrated on incomplete, ambiguous, non-compliant or high-risk cases.</p>
-  </div>
+</div>
+<h3>Non-functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+<tbody>
+<tr><td>NFR-01</td><td><strong>Reliability:</strong> ingestion must be retryable and idempotent so retries do not create duplicate orders.</td></tr>
+<tr><td>NFR-02</td><td><strong>Observability:</strong> failed integrations, schema-mapping errors and validation failures must be visible in an operational dashboard / queue.</td></tr>
+<tr><td>NFR-03</td><td><strong>Auditability:</strong> the system must retain who/what changed an order, the previous value, the new value and timestamp.</td></tr>
+<tr><td>NFR-04</td><td><strong>Security:</strong> customer PII must be role-restricted, and integrations must use controlled credentials rather than personal accounts.</td></tr>
+<tr><td>NFR-05</td><td><strong>Maintainability:</strong> source mappings and business rules should be configurable without rewriting the full application wherever practical.</td></tr>
+<tr><td>NFR-06</td><td><strong>Extensibility:</strong> adding a new distributor should require a new adapter / mapping, not a new fulfilment process.</td></tr>
+<tr><td>NFR-07</td><td><strong>Performance:</strong> normal automated booking ingestion and validation should complete within an agreed operational threshold; exact SLA to be defined during implementation.</td></tr>
+</tbody>
+</table>
+<h3>Acceptance criteria</h3>
+<div class="grid">
+<div class="card"><strong>AC-01 · Website booking</strong>A valid direct booking creates exactly one canonical OMS/TMS order with the correct source metadata and proceeds without CS re-entry.</div>
+<div class="card"><strong>AC-02 · Distributor booking</strong>A valid distributor booking produces the same canonical internal structure as a direct booking while preserving the distributor Order ID.</div>
+<div class="card"><strong>AC-03 · Duplicate event</strong>Receiving the same external booking twice updates or ignores the duplicate according to policy and never creates a second active order.</div>
+<div class="card"><strong>AC-04 · Missing field</strong>A booking missing a required contact / route field is stopped before dispatch and appears in the exception queue with a clear reason.</div>
+<div class="card"><strong>AC-05 · Rule failure</strong>A booking outside a configured service area or timing rule does not progress silently and is routed to the correct exception workflow.</div>
+<div class="card"><strong>AC-06 · Audit trail</strong>An Operations user can reconstruct how the booking entered the system, what validation ran, what changed and who approved any override.</div>
+</div>
+<h3>Representative UAT scenarios</h3>
+<table>
+<thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
+<tbody>
+<tr>
+<td>UAT-01 · Happy-path direct booking</td>
+<td>All mandatory website fields are valid.</td>
+<td>Customer completes payment and booking.</td>
+<td>One canonical order is created, validation passes and the order advances automatically.</td>
+</tr>
+<tr>
+<td>UAT-02 · Happy-path distributor booking</td>
+<td>A distributor sends a complete supported booking payload.</td>
+<td>The integration receives it.</td>
+<td>Fields are mapped correctly, the external Order ID is retained, and no CS copy/paste is required.</td>
+</tr>
+<tr>
+<td>UAT-03 · Missing flight information</td>
+<td>An airport-related booking requires flight data but the source does not supply it.</td>
+<td>Validation runs.</td>
+<td>The order enters the exception queue and a missing-information workflow is triggered.</td>
+</tr>
+<tr>
+<td>UAT-04 · Duplicate OTA delivery</td>
+<td>An external channel retries the same booking event.</td>
+<td>The same source Order ID is received again.</td>
+<td>No duplicate active order is created and the event is logged.</td>
+</tr>
+<tr>
+<td>UAT-05 · Non-serviceable address</td>
+<td>The destination fails the configured service-area rule.</td>
+<td>Validation runs.</td>
+<td>The booking is held, the failed rule is visible, and Operations is given the appropriate resolution path.</td>
+</tr>
+<tr>
+<td>UAT-06 · AI extraction uncertainty</td>
+<td>A fallback email contains an ambiguous hotel address.</td>
+<td>AI-assisted extraction returns low confidence or conflicting candidate values.</td>
+<td>The system does not auto-approve the field and requires human confirmation.</td>
+</tr>
+</tbody>
+</table>
+<h3>Control design</h3>
+<div class="callout good">
+<strong>Normal flow should be touchless; uncertainty should be visible.</strong>
+<p>The objective is not to remove humans from operations. It is to make routine orders deterministic and auditable so human attention is concentrated on incomplete, ambiguous, non-compliant or high-risk cases.</p>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Requirements slice 2 — Supplier Dispatch</span>
-    <p>Translate supplier selection, structured dispatch, accept / reject / timeout, fallback routing and manual override into the same requirements + acceptance + UAT format.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Requirements — Supplier Dispatch & Assignment</h2>
-  <p>This requirements slice converts supplier selection and dispatch into a controlled workflow with explicit eligibility rules, ranked assignment, acknowledgement states, timeout handling and auditable human override.</p>
-
-  <h3>Business requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>BR-D01</td>
-        <td>Every serviceable order must have a clearly identified supplier-assignment state before execution.</td>
-        <td>Remove reliance on informal memory and make unassigned orders visible before service day.</td>
-      </tr>
-      <tr>
-        <td>BR-D02</td>
-        <td>Supplier selection should be based on maintained operational criteria rather than staff memory alone.</td>
-        <td>Improve consistency and reduce key-person dependency.</td>
-      </tr>
-      <tr>
-        <td>BR-D03</td>
-        <td>Routine fixed-supplier orders should be dispatched automatically where the assignment rule is deterministic.</td>
-        <td>Eliminate repetitive email preparation and forwarding work.</td>
-      </tr>
-      <tr>
-        <td>BR-D04</td>
-        <td>Non-response, rejection and unavailable capacity must trigger a defined fallback path before the service SLA is at risk.</td>
-        <td>Replace passive follow-up with proactive exception control.</td>
-      </tr>
-      <tr>
-        <td>BR-D05</td>
-        <td>Operations must retain authority to override an automated assignment when contextual judgement is required.</td>
-        <td>Preserve operational flexibility for special routes, exceptions and supplier-specific circumstances.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>System behavior</th></tr></thead>
-    <tbody>
-      <tr><td>FR-D01</td><td>The OMS/TMS shall maintain a supplier master containing service areas, route capabilities, operating windows, contact / integration method, priority, commercial reference and active / inactive status.</td></tr>
-      <tr><td>FR-D02</td><td>The system shall filter suppliers using deterministic eligibility rules before ranking candidates.</td></tr>
-      <tr><td>FR-D03</td><td>The system shall support configurable supplier-priority logic by market, route, service type and other maintained criteria.</td></tr>
-      <tr><td>FR-D04</td><td>For a deterministic fixed-supplier route, the system shall create a structured dispatch job automatically when the order becomes dispatch-ready.</td></tr>
-      <tr><td>FR-D05</td><td>Dispatch payloads shall contain only the information required for fulfilment and shall exclude internal pricing, internal notes and other non-required sensitive fields by design.</td></tr>
-      <tr><td>FR-D06</td><td>The dispatch channel shall be selected according to partner capability: API for integrated partners, partner portal / secure job link for supported partners, and controlled email fallback where necessary.</td></tr>
-      <tr><td>FR-D07</td><td>The system shall record supplier responses using explicit states such as Sent, Accepted, Rejected, Timed Out and Cancelled.</td></tr>
-      <tr><td>FR-D08</td><td>Each dispatched job shall have a configurable acknowledgement deadline appropriate to the service date and market.</td></tr>
-      <tr><td>FR-D09</td><td>If the preferred supplier rejects or times out, the system shall evaluate the next eligible supplier or create an Operations exception when automatic fallback is not permitted.</td></tr>
-      <tr><td>FR-D10</td><td>Operations shall be able to manually override supplier assignment, with the reason and user recorded in the audit log.</td></tr>
-      <tr><td>FR-D11</td><td>Special / RFQ routes shall bypass automatic final assignment and enter a structured quote workflow.</td></tr>
-      <tr><td>FR-D12</td><td>The system shall surface all orders without confirmed supplier assignment within a configurable pre-service risk window.</td></tr>
-      <tr><td>FR-D13</td><td>Free-text supplier responses received through fallback channels may be interpreted by AI for suggested status classification, but ambiguous replies shall require human confirmation.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Supplier master & dispatch data</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Supplier identity</strong>
+<h2>Requirements — Supplier Dispatch &amp; Assignment</h2>
+<p>This requirements slice converts supplier selection and dispatch into a controlled workflow with explicit eligibility rules, ranked assignment, acknowledgement states, timeout handling and auditable human override.</p>
+<h3>Business requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
+<tbody>
+<tr>
+<td>BR-D01</td>
+<td>Every serviceable order must have a clearly identified supplier-assignment state before execution.</td>
+<td>Remove reliance on informal memory and make unassigned orders visible before service day.</td>
+</tr>
+<tr>
+<td>BR-D02</td>
+<td>Supplier selection should be based on maintained operational criteria rather than staff memory alone.</td>
+<td>Improve consistency and reduce key-person dependency.</td>
+</tr>
+<tr>
+<td>BR-D03</td>
+<td>Routine fixed-supplier orders should be dispatched automatically where the assignment rule is deterministic.</td>
+<td>Eliminate repetitive email preparation and forwarding work.</td>
+</tr>
+<tr>
+<td>BR-D04</td>
+<td>Non-response, rejection and unavailable capacity must trigger a defined fallback path before the service SLA is at risk.</td>
+<td>Replace passive follow-up with proactive exception control.</td>
+</tr>
+<tr>
+<td>BR-D05</td>
+<td>Operations must retain authority to override an automated assignment when contextual judgement is required.</td>
+<td>Preserve operational flexibility for special routes, exceptions and supplier-specific circumstances.</td>
+</tr>
+</tbody>
+</table>
+<h3>Functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>System behavior</th></tr></thead>
+<tbody>
+<tr><td>FR-D01</td><td>The OMS/TMS shall maintain a supplier master containing service areas, route capabilities, operating windows, contact / integration method, priority, commercial reference and active / inactive status.</td></tr>
+<tr><td>FR-D02</td><td>The system shall filter suppliers using deterministic eligibility rules before ranking candidates.</td></tr>
+<tr><td>FR-D03</td><td>The system shall support configurable supplier-priority logic by market, route, service type and other maintained criteria.</td></tr>
+<tr><td>FR-D04</td><td>For a deterministic fixed-supplier route, the system shall create a structured dispatch job automatically when the order becomes dispatch-ready.</td></tr>
+<tr><td>FR-D05</td><td>Dispatch payloads shall contain only the information required for fulfilment and shall exclude internal pricing, internal notes and other non-required sensitive fields by design.</td></tr>
+<tr><td>FR-D06</td><td>The dispatch channel shall be selected according to partner capability: API for integrated partners, partner portal / secure job link for supported partners, and controlled email fallback where necessary.</td></tr>
+<tr><td>FR-D07</td><td>The system shall record supplier responses using explicit states such as Sent, Accepted, Rejected, Timed Out and Cancelled.</td></tr>
+<tr><td>FR-D08</td><td>Each dispatched job shall have a configurable acknowledgement deadline appropriate to the service date and market.</td></tr>
+<tr><td>FR-D09</td><td>If the preferred supplier rejects or times out, the system shall evaluate the next eligible supplier or create an Operations exception when automatic fallback is not permitted.</td></tr>
+<tr><td>FR-D10</td><td>Operations shall be able to manually override supplier assignment, with the reason and user recorded in the audit log.</td></tr>
+<tr><td>FR-D11</td><td>Special / RFQ routes shall bypass automatic final assignment and enter a structured quote workflow.</td></tr>
+<tr><td>FR-D12</td><td>The system shall surface all orders without confirmed supplier assignment within a configurable pre-service risk window.</td></tr>
+<tr><td>FR-D13</td><td>Free-text supplier responses received through fallback channels may be interpreted by AI for suggested status classification, but ambiguous replies shall require human confirmation.</td></tr>
+</tbody>
+</table>
+<h3>Supplier master &amp; dispatch data</h3>
+<div class="grid">
+<div class="card">
+<strong>Supplier identity</strong>
       Supplier ID, legal / operating name, country / market, active status, primary operational contact.
     </div>
-    <div class="card">
-      <strong>Capability</strong>
+<div class="card">
+<strong>Capability</strong>
       Service areas, airports, route types, service windows, bag / vehicle constraints, special handling capability.
     </div>
-    <div class="card">
-      <strong>Routing controls</strong>
+<div class="card">
+<strong>Routing controls</strong>
       Priority, preferred routes, fallback order, exclusion rules, manual-only flags.
     </div>
-    <div class="card">
-      <strong>Commercial reference</strong>
+<div class="card">
+<strong>Commercial reference</strong>
       Agreed pricing reference or RFQ-required flag. Commercial data remains access-controlled.
     </div>
-    <div class="card">
-      <strong>Integration method</strong>
+<div class="card">
+<strong>Integration method</strong>
       API, portal / secure link, email fallback, supported response method and acknowledgement timeout.
     </div>
-    <div class="card">
-      <strong>Performance history</strong>
+<div class="card">
+<strong>Performance history</strong>
       Acceptance rate, response time, cancellation / rejection patterns, SLA performance and exception history where available.
     </div>
-  </div>
-
-  <h3>Non-functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
-    <tbody>
-      <tr><td>NFR-D01</td><td><strong>Configurability:</strong> supplier eligibility, priority and timeout rules should be changeable by authorized Operations users without code deployment where practical.</td></tr>
-      <tr><td>NFR-D02</td><td><strong>Auditability:</strong> every automated or manual assignment decision must record the candidate set, selected supplier, rule / override reason and timestamp.</td></tr>
-      <tr><td>NFR-D03</td><td><strong>Privacy:</strong> dispatch payloads must follow data-minimization principles and expose only fields needed by the supplier.</td></tr>
-      <tr><td>NFR-D04</td><td><strong>Resilience:</strong> failed partner API calls must retry safely and fall into a visible exception state rather than silently losing the job.</td></tr>
-      <tr><td>NFR-D05</td><td><strong>Interoperability:</strong> the dispatch model should support both integrated and low-tech suppliers without creating a separate internal fulfilment process for each.</td></tr>
-      <tr><td>NFR-D06</td><td><strong>Observability:</strong> Operations must be able to see assignment status, acknowledgement deadlines, overdue confirmations and fallback actions in one view.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Acceptance criteria</h3>
-  <div class="grid">
-    <div class="card"><strong>AC-D01 · Fixed route</strong>A valid order on a deterministic fixed-supplier route is dispatched to the correct supplier without staff searching a spreadsheet or manually editing an email.</div>
-    <div class="card"><strong>AC-D02 · Data minimization</strong>The supplier receives the operational fields required for fulfilment but not internal pricing or restricted internal content.</div>
-    <div class="card"><strong>AC-D03 · Acceptance</strong>When the supplier accepts, the OMS/TMS records the acceptance timestamp and changes the booking assignment state to Confirmed.</div>
-    <div class="card"><strong>AC-D04 · Rejection</strong>When the supplier rejects, the system evaluates the configured fallback path and does not leave the booking in an apparently assigned state.</div>
-    <div class="card"><strong>AC-D05 · Timeout</strong>If acknowledgement is not received by the configured deadline, the booking becomes visible in the exception queue and the fallback / escalation policy runs.</div>
-    <div class="card"><strong>AC-D06 · Manual override</strong>An authorized Operations user can assign a different supplier and the system retains the original recommendation plus override reason.</div>
-  </div>
-
-  <h3>Representative UAT scenarios</h3>
-  <table>
-    <thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>UAT-D01 · Normal fixed-supplier dispatch</td>
-        <td>A validated order matches a configured fixed-supplier route.</td>
-        <td>The order reaches Dispatch Ready.</td>
-        <td>The system creates the job, sends it through the supplier’s supported channel and starts the acknowledgement timer.</td>
-      </tr>
-      <tr>
-        <td>UAT-D02 · Supplier accepts</td>
-        <td>A dispatch job is waiting for acknowledgement.</td>
-        <td>The supplier returns an Accept response.</td>
-        <td>The order becomes Assigned / Confirmed and the acceptance timestamp is recorded.</td>
-      </tr>
-      <tr>
-        <td>UAT-D03 · Supplier rejects</td>
-        <td>A second eligible supplier exists.</td>
-        <td>The preferred supplier rejects the job.</td>
-        <td>The system applies the configured fallback path or surfaces the case for Operations if auto-fallback is disabled.</td>
-      </tr>
-      <tr>
-        <td>UAT-D04 · No supplier response</td>
-        <td>The acknowledgement deadline expires.</td>
-        <td>No valid response has been received.</td>
-        <td>The system marks the job Timed Out, triggers fallback / escalation and flags the booking as a pre-service risk.</td>
-      </tr>
-      <tr>
-        <td>UAT-D05 · Special RFQ route</td>
-        <td>The route is marked RFQ Required.</td>
-        <td>The order reaches Dispatch Ready.</td>
-        <td>No supplier is automatically confirmed; the order enters the quote workflow with the required route information.</td>
-      </tr>
-      <tr>
-        <td>UAT-D06 · Ambiguous email response</td>
-        <td>A non-integrated supplier replies “should be okay, will confirm later.”</td>
-        <td>AI-assisted classification evaluates the message.</td>
-        <td>The system does not record Accepted automatically and routes the ambiguous response to Operations.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Control design</h3>
-  <div class="callout good">
-    <strong>Automate the routing logic; preserve accountable override.</strong>
-    <p>The objective is not to remove Operations from supplier management. It is to convert routine assignment into an explicit, measurable control loop and reserve human attention for capacity problems, RFQs, unusual routes and contextual exceptions.</p>
-  </div>
+</div>
+<h3>Non-functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+<tbody>
+<tr><td>NFR-D01</td><td><strong>Configurability:</strong> supplier eligibility, priority and timeout rules should be changeable by authorized Operations users without code deployment where practical.</td></tr>
+<tr><td>NFR-D02</td><td><strong>Auditability:</strong> every automated or manual assignment decision must record the candidate set, selected supplier, rule / override reason and timestamp.</td></tr>
+<tr><td>NFR-D03</td><td><strong>Privacy:</strong> dispatch payloads must follow data-minimization principles and expose only fields needed by the supplier.</td></tr>
+<tr><td>NFR-D04</td><td><strong>Resilience:</strong> failed partner API calls must retry safely and fall into a visible exception state rather than silently losing the job.</td></tr>
+<tr><td>NFR-D05</td><td><strong>Interoperability:</strong> the dispatch model should support both integrated and low-tech suppliers without creating a separate internal fulfilment process for each.</td></tr>
+<tr><td>NFR-D06</td><td><strong>Observability:</strong> Operations must be able to see assignment status, acknowledgement deadlines, overdue confirmations and fallback actions in one view.</td></tr>
+</tbody>
+</table>
+<h3>Acceptance criteria</h3>
+<div class="grid">
+<div class="card"><strong>AC-D01 · Fixed route</strong>A valid order on a deterministic fixed-supplier route is dispatched to the correct supplier without staff searching a spreadsheet or manually editing an email.</div>
+<div class="card"><strong>AC-D02 · Data minimization</strong>The supplier receives the operational fields required for fulfilment but not internal pricing or restricted internal content.</div>
+<div class="card"><strong>AC-D03 · Acceptance</strong>When the supplier accepts, the OMS/TMS records the acceptance timestamp and changes the booking assignment state to Confirmed.</div>
+<div class="card"><strong>AC-D04 · Rejection</strong>When the supplier rejects, the system evaluates the configured fallback path and does not leave the booking in an apparently assigned state.</div>
+<div class="card"><strong>AC-D05 · Timeout</strong>If acknowledgement is not received by the configured deadline, the booking becomes visible in the exception queue and the fallback / escalation policy runs.</div>
+<div class="card"><strong>AC-D06 · Manual override</strong>An authorized Operations user can assign a different supplier and the system retains the original recommendation plus override reason.</div>
+</div>
+<h3>Representative UAT scenarios</h3>
+<table>
+<thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
+<tbody>
+<tr>
+<td>UAT-D01 · Normal fixed-supplier dispatch</td>
+<td>A validated order matches a configured fixed-supplier route.</td>
+<td>The order reaches Dispatch Ready.</td>
+<td>The system creates the job, sends it through the supplier’s supported channel and starts the acknowledgement timer.</td>
+</tr>
+<tr>
+<td>UAT-D02 · Supplier accepts</td>
+<td>A dispatch job is waiting for acknowledgement.</td>
+<td>The supplier returns an Accept response.</td>
+<td>The order becomes Assigned / Confirmed and the acceptance timestamp is recorded.</td>
+</tr>
+<tr>
+<td>UAT-D03 · Supplier rejects</td>
+<td>A second eligible supplier exists.</td>
+<td>The preferred supplier rejects the job.</td>
+<td>The system applies the configured fallback path or surfaces the case for Operations if auto-fallback is disabled.</td>
+</tr>
+<tr>
+<td>UAT-D04 · No supplier response</td>
+<td>The acknowledgement deadline expires.</td>
+<td>No valid response has been received.</td>
+<td>The system marks the job Timed Out, triggers fallback / escalation and flags the booking as a pre-service risk.</td>
+</tr>
+<tr>
+<td>UAT-D05 · Special RFQ route</td>
+<td>The route is marked RFQ Required.</td>
+<td>The order reaches Dispatch Ready.</td>
+<td>No supplier is automatically confirmed; the order enters the quote workflow with the required route information.</td>
+</tr>
+<tr>
+<td>UAT-D06 · Ambiguous email response</td>
+<td>A non-integrated supplier replies “should be okay, will confirm later.”</td>
+<td>AI-assisted classification evaluates the message.</td>
+<td>The system does not record Accepted automatically and routes the ambiguous response to Operations.</td>
+</tr>
+</tbody>
+</table>
+<h3>Control design</h3>
+<div class="callout good">
+<strong>Automate the routing logic; preserve accountable override.</strong>
+<p>The objective is not to remove Operations from supplier management. It is to convert routine assignment into an explicit, measurable control loop and reserve human attention for capacity problems, RFQs, unusual routes and contextual exceptions.</p>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Requirements slice 3 — Service-Day Communication & Exceptions</span>
-    <p>Define event-driven customer / supplier updates, exception classification, escalation ownership, AI-assisted case summarization and human approval controls.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Requirements — Service-Day Communication & Exception Management</h2>
-  <p>This slice redesigns the highest-touch part of the current operation: routine status relaying, multi-channel service-day communication and exception firefighting. The target state is event-driven for normal execution and exception-led for human intervention.</p>
-
-  <h3>Business requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>BR-C01</td>
-        <td>Routine service-day status updates should not require CS to manually relay information between customer and supplier / driver.</td>
-        <td>Reduce manual touchpoints and customer-update latency.</td>
-      </tr>
-      <tr>
-        <td>BR-C02</td>
-        <td>All service-day communication must remain linked to the correct order and current execution state.</td>
-        <td>Prevent context loss across email, messaging and supplier channels.</td>
-      </tr>
-      <tr>
-        <td>BR-C03</td>
-        <td>Exceptions must be converted into explicit cases with owner, severity, SLA clock, required action and resolution history.</td>
-        <td>Replace ad hoc firefighting with a controlled exception-management process.</td>
-      </tr>
-      <tr>
-        <td>BR-C04</td>
-        <td>AI may assist with interpretation and triage, but high-risk operational, payment, policy and handover decisions must remain human-controlled.</td>
-        <td>Use AI where it adds speed without allowing uncertain model output to become an uncontrolled operational action.</td>
-      </tr>
-      <tr>
-        <td>BR-C05</td>
-        <td>Operations must be able to reconstruct the complete service-day timeline from booking state, messages, supplier events and human decisions.</td>
-        <td>Create auditability and support later process-intelligence analysis.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>System behavior</th></tr></thead>
-    <tbody>
-      <tr><td>FR-C01</td><td>The OMS/TMS shall record structured execution events such as Customer Ready, Driver En Route, Pickup Attempted, Picked Up, Delivery Attempted, Delivered, Waiting, Delayed and Exception Raised.</td></tr>
-      <tr><td>FR-C02</td><td>Configured events shall automatically trigger the appropriate customer notification through the available customer communication channel.</td></tr>
-      <tr><td>FR-C03</td><td>Supplier / driver status updates received through API, portal, secure link or controlled fallback channels shall update the same canonical order timeline.</td></tr>
-      <tr><td>FR-C04</td><td>Inbound customer messages shall be matched to the correct booking using available identifiers such as Order ID, verified email, contact number and conversation context.</td></tr>
-      <tr><td>FR-C05</td><td>AI may classify inbound messages into intents such as timing change, arrival / readiness, missing information, delay inquiry, complaint, pickup issue, delivery issue or cancellation request.</td></tr>
-      <tr><td>FR-C06</td><td>AI may extract proposed structured updates from customer or supplier messages, but changes affecting service time, location, fees or policy must follow the relevant validation and approval workflow.</td></tr>
-      <tr><td>FR-C07</td><td>The system shall create an exception case automatically when a defined risk condition occurs, including unresolved pickup, delivery rejection, excessive waiting, SLA risk, supplier non-response or conflicting order information.</td></tr>
-      <tr><td>FR-C08</td><td>Each exception case shall store category, severity, owner, SLA timer, related order, evidence, relevant rule / playbook, current status and resolution history.</td></tr>
-      <tr><td>FR-C09</td><td>AI may generate a concise case summary from order state, conversation history, supplier messages and prior actions.</td></tr>
-      <tr><td>FR-C10</td><td>AI may retrieve the relevant approved operational rule or exception playbook and propose the next action, with the source displayed to the user.</td></tr>
-      <tr><td>FR-C11</td><td>The system shall require explicit human approval before discretionary fee waivers, refunds, compensation outside fixed rules, policy overrides or safety-sensitive release decisions.</td></tr>
-      <tr><td>FR-C12</td><td>When an exception is resolved, the resolution, responsible user and resulting order state shall be written back to the operational timeline.</td></tr>
-      <tr><td>FR-C13</td><td>Repeated unresolved or high-severity cases shall escalate according to configurable thresholds rather than relying on individual staff memory.</td></tr>
-      <tr><td>FR-C14</td><td>All customer-facing AI-drafted messages must be generated from the current order state and approved knowledge context; the system must not fabricate operational status.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Exception taxonomy</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Pickup</strong>
-      Customer late / unreachable, wrong meeting point, luggage not deposited, luggage not found, hotel release issue.
+<h2>Requirements — Service-Day Communication &amp; Exception Management</h2>
+<p>This slice redesigns the highest-touch part of the current operation: routine status relaying, multi-channel service-day communication and exception firefighting. The target state is event-driven for normal execution and exception-led for human intervention.</p>
+<h3>Business requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
+<tbody>
+<tr>
+<td>BR-C01</td>
+<td>Routine service-day status updates should not require CS to manually relay information between customer and supplier / driver.</td>
+<td>Reduce manual touchpoints and customer-update latency.</td>
+</tr>
+<tr>
+<td>BR-C02</td>
+<td>All service-day communication must remain linked to the correct order and current execution state.</td>
+<td>Prevent context loss across email, messaging and supplier channels.</td>
+</tr>
+<tr>
+<td>BR-C03</td>
+<td>Exceptions must be converted into explicit cases with owner, severity, SLA clock, required action and resolution history.</td>
+<td>Replace ad hoc firefighting with a controlled exception-management process.</td>
+</tr>
+<tr>
+<td>BR-C04</td>
+<td>AI may assist with interpretation and triage, but high-risk operational, payment, policy and handover decisions must remain human-controlled.</td>
+<td>Use AI where it adds speed without allowing uncertain model output to become an uncontrolled operational action.</td>
+</tr>
+<tr>
+<td>BR-C05</td>
+<td>Operations must be able to reconstruct the complete service-day timeline from booking state, messages, supplier events and human decisions.</td>
+<td>Create auditability and support later process-intelligence analysis.</td>
+</tr>
+</tbody>
+</table>
+<h3>Functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>System behavior</th></tr></thead>
+<tbody>
+<tr><td>FR-C01</td><td>The OMS/TMS shall record structured execution events such as Customer Ready, Driver En Route, Pickup Attempted, Picked Up, Delivery Attempted, Delivered, Waiting, Delayed and Exception Raised.</td></tr>
+<tr><td>FR-C02</td><td>Configured events shall automatically trigger the appropriate customer notification through the available customer communication channel.</td></tr>
+<tr><td>FR-C03</td><td>Supplier / driver status updates received through API, portal, secure link or controlled fallback channels shall update the same canonical order timeline.</td></tr>
+<tr><td>FR-C04</td><td>Inbound customer messages shall be matched to the correct booking using available identifiers such as Order ID, verified email, contact number and conversation context.</td></tr>
+<tr><td>FR-C05</td><td>AI may classify inbound messages into intents such as timing change, arrival / readiness, missing information, delay inquiry, complaint, pickup issue, delivery issue or cancellation request.</td></tr>
+<tr><td>FR-C06</td><td>AI may extract proposed structured updates from customer or supplier messages, but changes affecting service time, location, fees or policy must follow the relevant validation and approval workflow.</td></tr>
+<tr><td>FR-C07</td><td>The system shall create an exception case automatically when a defined risk condition occurs, including unresolved pickup, delivery rejection, excessive waiting, SLA risk, supplier non-response or conflicting order information.</td></tr>
+<tr><td>FR-C08</td><td>Each exception case shall store category, severity, owner, SLA timer, related order, evidence, relevant rule / playbook, current status and resolution history.</td></tr>
+<tr><td>FR-C09</td><td>AI may generate a concise case summary from order state, conversation history, supplier messages and prior actions.</td></tr>
+<tr><td>FR-C10</td><td>AI may retrieve the relevant approved operational rule or exception playbook and propose the next action, with the source displayed to the user.</td></tr>
+<tr><td>FR-C11</td><td>The system shall require explicit human approval before discretionary fee waivers, refunds, compensation outside fixed rules, policy overrides or safety-sensitive release decisions.</td></tr>
+<tr><td>FR-C12</td><td>When an exception is resolved, the resolution, responsible user and resulting order state shall be written back to the operational timeline.</td></tr>
+<tr><td>FR-C13</td><td>Repeated unresolved or high-severity cases shall escalate according to configurable thresholds rather than relying on individual staff memory.</td></tr>
+<tr><td>FR-C14</td><td>All customer-facing AI-drafted messages must be generated from the current order state and approved knowledge context; the system must not fabricate operational status.</td></tr>
+</tbody>
+</table>
+<h3>Exception taxonomy</h3>
+<div class="grid">
+<div class="card">
+<strong>Pickup</strong>
+      Customer late / unreachable, wrong meeting point, items not deposited, items not found, hotel release issue.
     </div>
-    <div class="card">
-      <strong>Delivery</strong>
+<div class="card">
+<strong>Delivery</strong>
       Wrong / changed address, guest not found, hotel rejection, no reception, property unavailable, redelivery required.
     </div>
-    <div class="card">
-      <strong>Supplier</strong>
+<div class="card">
+<strong>Supplier</strong>
       No confirmation, rejection, late driver, capacity issue, status conflict, execution failure.
     </div>
-    <div class="card">
-      <strong>Travel / external</strong>
+<div class="card">
+<strong>Travel / external</strong>
       Flight disruption, road closure, severe weather, carrier compliance issue, rerouting requirement.
     </div>
-    <div class="card">
-      <strong>Customer-service</strong>
+<div class="card">
+<strong>Customer-service</strong>
       Timing change, cancellation, complaint, compensation request, fee dispute, policy exception.
     </div>
-    <div class="card">
-      <strong>Chain of custody</strong>
+<div class="card">
+<strong>Chain of custody</strong>
       Recipient mismatch, missing proof, unclear handover evidence, unverified release.
     </div>
-  </div>
-
-  <h3>AI context package</h3>
-  <p>Before AI is asked to classify, summarize or recommend an action, the orchestration layer should assemble a bounded case context rather than passing an entire unfiltered mailbox or chat history.</p>
-
-  <div class="grid">
-    <div class="card"><strong>Current order state</strong>Service type, route, service time, source channel, supplier, SLA state and current lifecycle status.</div>
-    <div class="card"><strong>Relevant conversation</strong>Only messages linked to the case / order, with sender and timestamp preserved.</div>
-    <div class="card"><strong>Execution events</strong>Pickup, delivery, waiting, delays, evidence and supplier acknowledgements.</div>
-    <div class="card"><strong>Governed knowledge</strong>Applicable service rule, supplier condition, fee rule and approved exception playbook.</div>
-  </div>
-
-  <h3>Non-functional requirements</h3>
-  <table>
-    <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
-    <tbody>
-      <tr><td>NFR-C01</td><td><strong>Traceability:</strong> every automated notification, AI recommendation and human decision must be tied to the order and timestamped.</td></tr>
-      <tr><td>NFR-C02</td><td><strong>Explainability:</strong> AI-assisted recommendations must display the retrieved rule / playbook or evidence used to support the suggestion.</td></tr>
-      <tr><td>NFR-C03</td><td><strong>Confidence control:</strong> low-confidence classification or extraction must fall back to human review rather than auto-execution.</td></tr>
-      <tr><td>NFR-C04</td><td><strong>Channel resilience:</strong> failure of one communication channel must be visible and support an approved fallback path.</td></tr>
-      <tr><td>NFR-C05</td><td><strong>Latency:</strong> service-critical execution events should generate customer / Operations visibility within an agreed threshold; exact SLA to be defined during implementation.</td></tr>
-      <tr><td>NFR-C06</td><td><strong>Access control:</strong> policy overrides, compensation, refunds and sensitive customer data must be restricted by role.</td></tr>
-      <tr><td>NFR-C07</td><td><strong>Version control:</strong> AI retrieval must use the current approved version of operational rules and retain the rule version used for each decision.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Acceptance criteria</h3>
-  <div class="grid">
-    <div class="card"><strong>AC-C01 · Routine update</strong>When a structured pickup event is recorded, the customer receives the configured pickup notification without CS manually forwarding the supplier message.</div>
-    <div class="card"><strong>AC-C02 · Customer readiness</strong>When a customer reports arrival at the meeting point, the message is linked to the correct order and the relevant execution state / supplier notification is triggered or presented for confirmation.</div>
-    <div class="card"><strong>AC-C03 · Exception creation</strong>An unresolved pickup or delivery failure creates an exception case with owner, severity and SLA clock rather than remaining only inside chat history.</div>
-    <div class="card"><strong>AC-C04 · AI summary</strong>The Operations user can open an exception and receive an accurate summary of order state, recent messages, evidence and actions without losing source traceability.</div>
-    <div class="card"><strong>AC-C05 · Policy control</strong>An AI recommendation cannot independently execute a discretionary refund, fee waiver or policy override.</div>
-    <div class="card"><strong>AC-C06 · Closure</strong>Resolving an exception updates the canonical order state and records who resolved it, what action was taken and when.</div>
-  </div>
-
-  <h3>Representative UAT scenarios</h3>
-  <table>
-    <thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>UAT-C01 · Customer arrives at meeting point</td>
-        <td>An airport pickup order is active.</td>
-        <td>The customer messages “I’m at the meeting point.”</td>
-        <td>The message is matched to the order, intent is classified as Customer Ready, the event is recorded and the supplier workflow is updated without requiring manual copy / paste.</td>
-      </tr>
-      <tr>
-        <td>UAT-C02 · Driver confirms pickup</td>
-        <td>The supplier has accepted the job.</td>
-        <td>The driver records pickup.</td>
-        <td>The OMS/TMS changes the order state to Picked Up and sends the configured customer notification automatically.</td>
-      </tr>
-      <tr>
-        <td>UAT-C03 · Hotel cannot find luggage</td>
-        <td>The driver reports that luggage is unavailable at concierge.</td>
-        <td>The event is submitted.</td>
-        <td>An exception case is opened, relevant order / storage information is assembled and the appropriate pickup playbook is presented to Operations.</td>
-      </tr>
-      <tr>
-        <td>UAT-C04 · Ambiguous timing request</td>
-        <td>A customer sends a free-text message that may imply a timing change.</td>
-        <td>AI extracts a proposed new time with low confidence.</td>
-        <td>The system does not alter the booking automatically and requests human confirmation.</td>
-      </tr>
-      <tr>
-        <td>UAT-C05 · Fee waiver request</td>
-        <td>A customer disputes a waiting fee.</td>
-        <td>AI summarizes the case and retrieves the applicable waiting policy.</td>
-        <td>The authorized human decides whether to apply or waive the fee; AI does not execute the financial decision.</td>
-      </tr>
-      <tr>
-        <td>UAT-C06 · Wrong recipient risk</td>
-        <td>A Hotel → Airport handover requires customer collection.</td>
-        <td>Recipient verification fails or evidence is incomplete.</td>
-        <td>The luggage is not released under the automated flow and the case is escalated for human resolution.</td>
-      </tr>
-      <tr>
-        <td>UAT-C07 · Conflicting channels</td>
-        <td>The customer emails one update while sending a different message through Respond.io.</td>
-        <td>Both messages are linked to the same active order.</td>
-        <td>The case timeline preserves both sources and flags the conflicting operational instruction for review.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Control design</h3>
-  <div class="callout good">
-    <strong>Automate normal execution; make abnormal execution impossible to ignore.</strong>
-    <p>The target state removes CS from routine message relaying while giving Operations a structured control tower for cases that genuinely need judgement. AI improves speed by reading, summarizing and retrieving context, but authority remains explicit and auditable.</p>
-  </div>
+</div>
+<h3>AI context package</h3>
+<p>Before AI is asked to classify, summarize or recommend an action, the orchestration layer should assemble a bounded case context rather than passing an entire unfiltered mailbox or chat history.</p>
+<div class="grid">
+<div class="card"><strong>Current order state</strong>Service type, route, service time, source channel, supplier, SLA state and current lifecycle status.</div>
+<div class="card"><strong>Relevant conversation</strong>Only messages linked to the case / order, with sender and timestamp preserved.</div>
+<div class="card"><strong>Execution events</strong>Pickup, delivery, waiting, delays, evidence and supplier acknowledgements.</div>
+<div class="card"><strong>Governed knowledge</strong>Applicable service rule, supplier condition, fee rule and approved exception playbook.</div>
+</div>
+<h3>Non-functional requirements</h3>
+<table>
+<thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+<tbody>
+<tr><td>NFR-C01</td><td><strong>Traceability:</strong> every automated notification, AI recommendation and human decision must be tied to the order and timestamped.</td></tr>
+<tr><td>NFR-C02</td><td><strong>Explainability:</strong> AI-assisted recommendations must display the retrieved rule / playbook or evidence used to support the suggestion.</td></tr>
+<tr><td>NFR-C03</td><td><strong>Confidence control:</strong> low-confidence classification or extraction must fall back to human review rather than auto-execution.</td></tr>
+<tr><td>NFR-C04</td><td><strong>Channel resilience:</strong> failure of one communication channel must be visible and support an approved fallback path.</td></tr>
+<tr><td>NFR-C05</td><td><strong>Latency:</strong> service-critical execution events should generate customer / Operations visibility within an agreed threshold; exact SLA to be defined during implementation.</td></tr>
+<tr><td>NFR-C06</td><td><strong>Access control:</strong> policy overrides, compensation, refunds and sensitive customer data must be restricted by role.</td></tr>
+<tr><td>NFR-C07</td><td><strong>Version control:</strong> AI retrieval must use the current approved version of operational rules and retain the rule version used for each decision.</td></tr>
+</tbody>
+</table>
+<h3>Acceptance criteria</h3>
+<div class="grid">
+<div class="card"><strong>AC-C01 · Routine update</strong>When a structured pickup event is recorded, the customer receives the configured pickup notification without CS manually forwarding the supplier message.</div>
+<div class="card"><strong>AC-C02 · Customer readiness</strong>When a customer reports arrival at the meeting point, the message is linked to the correct order and the relevant execution state / supplier notification is triggered or presented for confirmation.</div>
+<div class="card"><strong>AC-C03 · Exception creation</strong>An unresolved pickup or delivery failure creates an exception case with owner, severity and SLA clock rather than remaining only inside chat history.</div>
+<div class="card"><strong>AC-C04 · AI summary</strong>The Operations user can open an exception and receive an accurate summary of order state, recent messages, evidence and actions without losing source traceability.</div>
+<div class="card"><strong>AC-C05 · Policy control</strong>An AI recommendation cannot independently execute a discretionary refund, fee waiver or policy override.</div>
+<div class="card"><strong>AC-C06 · Closure</strong>Resolving an exception updates the canonical order state and records who resolved it, what action was taken and when.</div>
+</div>
+<h3>Representative UAT scenarios</h3>
+<table>
+<thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
+<tbody>
+<tr>
+<td>UAT-C01 · Customer arrives at meeting point</td>
+<td>An airport pickup order is active.</td>
+<td>The customer messages “I’m at the meeting point.”</td>
+<td>The message is matched to the order, intent is classified as Customer Ready, the event is recorded and the supplier workflow is updated without requiring manual copy / paste.</td>
+</tr>
+<tr>
+<td>UAT-C02 · Driver confirms pickup</td>
+<td>The supplier has accepted the job.</td>
+<td>The driver records pickup.</td>
+<td>The OMS/TMS changes the order state to Picked Up and sends the configured customer notification automatically.</td>
+</tr>
+<tr>
+<td>UAT-C03 · Origin handover item not found</td>
+<td>The service partner reports that the shipment cannot be located at the handover point.</td>
+<td>The event is submitted.</td>
+<td>An exception case is opened, relevant order / storage information is assembled and the appropriate pickup playbook is presented to Operations.</td>
+</tr>
+<tr>
+<td>UAT-C04 · Ambiguous timing request</td>
+<td>A customer sends a free-text message that may imply a timing change.</td>
+<td>AI extracts a proposed new time with low confidence.</td>
+<td>The system does not alter the booking automatically and requests human confirmation.</td>
+</tr>
+<tr>
+<td>UAT-C05 · Fee waiver request</td>
+<td>A customer disputes a waiting fee.</td>
+<td>AI summarizes the case and retrieves the applicable waiting policy.</td>
+<td>The authorized human decides whether to apply or waive the fee; AI does not execute the financial decision.</td>
+</tr>
+<tr>
+<td>UAT-C06 · Wrong recipient risk</td>
+<td>A Hotel → Airport handover requires customer collection.</td>
+<td>Recipient verification fails or evidence is incomplete.</td>
+<td>The shipment is not released under the automated flow and the case is escalated for human resolution.</td>
+</tr>
+<tr>
+<td>UAT-C07 · Conflicting channels</td>
+<td>The customer emails one update while sending a different message through customer messaging platform.</td>
+<td>Both messages are linked to the same active order.</td>
+<td>The case timeline preserves both sources and flags the conflicting operational instruction for review.</td>
+</tr>
+</tbody>
+</table>
+<h3>Control design</h3>
+<div class="callout good">
+<strong>Automate normal execution; make abnormal execution impossible to ignore.</strong>
+<p>The target state removes CS from routine message relaying while giving Operations a structured control tower for cases that genuinely need judgement. AI improves speed by reading, summarizing and retrieving context, but authority remains explicit and auditable.</p>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Governance & operating controls</span>
-    <p>Define ownership, RACI, knowledge governance, AI evaluation, audit controls, escalation authority and change-management requirements across the target operating model.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Governance & Operating Controls</h2>
-  <p>The target operating model requires explicit ownership for process rules, supplier master data, AI behavior and exception authority. Automation without ownership would simply recreate the current fragmentation in a new system.</p>
-
-  <h3>Operating ownership model</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Capability</th>
-        <th>Accountable owner</th>
-        <th>Responsible operator</th>
-        <th>Control expectation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Booking / order lifecycle</td>
-        <td>Operations Product Owner</td>
-        <td>Operations + Platform</td>
-        <td>One canonical state model; changes are version-controlled and tested before release.</td>
-      </tr>
-      <tr>
-        <td>Serviceability & timing rules</td>
-        <td>Operations Manager</td>
-        <td>Authorized Operations user</td>
-        <td>Rules have owner, effective date, reason for change and rollback history.</td>
-      </tr>
-      <tr>
-        <td>Supplier master data</td>
-        <td>Supplier / Operations Lead</td>
-        <td>Operations</td>
-        <td>Coverage, capability, priority and escalation details are maintained in one controlled source.</td>
-      </tr>
-      <tr>
-        <td>Distributor integrations</td>
-        <td>Product / Technology Owner</td>
-        <td>Engineering / Integration owner</td>
-        <td>Schema mapping, retries, idempotency and failure monitoring are documented and owned.</td>
-      </tr>
-      <tr>
-        <td>AI prompts / retrieval behavior</td>
-        <td>AI Product / Transformation Owner</td>
-        <td>Product + Operations</td>
-        <td>Prompt / policy changes are versioned, evaluated and approved before production use.</td>
-      </tr>
-      <tr>
-        <td>Exception playbooks</td>
-        <td>Operations Manager</td>
-        <td>Operations SMEs</td>
-        <td>Resolved exceptions that reveal reusable logic are reviewed and converted into maintained playbooks.</td>
-      </tr>
-      <tr>
-        <td>Refund / compensation authority</td>
-        <td>Authorized Business Owner</td>
-        <td>CS / Operations within limits</td>
-        <td>Approval thresholds are explicit; discretionary decisions remain attributable to a named user.</td>
-      </tr>
-      <tr>
-        <td>Chain-of-custody policy</td>
-        <td>Operations / Risk Owner</td>
-        <td>Supplier + Operations</td>
-        <td>Required evidence, recipient verification and escalation rules are mandatory and auditable.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>RACI — critical decisions</h3>
-  <table>
-    <thead><tr><th>Decision</th><th>Operations</th><th>Product / Tech</th><th>CS</th><th>Supplier</th><th>Management</th></tr></thead>
-    <tbody>
-      <tr><td>Change service rule</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
-      <tr><td>Change supplier routing rule</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
-      <tr><td>Deploy integration change</td><td>C</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>I</td></tr>
-      <tr><td>Approve AI behavior change</td><td>C</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>I</td></tr>
-      <tr><td>Resolve normal exception</td><td><strong>A</strong></td><td>I</td><td><strong>R</strong></td><td>C</td><td>I</td></tr>
-      <tr><td>Approve policy override / high-value compensation</td><td>R</td><td>I</td><td>C</td><td>I</td><td><strong>A</strong></td></tr>
-      <tr><td>Approve high-risk handover exception</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
-    </tbody>
-  </table>
-  <p class="small">R = Responsible, A = Accountable, C = Consulted, I = Informed.</p>
-
-  <h3>Knowledge governance</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Authoritative sources only</strong>
+<h2>Governance &amp; Operating Controls</h2>
+<p>The target operating model requires explicit ownership for process rules, supplier master data, AI behavior and exception authority. Automation without ownership would simply recreate the current fragmentation in a new system.</p>
+<h3>Operating ownership model</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Accountable owner</th>
+<th>Responsible operator</th>
+<th>Control expectation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Booking / order lifecycle</td>
+<td>Operations Product Owner</td>
+<td>Operations + Platform</td>
+<td>One canonical state model; changes are version-controlled and tested before release.</td>
+</tr>
+<tr>
+<td>Serviceability &amp; timing rules</td>
+<td>Operations Manager</td>
+<td>Authorized Operations user</td>
+<td>Rules have owner, effective date, reason for change and rollback history.</td>
+</tr>
+<tr>
+<td>Supplier master data</td>
+<td>Supplier / Operations Lead</td>
+<td>Operations</td>
+<td>Coverage, capability, priority and escalation details are maintained in one controlled source.</td>
+</tr>
+<tr>
+<td>Distributor integrations</td>
+<td>Product / Technology Owner</td>
+<td>Engineering / Integration owner</td>
+<td>Schema mapping, retries, idempotency and failure monitoring are documented and owned.</td>
+</tr>
+<tr>
+<td>AI prompts / retrieval behavior</td>
+<td>AI Product / Transformation Owner</td>
+<td>Product + Operations</td>
+<td>Prompt / policy changes are versioned, evaluated and approved before production use.</td>
+</tr>
+<tr>
+<td>Exception playbooks</td>
+<td>Operations Manager</td>
+<td>Operations SMEs</td>
+<td>Resolved exceptions that reveal reusable logic are reviewed and converted into maintained playbooks.</td>
+</tr>
+<tr>
+<td>Refund / compensation authority</td>
+<td>Authorized Business Owner</td>
+<td>CS / Operations within limits</td>
+<td>Approval thresholds are explicit; discretionary decisions remain attributable to a named user.</td>
+</tr>
+<tr>
+<td>Chain-of-custody policy</td>
+<td>Operations / Risk Owner</td>
+<td>Supplier + Operations</td>
+<td>Required evidence, recipient verification and escalation rules are mandatory and auditable.</td>
+</tr>
+</tbody>
+</table>
+<h3>RACI — critical decisions</h3>
+<table>
+<thead><tr><th>Decision</th><th>Operations</th><th>Product / Tech</th><th>CS</th><th>Supplier</th><th>Management</th></tr></thead>
+<tbody>
+<tr><td>Change service rule</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+<tr><td>Change supplier routing rule</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+<tr><td>Deploy integration change</td><td>C</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>I</td></tr>
+<tr><td>Approve AI behavior change</td><td>C</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>I</td></tr>
+<tr><td>Resolve normal exception</td><td><strong>A</strong></td><td>I</td><td><strong>R</strong></td><td>C</td><td>I</td></tr>
+<tr><td>Approve policy override / high-value compensation</td><td>R</td><td>I</td><td>C</td><td>I</td><td><strong>A</strong></td></tr>
+<tr><td>Approve high-risk handover exception</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
+</tbody>
+</table>
+<p class="small">R = Responsible, A = Accountable, C = Consulted, I = Informed.</p>
+<h3>Knowledge governance</h3>
+<div class="grid">
+<div class="card">
+<strong>Authoritative sources only</strong>
       Service rules, supplier constraints, pricing references and exception playbooks must have a named owner and a single approved source.
     </div>
-    <div class="card">
-      <strong>Version every operational rule</strong>
+<div class="card">
+<strong>Version every operational rule</strong>
       Record effective date, change reason, approver and superseded version so historical decisions remain explainable.
     </div>
-    <div class="card">
-      <strong>Capture learning from exceptions</strong>
+<div class="card">
+<strong>Capture learning from exceptions</strong>
       Repeated manual decisions should trigger review: convert reusable judgement into a rule, playbook or explicit human-only decision.
     </div>
-    <div class="card">
-      <strong>Separate policy from conversation history</strong>
+<div class="card">
+<strong>Separate policy from conversation history</strong>
       Email / chat is evidence, not the source of truth for operating policy.
     </div>
-  </div>
-
-  <h3>AI evaluation framework</h3>
-  <table>
-    <thead><tr><th>AI use case</th><th>Evaluation measure</th><th>Failure handling</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>Intent classification</td>
-        <td>Precision / recall by operational intent; special focus on high-risk classes.</td>
-        <td>Low confidence → human triage; high-risk misclassification reviewed as incident.</td>
-      </tr>
-      <tr>
-        <td>Field extraction</td>
-        <td>Exact-match accuracy for dates, times, locations, flight numbers and order identifiers.</td>
-        <td>Conflicting / low-confidence values cannot overwrite the OMS/TMS automatically.</td>
-      </tr>
-      <tr>
-        <td>Case summarization</td>
-        <td>Factual completeness, chronology accuracy, omission rate and unsupported-statement rate.</td>
-        <td>User can open source messages / events; unsupported claims are blocked from action.</td>
-      </tr>
-      <tr>
-        <td>Knowledge retrieval</td>
-        <td>Relevant-source hit rate and rule-version correctness.</td>
-        <td>No grounded source → AI must not state policy as fact.</td>
-      </tr>
-      <tr>
-        <td>Next-action recommendation</td>
-        <td>Agreement with approved playbook / SME decision; escalation appropriateness.</td>
-        <td>Recommendation is advisory only unless the action is deterministic and pre-approved.</td>
-      </tr>
-      <tr>
-        <td>Customer-response drafting</td>
-        <td>Policy compliance, factual consistency with order state, tone and actionability.</td>
-        <td>High-risk categories require human approval before sending.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>AI release gates</h3>
-  <div class="grid">
-    <div class="card"><strong>Offline evaluation</strong>Test against a representative historical set including normal, ambiguous and high-risk exceptions.</div>
-    <div class="card"><strong>Shadow mode</strong>Run recommendations alongside human decisions without allowing automated action.</div>
-    <div class="card"><strong>Limited pilot</strong>Release only selected low-risk use cases / markets with enhanced logging and manual review.</div>
-    <div class="card"><strong>Production threshold</strong>Automate only after defined quality, escalation and failure-rate thresholds are met.</div>
-  </div>
-
-  <h3>Audit & safety controls</h3>
-  <div class="grid">
-    <div class="card"><strong>Immutable operational history</strong>Preserve original source data, normalized values, AI output, human edits and final action.</div>
-    <div class="card"><strong>Reasoned overrides</strong>Manual overrides require a reason code / note when changing supplier assignment, rule result or high-risk state.</div>
-    <div class="card"><strong>Role-based authority</strong>CS, Operations, management and technical users receive only the actions required by their role.</div>
-    <div class="card"><strong>PII minimization</strong>Partners receive only fulfilment data they need; internal commercial or customer information is not exposed unnecessarily.</div>
-    <div class="card"><strong>No silent failure</strong>Integration, notification and AI failures must create observable error / exception states.</div>
-    <div class="card"><strong>High-risk stop conditions</strong>Recipient mismatch, uncertain identity, conflicting service instructions or unsupported policy decisions stop automation and require human review.</div>
-  </div>
-
-  <h3>Change-management controls</h3>
-  <table>
-    <thead><tr><th>Change type</th><th>Required control</th></tr></thead>
-    <tbody>
-      <tr><td>Operational rule update</td><td>Owner approval, effective date, test scenario and communication to affected staff.</td></tr>
-      <tr><td>Supplier capability / service-area update</td><td>Source confirmation, versioned master-data update and validation against active future orders where relevant.</td></tr>
-      <tr><td>Integration schema change</td><td>Contract / mapping test, backward-compatibility assessment, monitoring and rollback path.</td></tr>
-      <tr><td>AI prompt / model / retrieval change</td><td>Regression evaluation against controlled test set before release.</td></tr>
-      <tr><td>Exception-playbook update</td><td>Operations approval plus review of whether automation / authority boundaries change.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Governance principle</h3>
-  <div class="callout good">
-    <strong>The system should make accountability clearer, not hide it behind automation.</strong>
-    <p>Every important operational outcome should be attributable to a maintained rule, a verified external event, a governed AI recommendation or an identifiable human decision. That is what turns automation into an enterprise operating model rather than another collection of scripts.</p>
-  </div>
+</div>
+<h3>AI evaluation framework</h3>
+<table>
+<thead><tr><th>AI use case</th><th>Evaluation measure</th><th>Failure handling</th></tr></thead>
+<tbody>
+<tr>
+<td>Intent classification</td>
+<td>Precision / recall by operational intent; special focus on high-risk classes.</td>
+<td>Low confidence → human triage; high-risk misclassification reviewed as incident.</td>
+</tr>
+<tr>
+<td>Field extraction</td>
+<td>Exact-match accuracy for dates, times, locations, flight numbers and order identifiers.</td>
+<td>Conflicting / low-confidence values cannot overwrite the OMS/TMS automatically.</td>
+</tr>
+<tr>
+<td>Case summarization</td>
+<td>Factual completeness, chronology accuracy, omission rate and unsupported-statement rate.</td>
+<td>User can open source messages / events; unsupported claims are blocked from action.</td>
+</tr>
+<tr>
+<td>Knowledge retrieval</td>
+<td>Relevant-source hit rate and rule-version correctness.</td>
+<td>No grounded source → AI must not state policy as fact.</td>
+</tr>
+<tr>
+<td>Next-action recommendation</td>
+<td>Agreement with approved playbook / SME decision; escalation appropriateness.</td>
+<td>Recommendation is advisory only unless the action is deterministic and pre-approved.</td>
+</tr>
+<tr>
+<td>Customer-response drafting</td>
+<td>Policy compliance, factual consistency with order state, tone and actionability.</td>
+<td>High-risk categories require human approval before sending.</td>
+</tr>
+</tbody>
+</table>
+<h3>AI release gates</h3>
+<div class="grid">
+<div class="card"><strong>Offline evaluation</strong>Test against a representative historical set including normal, ambiguous and high-risk exceptions.</div>
+<div class="card"><strong>Shadow mode</strong>Run recommendations alongside human decisions without allowing automated action.</div>
+<div class="card"><strong>Limited pilot</strong>Release only selected low-risk use cases / markets with enhanced logging and manual review.</div>
+<div class="card"><strong>Production threshold</strong>Automate only after defined quality, escalation and failure-rate thresholds are met.</div>
+</div>
+<h3>Audit &amp; safety controls</h3>
+<div class="grid">
+<div class="card"><strong>Immutable operational history</strong>Preserve original source data, normalized values, AI output, human edits and final action.</div>
+<div class="card"><strong>Reasoned overrides</strong>Manual overrides require a reason code / note when changing supplier assignment, rule result or high-risk state.</div>
+<div class="card"><strong>Role-based authority</strong>CS, Operations, management and technical users receive only the actions required by their role.</div>
+<div class="card"><strong>PII minimization</strong>Partners receive only fulfilment data they need; internal commercial or customer information is not exposed unnecessarily.</div>
+<div class="card"><strong>No silent failure</strong>Integration, notification and AI failures must create observable error / exception states.</div>
+<div class="card"><strong>High-risk stop conditions</strong>Recipient mismatch, uncertain identity, conflicting service instructions or unsupported policy decisions stop automation and require human review.</div>
+</div>
+<h3>Change-management controls</h3>
+<table>
+<thead><tr><th>Change type</th><th>Required control</th></tr></thead>
+<tbody>
+<tr><td>Operational rule update</td><td>Owner approval, effective date, test scenario and communication to affected staff.</td></tr>
+<tr><td>Supplier capability / service-area update</td><td>Source confirmation, versioned master-data update and validation against active future orders where relevant.</td></tr>
+<tr><td>Integration schema change</td><td>Contract / mapping test, backward-compatibility assessment, monitoring and rollback path.</td></tr>
+<tr><td>AI prompt / model / retrieval change</td><td>Regression evaluation against controlled test set before release.</td></tr>
+<tr><td>Exception-playbook update</td><td>Operations approval plus review of whether automation / authority boundaries change.</td></tr>
+</tbody>
+</table>
+<h3>Governance principle</h3>
+<div class="callout good">
+<strong>The system should make accountability clearer, not hide it behind automation.</strong>
+<p>Every important operational outcome should be attributable to a maintained rule, a verified external event, a governed AI recommendation or an identifiable human decision. That is what turns automation into an enterprise operating model rather than another collection of scripts.</p>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Implementation roadmap</span>
-    <p>Sequence the target state into practical phases: foundation / system of record → integrations → dispatch → service-day automation → AI assistance → process intelligence, with dependencies and measurable exit criteria.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Implementation Roadmap</h2>
-  <p>The target state should be delivered in dependency order. The sequence deliberately establishes the transaction core and operational data first, then layers integrations, workflow automation, AI assistance and process intelligence on top.</p>
-
-  <div class="callout blue">
-    <strong>Sequencing principle</strong>
-    <p>Do not start with an AI agent. First establish a reliable system of record, explicit lifecycle states and governed rules. AI becomes valuable only after the underlying process can expose accurate context, events and decision boundaries.</p>
-  </div>
-
-  <h3>Phase 0 — Process & Data Foundation</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+<h2>Implementation Roadmap</h2>
+<p>The target state should be delivered in dependency order. The sequence deliberately establishes the transaction core and operational data first, then layers integrations, workflow automation, AI assistance and process intelligence on top.</p>
+<div class="callout blue">
+<strong>Sequencing principle</strong>
+<p>Do not start with an AI agent. First establish a reliable system of record, explicit lifecycle states and governed rules. AI becomes valuable only after the underlying process can expose accurate context, events and decision boundaries.</p>
+</div>
+<h3>Phase 0 — Process &amp; Data Foundation</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Finalize canonical order / shipment model, lifecycle states, exception taxonomy, supplier master, service rules and data ownership.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       BPMN To-Be, data dictionary, state model, rules catalogue, supplier master schema, integration inventory and prioritized backlog.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Operations SME access, representative historical orders, current supplier rules and channel examples.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       Core entities and states are agreed; critical rules have named owners; representative orders can be expressed cleanly in the canonical model.
     </div>
-  </div>
-
-  <h3>Phase 1 — Owned Booking + OMS/TMS Core</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
-      Build the owned booking layer and transaction core for direct bookings: canonical Order ID, shipment records, lifecycle states, audit trail, structured validation and exception queue.
+</div>
+<h3>Phase 1 — Booking + OMS/TMS Core</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
+      Build the booking layer and transaction core for direct bookings: canonical Order ID, shipment records, lifecycle states, audit trail, structured validation and exception queue.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Booking API, OMS/TMS database, order-management UI, validation engine, event log and role-based access.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Phase 0 data model and rules; payment integration; authentication / access design.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
-      A normal direct booking can move from booking to dispatch-ready without Google Sheet re-entry, with all state transitions and overrides auditable.
+<div class="card">
+<strong>Exit criteria</strong>
+      A normal direct booking can move from booking to dispatch-ready without shared spreadsheet re-entry, with all state transitions and overrides auditable.
     </div>
-  </div>
-
-  <h3>Phase 2 — Distributor Integration</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+</div>
+<h3>Phase 2 — Distributor Integration</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Connect distributor channels to the canonical order model using APIs, webhooks or scheduled sync; retain controlled fallback adapters for unsupported channels.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Source adapters, schema mapping, deduplication, retry handling, integration monitoring and source-order traceability.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Stable OMS/TMS create/update APIs and canonical schema.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       Supported OTA bookings create the same internal order structure as direct bookings with no routine manual copy / paste.
     </div>
-  </div>
-
-  <h3>Phase 3 — Supplier Dispatch & Partner Execution</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+</div>
+<h3>Phase 3 — Supplier Dispatch &amp; Partner Execution</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Implement supplier eligibility, ranking, structured dispatch, acceptance timers, fallback routing and partner response capture.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Supplier master UI, routing rules, API / partner portal / secure-link dispatch, acknowledgement workflow and pre-service risk queue.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Reliable order state, supplier master data and maintained routing rules.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       Routine fixed-supplier jobs can be assigned and confirmed without staff searching spreadsheets, editing emails or manually chasing normal confirmations.
     </div>
-  </div>
-
-  <h3>Phase 4 — Event-Driven Service-Day Operations</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+</div>
+<h3>Phase 4 — Event-Driven Service-Day Operations</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Replace routine CS relay work with structured execution events, automated customer notifications and a central exception control tower.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Service-day event model, notification workflows, exception queue, SLA timers, escalation rules and structured proof-of-service capture.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Supplier execution events, canonical order timeline and communication-channel integrations.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       Routine Ready / Picked Up / Delivered updates reach customers automatically, while unresolved exceptions appear with owner, severity and SLA state.
     </div>
-  </div>
-
-  <h3>Phase 5 — AI-Assisted Operations</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+</div>
+<h3>Phase 5 — AI-Assisted Operations</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Add AI where unstructured context or judgement-support creates leverage: message interpretation, field extraction, case summarization, knowledge retrieval and response drafting.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Governed retrieval layer, evaluation dataset, prompt / model versioning, confidence thresholds, shadow-mode workflow and human-approval controls.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Stable OMS/TMS context, governed knowledge base, audit trail and exception workflows.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       AI reaches defined quality thresholds on representative test sets; high-risk actions remain human-controlled; production usage is traceable to source context and model / prompt version.
     </div>
-  </div>
-
-  <h3>Phase 6 — Process Intelligence & Continuous Improvement</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Scope</strong>
+</div>
+<h3>Phase 6 — Process Intelligence &amp; Continuous Improvement</h3>
+<div class="grid">
+<div class="card">
+<strong>Scope</strong>
       Use structured event data to identify variants, bottlenecks, rework, supplier performance and emerging exception patterns.
     </div>
-    <div class="card">
-      <strong>Key outputs</strong>
+<div class="card">
+<strong>Key outputs</strong>
       Operational dashboards, process-mining views, supplier scorecards, SLA analysis, exception trend analysis and improvement backlog.
     </div>
-    <div class="card">
-      <strong>Dependencies</strong>
+<div class="card">
+<strong>Dependencies</strong>
       Consistent event logging across the preceding phases.
     </div>
-    <div class="card">
-      <strong>Exit criteria</strong>
+<div class="card">
+<strong>Exit criteria</strong>
       Management can measure process performance from system data rather than reconstructing it manually from email, chat and spreadsheets.
     </div>
-  </div>
-
-  <h3>Delivery strategy</h3>
-  <table>
-    <thead><tr><th>Principle</th><th>Application</th></tr></thead>
-    <tbody>
-      <tr><td>Vertical slices over big-bang replacement</td><td>Take one market / route through the complete new lifecycle before expanding globally.</td></tr>
-      <tr><td>Dual-run where risk is high</td><td>Operate new and existing processes in parallel for critical booking / dispatch flows until reconciliation proves stable.</td></tr>
-      <tr><td>Instrument before optimizing</td><td>Capture event timestamps and manual interventions from the first release so benefits can be measured.</td></tr>
-      <tr><td>Human override by design</td><td>Every automated assignment or validation path has a visible, auditable override mechanism.</td></tr>
-      <tr><td>Adoption is part of delivery</td><td>Operations and CS training, supplier onboarding and clear exception ownership are release requirements, not post-launch tasks.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Suggested MVP boundary</h3>
-  <div class="callout good">
-    <strong>MVP: one market, one distributor, one fixed-supplier route, end to end.</strong>
-    <p>Demonstrate the complete operating model on a narrow slice: distributor booking → canonical OMS/TMS record → automated validation → supplier dispatch / acceptance → structured pickup / delivery events → customer notifications → exception queue. This proves the architecture and operating model before scaling breadth.</p>
-  </div>
-
-  <h3>Roadmap success measures</h3>
-  <div class="grid">
-    <div class="card"><strong>Manual touchpoints</strong>Reduction in human actions required per normal booking.</div>
-    <div class="card"><strong>Touchless rate</strong>Percentage of normal orders completing each stage without manual intervention.</div>
-    <div class="card"><strong>Exception resolution</strong>Time from exception creation to controlled resolution.</div>
-    <div class="card"><strong>Supplier confirmation</strong>Acceptance latency, timeout rate and fallback frequency.</div>
-    <div class="card"><strong>Customer update latency</strong>Time from operational event to customer-facing notification.</div>
-    <div class="card"><strong>SLA performance</strong>On-time pickup / delivery and pre-service risk visibility.</div>
-  </div>
+</div>
+<h3>Delivery strategy</h3>
+<table>
+<thead><tr><th>Principle</th><th>Application</th></tr></thead>
+<tbody>
+<tr><td>Vertical slices over big-bang replacement</td><td>Take one market / route through the complete new lifecycle before expanding globally.</td></tr>
+<tr><td>Dual-run where risk is high</td><td>Operate new and existing processes in parallel for critical booking / dispatch flows until reconciliation proves stable.</td></tr>
+<tr><td>Instrument before optimizing</td><td>Capture event timestamps and manual interventions from the first release so benefits can be measured.</td></tr>
+<tr><td>Human override by design</td><td>Every automated assignment or validation path has a visible, auditable override mechanism.</td></tr>
+<tr><td>Adoption is part of delivery</td><td>Operations and CS training, supplier onboarding and clear exception ownership are release requirements, not post-launch tasks.</td></tr>
+</tbody>
+</table>
+<h3>Suggested MVP boundary</h3>
+<div class="callout good">
+<strong>MVP: one market, one distributor, one fixed-supplier route, end to end.</strong>
+<p>Demonstrate the complete operating model on a narrow slice: distributor booking → canonical OMS/TMS record → automated validation → supplier dispatch / acceptance → structured pickup / delivery events → customer notifications → exception queue. This proves the architecture and operating model before scaling breadth.</p>
+</div>
+<h3>Roadmap success measures</h3>
+<div class="grid">
+<div class="card"><strong>Manual touchpoints</strong>Reduction in human actions required per normal booking.</div>
+<div class="card"><strong>Touchless rate</strong>Percentage of normal orders completing each stage without manual intervention.</div>
+<div class="card"><strong>Exception resolution</strong>Time from exception creation to controlled resolution.</div>
+<div class="card"><strong>Supplier confirmation</strong>Acceptance latency, timeout rate and fallback frequency.</div>
+<div class="card"><strong>Customer update latency</strong>Time from operational event to customer-facing notification.</div>
+<div class="card"><strong>SLA performance</strong>On-time pickup / delivery and pre-service risk visibility.</div>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Business case & value realization</span>
-    <p>Define the value model for the transformation: baseline measures to collect, benefit levers, ROI / payback logic and the KPI framework that would prove whether the redesign works.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Business Case & Value Realization</h2>
-  <p>The business case should be evidence-led rather than built on invented savings. The first objective is to instrument the current process, establish a reliable baseline and then measure whether the new operating model reduces human effort, errors, latency and service risk.</p>
-
-  <div class="callout blue">
-    <strong>Value principle</strong>
-    <p>Do not claim ROI before the baseline exists. Define the value equations first, collect the required operating data, then compare the pilot against the current-state control period.</p>
-  </div>
-
-  <h3>Value hypothesis</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>1 · Reduce manual handling</strong>
+<h2>Business Case &amp; Value Realization</h2>
+<p>The business case should be evidence-led rather than built on invented savings. The first objective is to instrument the current process, establish a reliable baseline and then measure whether the new operating model reduces human effort, errors, latency and service risk.</p>
+<div class="callout blue">
+<strong>Value principle</strong>
+<p>Do not claim ROI before the baseline exists. Define the value equations first, collect the required operating data, then compare the pilot against the current-state control period.</p>
+</div>
+<h3>Value hypothesis</h3>
+<div class="grid">
+<div class="card">
+<strong>1 · Reduce manual handling</strong>
       Remove duplicate order entry, email sanitization, routine status relaying, confirmation chasing and repetitive rule checks.
     </div>
-    <div class="card">
-      <strong>2 · Reduce error & rework</strong>
+<div class="card">
+<strong>2 · Reduce error &amp; rework</strong>
       Lower transcription mistakes, missed fields, wrong supplier routing, duplicated records and inconsistent exception handling.
     </div>
-    <div class="card">
-      <strong>3 · Improve service reliability</strong>
+<div class="card">
+<strong>3 · Improve service reliability</strong>
       Detect unconfirmed suppliers, incomplete orders and SLA risks earlier rather than discovering them close to service time.
     </div>
-    <div class="card">
-      <strong>4 · Improve customer communication</strong>
+<div class="card">
+<strong>4 · Improve customer communication</strong>
       Reduce the delay between an operational event and the customer receiving a reliable status update.
     </div>
-    <div class="card">
-      <strong>5 · Increase operational capacity</strong>
+<div class="card">
+<strong>5 · Increase operational capacity</strong>
       Allow the same team to support more bookings by shifting human effort from normal-flow coordination to exceptions.
     </div>
-    <div class="card">
-      <strong>6 · Build decision-quality data</strong>
+<div class="card">
+<strong>6 · Build decision-quality data</strong>
       Create an event-level history that supports supplier management, process improvement and future AI evaluation.
     </div>
-  </div>
-
-  <h3>Baseline measurement plan</h3>
-  <table>
-    <thead><tr><th>Metric</th><th>How to measure As-Is</th><th>Why it matters</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>Manual touchpoints per booking</td>
-        <td>Sample representative bookings and count human actions across Gmail, OTA backends, Ecwid, spreadsheets, Respond.io and supplier channels.</td>
-        <td>Primary productivity indicator.</td>
-      </tr>
-      <tr>
-        <td>Operations handling time per booking</td>
-        <td>Time-study normal and exception bookings; separate active handling from waiting time.</td>
-        <td>Quantifies staff capacity consumed by the process.</td>
-      </tr>
-      <tr>
-        <td>Duplicate-entry time</td>
-        <td>Measure time from opening distributor booking details to successful internal order creation.</td>
-        <td>Directly tests the value of distributor integration.</td>
-      </tr>
-      <tr>
-        <td>Supplier confirmation latency</td>
-        <td>Elapsed time from dispatch sent to supplier confirmation.</td>
-        <td>Measures dispatch control and pre-service risk.</td>
-      </tr>
-      <tr>
-        <td>Unconfirmed-at-risk rate</td>
-        <td>Percentage of future orders without confirmed supplier assignment at defined pre-service checkpoints.</td>
-        <td>Leading indicator of service failure risk.</td>
-      </tr>
-      <tr>
-        <td>Customer update latency</td>
-        <td>Elapsed time between supplier / execution event and customer-facing update.</td>
-        <td>Tests whether event-driven communication is actually improving responsiveness.</td>
-      </tr>
-      <tr>
-        <td>Exception resolution time</td>
-        <td>Elapsed time from exception detection to controlled resolution.</td>
-        <td>Measures control-tower effectiveness.</td>
-      </tr>
-      <tr>
-        <td>Rework / correction rate</td>
-        <td>Count bookings requiring correction due to wrong / missing order fields, routing or communication errors.</td>
-        <td>Quantifies quality loss from manual process variation.</td>
-      </tr>
-      <tr>
-        <td>SLA adherence</td>
-        <td>On-time pickup / delivery against the applicable operational SLA.</td>
-        <td>Primary service outcome.</td>
-      </tr>
-      <tr>
-        <td>Compensation / recovery cost</td>
-        <td>Track coupons, refunds, redelivery costs and other service-recovery spend linked to operational failures.</td>
-        <td>Converts reliability problems into financial impact.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>ROI model</h3>
-  <p>The model separates productivity value from directly avoided cost so that capacity creation is not incorrectly presented as immediate cash savings.</p>
-
-  <div class="grid">
-    <div class="card">
-      <strong>Capacity value</strong>
-      <code>(As-Is handling minutes − To-Be handling minutes) × annual booking volume × loaded staff cost per minute</code>
-    </div>
-    <div class="card">
-      <strong>Avoided rework cost</strong>
-      <code>(As-Is error/rework rate − To-Be rate) × annual volume × average handling/recovery cost per incident</code>
-    </div>
-    <div class="card">
-      <strong>Avoided service-recovery cost</strong>
-      <code>Reduction in attributable refunds + compensation + redelivery + emergency handling cost</code>
-    </div>
-    <div class="card">
-      <strong>Incremental capacity contribution</strong>
-      <code>Additional bookings supported without equivalent headcount growth × contribution margin per booking</code>
-    </div>
-  </div>
-
-  <div class="callout" style="margin-top:18px">
-    <strong>Annual quantified benefit</strong>
-    <p><code>Capacity value + avoided rework + avoided recovery cost + validated incremental contribution</code></p>
-    <strong>Net annual benefit</strong>
-    <p><code>Annual quantified benefit − annual incremental run cost</code></p>
-    <strong>Payback period</strong>
-    <p><code>One-time implementation cost ÷ average monthly net benefit</code></p>
-  </div>
-
-  <p class="small">Capacity value should be described as capacity released unless the business can demonstrate an actual reduction in labor spend. Revenue / contribution uplift should only be included if additional volume or retention can be evidenced.</p>
-
-  <h3>Business-case input sheet</h3>
-  <table>
-    <thead><tr><th>Input</th><th>Current value</th><th>Pilot value</th><th>Source</th></tr></thead>
-    <tbody>
-      <tr><td>Annual / monthly booking volume</td><td>TBD</td><td>TBD</td><td>Order history</td></tr>
-      <tr><td>Average manual handling minutes / normal booking</td><td>TBD</td><td>TBD</td><td>Time study / event log</td></tr>
-      <tr><td>Average handling minutes / exception booking</td><td>TBD</td><td>TBD</td><td>Time study / case log</td></tr>
-      <tr><td>Loaded CS / Operations cost per hour</td><td>TBD</td><td>Same basis</td><td>Finance / HR</td></tr>
-      <tr><td>Rework / correction rate</td><td>TBD</td><td>TBD</td><td>QA / exception sample</td></tr>
-      <tr><td>Average recovery cost per attributable incident</td><td>TBD</td><td>TBD</td><td>Refund / compensation records</td></tr>
-      <tr><td>Supplier confirmation latency</td><td>TBD</td><td>TBD</td><td>Email / OMS/TMS timestamps</td></tr>
-      <tr><td>Customer update latency</td><td>TBD</td><td>TBD</td><td>Message / event timestamps</td></tr>
-      <tr><td>Implementation cost</td><td>—</td><td>TBD</td><td>Delivery estimate</td></tr>
-      <tr><td>Incremental annual run cost</td><td>—</td><td>TBD</td><td>Hosting, APIs, messaging, AI usage, support</td></tr>
-    </tbody>
-  </table>
-
-  <h3>KPI tree</h3>
-  <div class="grid3">
-    <div class="card">
-      <strong>Efficiency</strong>
-      Manual touches / order<br>
-      Handling minutes / order<br>
-      Touchless rate<br>
+</div>
+<h3>Baseline measurement plan</h3>
+<table>
+<thead><tr><th>Metric</th><th>How to measure As-Is</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr>
+<td>Manual touchpoints per booking</td>
+<td>Sample representative bookings and count human actions across email, distributor backends, the legacy commerce platform, spreadsheets, customer messaging and partner channels.</td>
+<td>Primary productivity indicator.</td>
+</tr>
+<tr>
+<td>Operations handling time per booking</td>
+<td>Time-study normal and exception bookings; separate active handling from waiting time.</td>
+<td>Quantifies staff capacity consumed by the process.</td>
+</tr>
+<tr>
+<td>Duplicate-entry time</td>
+<td>Measure time from opening distributor booking details to successful internal order creation.</td>
+<td>Directly tests the value of distributor integration.</td>
+</tr>
+<tr>
+<td>Supplier confirmation latency</td>
+<td>Elapsed time from dispatch sent to supplier confirmation.</td>
+<td>Measures dispatch control and pre-service risk.</td>
+</tr>
+<tr>
+<td>Unconfirmed-at-risk rate</td>
+<td>Percentage of future orders without confirmed supplier assignment at defined pre-service checkpoints.</td>
+<td>Leading indicator of service failure risk.</td>
+</tr>
+<tr>
+<td>Customer update latency</td>
+<td>Elapsed time between supplier / execution event and customer-facing update.</td>
+<td>Tests whether event-driven communication is actually improving responsiveness.</td>
+</tr>
+<tr>
+<td>Exception resolution time</td>
+<td>Elapsed time from exception detection to controlled resolution.</td>
+<td>Measures control-tower effectiveness.</td>
+</tr>
+<tr>
+<td>Rework / correction rate</td>
+<td>Count bookings requiring correction due to wrong / missing order fields, routing or communication errors.</td>
+<td>Quantifies quality loss from manual process variation.</td>
+</tr>
+<tr>
+<td>SLA adherence</td>
+<td>On-time pickup / delivery against the applicable operational SLA.</td>
+<td>Primary service outcome.</td>
+</tr>
+<tr>
+<td>Compensation / recovery cost</td>
+<td>Track coupons, refunds, redelivery costs and other service-recovery spend linked to operational failures.</td>
+<td>Converts reliability problems into financial impact.</td>
+</tr>
+</tbody>
+</table>
+<h3>ROI model</h3>
+<p>The model separates productivity value from directly avoided cost so that capacity creation is not incorrectly presented as immediate cash savings.</p>
+<div class="grid">
+<div class="card">
+<strong>Capacity value</strong>
+<code>(As-Is handling minutes − To-Be handling minutes) × annual booking volume × loaded staff cost per minute</code>
+</div>
+<div class="card">
+<strong>Avoided rework cost</strong>
+<code>(As-Is error/rework rate − To-Be rate) × annual volume × average handling/recovery cost per incident</code>
+</div>
+<div class="card">
+<strong>Avoided service-recovery cost</strong>
+<code>Reduction in attributable refunds + compensation + redelivery + emergency handling cost</code>
+</div>
+<div class="card">
+<strong>Incremental capacity contribution</strong>
+<code>Additional bookings supported without equivalent headcount growth × contribution margin per booking</code>
+</div>
+</div>
+<div class="callout" style="margin-top:18px">
+<strong>Annual quantified benefit</strong>
+<p><code>Capacity value + avoided rework + avoided recovery cost + validated incremental contribution</code></p>
+<strong>Net annual benefit</strong>
+<p><code>Annual quantified benefit − annual incremental run cost</code></p>
+<strong>Payback period</strong>
+<p><code>One-time implementation cost ÷ average monthly net benefit</code></p>
+</div>
+<p class="small">Capacity value should be described as capacity released unless the business can demonstrate an actual reduction in labor spend. Revenue / contribution uplift should only be included if additional volume or retention can be evidenced.</p>
+<h3>Business-case input sheet</h3>
+<table>
+<thead><tr><th>Input</th><th>Current value</th><th>Pilot value</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Annual / monthly booking volume</td><td>TBD</td><td>TBD</td><td>Order history</td></tr>
+<tr><td>Average manual handling minutes / normal booking</td><td>TBD</td><td>TBD</td><td>Time study / event log</td></tr>
+<tr><td>Average handling minutes / exception booking</td><td>TBD</td><td>TBD</td><td>Time study / case log</td></tr>
+<tr><td>Loaded CS / Operations cost per hour</td><td>TBD</td><td>Same basis</td><td>Finance / HR</td></tr>
+<tr><td>Rework / correction rate</td><td>TBD</td><td>TBD</td><td>QA / exception sample</td></tr>
+<tr><td>Average recovery cost per attributable incident</td><td>TBD</td><td>TBD</td><td>Refund / compensation records</td></tr>
+<tr><td>Supplier confirmation latency</td><td>TBD</td><td>TBD</td><td>Email / OMS/TMS timestamps</td></tr>
+<tr><td>Customer update latency</td><td>TBD</td><td>TBD</td><td>Message / event timestamps</td></tr>
+<tr><td>Implementation cost</td><td>—</td><td>TBD</td><td>Delivery estimate</td></tr>
+<tr><td>Incremental annual run cost</td><td>—</td><td>TBD</td><td>Hosting, APIs, messaging, AI usage, support</td></tr>
+</tbody>
+</table>
+<h3>KPI tree</h3>
+<div class="grid3">
+<div class="card">
+<strong>Efficiency</strong>
+      Manual touches / order<br/>
+      Handling minutes / order<br/>
+      Touchless rate<br/>
       Orders per CS hour
     </div>
-    <div class="card">
-      <strong>Reliability</strong>
-      SLA adherence<br>
-      Unconfirmed-at-risk rate<br>
-      Supplier timeout rate<br>
+<div class="card">
+<strong>Reliability</strong>
+      SLA adherence<br/>
+      Unconfirmed-at-risk rate<br/>
+      Supplier timeout rate<br/>
       Rework / correction rate
     </div>
-    <div class="card">
-      <strong>Customer</strong>
-      Update latency<br>
-      Complaint rate<br>
-      Service-recovery incidence<br>
+<div class="card">
+<strong>Customer</strong>
+      Update latency<br/>
+      Complaint rate<br/>
+      Service-recovery incidence<br/>
       Review / satisfaction signal where available
     </div>
-    <div class="card">
-      <strong>Exception management</strong>
-      Exception rate<br>
-      Mean resolution time<br>
-      Escalation rate<br>
+<div class="card">
+<strong>Exception management</strong>
+      Exception rate<br/>
+      Mean resolution time<br/>
+      Escalation rate<br/>
       Repeat-exception rate
     </div>
-    <div class="card">
-      <strong>Supplier</strong>
-      Acceptance rate<br>
-      Response time<br>
-      On-time performance<br>
+<div class="card">
+<strong>Supplier</strong>
+      Acceptance rate<br/>
+      Response time<br/>
+      On-time performance<br/>
       Exception rate by supplier / route
     </div>
-    <div class="card">
-      <strong>AI quality</strong>
-      Intent accuracy<br>
-      Extraction accuracy<br>
-      Grounded retrieval rate<br>
+<div class="card">
+<strong>AI quality</strong>
+      Intent accuracy<br/>
+      Extraction accuracy<br/>
+      Grounded retrieval rate<br/>
       Human override / escalation rate
     </div>
-  </div>
-
-  <h3>Pilot value-realization design</h3>
-  <table>
-    <thead><tr><th>Stage</th><th>Measurement approach</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>1 · Establish baseline</td>
-        <td>Measure a representative As-Is period using the agreed metrics before changing the workflow.</td>
-      </tr>
-      <tr>
-        <td>2 · Instrument MVP</td>
-        <td>Record every state change, automated action, human intervention and exception in the pilot flow.</td>
-      </tr>
-      <tr>
-        <td>3 · Compare like-for-like</td>
-        <td>Compare similar market / route / service-type cohorts rather than mixing fundamentally different operational cases.</td>
-      </tr>
-      <tr>
-        <td>4 · Separate automation from AI value</td>
-        <td>Measure deterministic automation gains independently from AI-assisted gains so value attribution remains credible.</td>
-      </tr>
-      <tr>
-        <td>5 · Validate with Operations</td>
-        <td>Confirm that lower touch count did not simply push hidden work or risk into another part of the process.</td>
-      </tr>
-      <tr>
-        <td>6 · Scale only after evidence</td>
-        <td>Expand markets / channels when the pilot meets agreed reliability, adoption and value thresholds.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Pilot exit scorecard</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Operational</strong>
+</div>
+<h3>Pilot value-realization design</h3>
+<table>
+<thead><tr><th>Stage</th><th>Measurement approach</th></tr></thead>
+<tbody>
+<tr>
+<td>1 · Establish baseline</td>
+<td>Measure a representative As-Is period using the agreed metrics before changing the workflow.</td>
+</tr>
+<tr>
+<td>2 · Instrument MVP</td>
+<td>Record every state change, automated action, human intervention and exception in the pilot flow.</td>
+</tr>
+<tr>
+<td>3 · Compare like-for-like</td>
+<td>Compare similar market / route / service-type cohorts rather than mixing fundamentally different operational cases.</td>
+</tr>
+<tr>
+<td>4 · Separate automation from AI value</td>
+<td>Measure deterministic automation gains independently from AI-assisted gains so value attribution remains credible.</td>
+</tr>
+<tr>
+<td>5 · Validate with Operations</td>
+<td>Confirm that lower touch count did not simply push hidden work or risk into another part of the process.</td>
+</tr>
+<tr>
+<td>6 · Scale only after evidence</td>
+<td>Expand markets / channels when the pilot meets agreed reliability, adoption and value thresholds.</td>
+</tr>
+</tbody>
+</table>
+<h3>Pilot exit scorecard</h3>
+<div class="grid">
+<div class="card">
+<strong>Operational</strong>
       Demonstrable reduction in manual handling and no material degradation in SLA or exception outcomes.
     </div>
-    <div class="card">
-      <strong>Technical</strong>
+<div class="card">
+<strong>Technical</strong>
       Integration errors are observable and recoverable; duplicate / lost bookings are prevented.
     </div>
-    <div class="card">
-      <strong>Adoption</strong>
+<div class="card">
+<strong>Adoption</strong>
       Operations can run the pilot without relying on shadow spreadsheets or parallel undocumented workarounds.
     </div>
-    <div class="card">
-      <strong>AI</strong>
+<div class="card">
+<strong>AI</strong>
       AI use cases meet agreed quality thresholds and escalate correctly when uncertain.
     </div>
-    <div class="card">
-      <strong>Financial</strong>
+<div class="card">
+<strong>Financial</strong>
       The measured benefits support an acceptable payback / value case using actual pilot data.
     </div>
-    <div class="card">
-      <strong>Governance</strong>
+<div class="card">
+<strong>Governance</strong>
       Rules, supplier data, overrides and AI changes have named owners and auditable change history.
     </div>
-  </div>
-
-  <h3>Value-realization principle</h3>
-  <div class="callout good">
-    <strong>The transformation is successful only if the operating metrics move.</strong>
-    <p>A polished system or AI demo is not the outcome. The outcome is fewer manual touches, faster and more reliable execution, earlier risk visibility, stronger control and measurable capacity released back to the operation.</p>
-  </div>
-
-  <h3>What this demonstrates</h3>
-  <p>This business case connects process redesign to measurable value without inventing savings. It defines what data must be collected, how benefits should be calculated, which KPIs establish operational success and how a pilot should earn the right to scale.</p>
+</div>
+<h3>Value-realization principle</h3>
+<div class="callout good">
+<strong>The transformation is successful only if the operating metrics move.</strong>
+<p>A polished system or AI demo is not the outcome. The outcome is fewer manual touches, faster and more reliable execution, earlier risk visibility, stronger control and measurable capacity released back to the operation.</p>
+</div>
 </section>
-
 <section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Prototype scope</span>
-    <p>Define the demonstrable MVP screens and interactions that can prove the future-state workflow: Operations control tower, canonical booking record, supplier dispatch, exception case and AI-assisted decision support.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Prototype Scope — Demonstrable MVP</h2>
-  <p>The prototype should prove the operating model, not attempt to reproduce a full production logistics platform. The strongest portfolio artifact is a narrow, end-to-end workflow that shows how one booking moves through ingestion, validation, supplier dispatch, live execution, exception handling and AI-assisted Operations support.</p>
-
-  <div class="callout blue">
-    <strong>Prototype objective</strong>
-    <p>Show that the future-state design can convert fragmented operational work into a structured, auditable workflow where normal orders move with minimal human intervention and Operations focuses on exceptions.</p>
-  </div>
-
-  <h3>Demo scenario</h3>
-  <div class="flow">
-    <span class="step">KKday booking received</span><span class="arrow">→</span>
-    <span class="step">Canonical order created</span><span class="arrow">→</span>
-    <span class="step">Validation passes</span><span class="arrow">→</span>
-    <span class="step">Supplier auto-dispatched</span><span class="arrow">→</span>
-    <span class="step">Supplier accepts</span><span class="arrow">→</span>
-    <span class="step">Customer ready</span><span class="arrow">→</span>
-    <span class="step">Pickup event</span><span class="arrow">→</span>
-    <span class="step">Exception triggered</span><span class="arrow">→</span>
-    <span class="step">AI-assisted resolution</span>
-  </div>
-
-  <h3>Screen 1 — Operations Control Tower</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+<h2>Prototype Scope — Demonstrable MVP</h2>
+<p>The prototype should prove the operating model, not attempt to reproduce a full production logistics platform. The strongest prototype is a narrow, end-to-end workflow that shows how one booking moves through ingestion, validation, supplier dispatch, live execution, exception handling and AI-assisted Operations support.</p>
+<div class="callout blue">
+<strong>Prototype objective</strong>
+<p>Show that the future-state design can convert fragmented operational work into a structured, auditable workflow where normal orders move with minimal human intervention and Operations focuses on exceptions.</p>
+</div>
+<h3>Demo scenario</h3>
+<div class="flow">
+<span class="step">Distributor booking received</span><span class="arrow">→</span>
+<span class="step">Canonical order created</span><span class="arrow">→</span>
+<span class="step">Validation passes</span><span class="arrow">→</span>
+<span class="step">Supplier auto-dispatched</span><span class="arrow">→</span>
+<span class="step">Supplier accepts</span><span class="arrow">→</span>
+<span class="step">Customer ready</span><span class="arrow">→</span>
+<span class="step">Pickup event</span><span class="arrow">→</span>
+<span class="step">Exception triggered</span><span class="arrow">→</span>
+<span class="step">AI-assisted resolution</span>
+</div>
+<h3>Screen 1 — Operations Control Tower</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Give Operations one view of today’s workload, current order states, supplier-confirmation risks, active exceptions and SLA exposure.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       KPI summary, order queue, status filters, exception severity, supplier-confirmation state, SLA countdown, source channel and assigned owner.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
-      Select the KKday order and open the canonical order record. Trigger one risk condition so the queue visibly changes.
+<div class="card">
+<strong>Demo interaction</strong>
+      Select the distributor order and open the canonical order record. Trigger one risk condition so the queue visibly changes.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Process visibility, event-driven workflow, exception-led operations and operational prioritization.
     </div>
-  </div>
-
-  <h3>Screen 2 — Canonical Booking Record</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 2 — Canonical Booking Record</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Demonstrate one source of truth regardless of booking channel.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Internal Order ID, source / external Order ID, customer, route, hotel / airport details, flight information, lifecycle state, validation result, supplier assignment and event timeline.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
-      Show the original KKday source data mapped into the canonical structure and the deterministic validation results.
+<div class="card">
+<strong>Demo interaction</strong>
+      Show the original distributor source data mapped into the canonical structure and the deterministic validation results.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Data normalization, auditability, business rules and removal of duplicate manual entry.
     </div>
-  </div>
-
-  <h3>Screen 3 — Validation & Rule Decision</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 3 — Validation &amp; Rule Decision</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Make business logic visible instead of hiding it inside staff memory.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Required-field checks, service-area result, lead-time / airport timing checks, rule source / version and pass / fail state.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
+<div class="card">
+<strong>Demo interaction</strong>
       Change one input, such as service time or missing flight number, and show the order moving from Pass to Exception.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Deterministic automation, configurable rules and explainable decision logic.
     </div>
-  </div>
-
-  <h3>Screen 4 — Supplier Dispatch</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 4 — Supplier Dispatch</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Replace spreadsheet / memory-based assignment and manually cleaned emails with structured dispatch.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Eligible suppliers, ranking reason, preferred supplier, job payload, dispatch channel, acknowledgement timer and fallback supplier.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
+<div class="card">
+<strong>Demo interaction</strong>
       Dispatch to Supplier A, simulate timeout / rejection, and show fallback to Supplier B or escalation to Operations.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Rules-based routing, state management, fallback logic, partner integration design and human override.
     </div>
-  </div>
-
-  <h3>Screen 5 — Service-Day Timeline</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 5 — Service-Day Timeline</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Show how routine customer / supplier communication becomes structured operational events.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Customer Ready, Driver En Route, Picked Up, Delivered, notification status, evidence, timestamps and communication channel.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
+<div class="card">
+<strong>Demo interaction</strong>
       Record “Customer Ready” and show the supplier workflow / customer-facing status update occur without manual copy / paste.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Event-driven operations and removal of CS as the default message relay.
     </div>
-  </div>
-
-  <h3>Screen 6 — Exception Case + AI Copilot</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 6 — Exception Case + AI Decision Support</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Demonstrate the highest-value AI use case: helping Operations understand and resolve a live exception.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Exception type / severity, SLA clock, order context, recent messages, execution events, evidence, retrieved rule / playbook, AI summary and proposed next action.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
+<div class="card">
+<strong>Demo interaction</strong>
       Simulate a hotel handover / recipient problem. AI summarizes the case, retrieves the relevant handover rule and recommends escalation; the human approves the final action.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Grounded AI, retrieval, summarization, human-in-the-loop controls and decision support.
     </div>
-  </div>
-
-  <h3>Screen 7 — Process & Value Dashboard</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>Purpose</strong>
+</div>
+<h3>Screen 7 — Process &amp; Value Dashboard</h3>
+<div class="grid">
+<div class="card">
+<strong>Purpose</strong>
       Show that the redesigned workflow produces management-grade operational data.
     </div>
-    <div class="card">
-      <strong>Core elements</strong>
+<div class="card">
+<strong>Core elements</strong>
       Touchless rate, manual touches / order, supplier confirmation latency, exception rate, resolution time, SLA adherence and customer-update latency.
     </div>
-    <div class="card">
-      <strong>Demo interaction</strong>
+<div class="card">
+<strong>Demo interaction</strong>
       Compare illustrative As-Is vs pilot measurements using clearly labelled sample / demo data rather than presenting fictional values as real results.
     </div>
-    <div class="card">
-      <strong>Capability demonstrated</strong>
+<div class="card">
+<strong>Capability demonstrated</strong>
       Benefits realization, process intelligence and evidence-led transformation management.
     </div>
-  </div>
+</div>
+<h3>Prototype data model</h3>
+<table>
+<thead><tr><th>Entity</th><th>Minimum fields needed for the demo</th></tr></thead>
+<tbody>
+<tr><td>Order</td><td>Internal ID, source, source ID, customer, service type, date/time, route, status, assigned supplier.</td></tr>
+<tr><td>Shipment</td><td>Bag count / identifiers, pickup / delivery location, chain-of-custody state.</td></tr>
+<tr><td>Supplier</td><td>ID, market, capability, priority, integration method, response state.</td></tr>
+<tr><td>Event</td><td>Event type, timestamp, actor, channel, order ID, structured payload.</td></tr>
+<tr><td>Exception</td><td>Type, severity, owner, SLA due time, status, recommended action, resolution.</td></tr>
+<tr><td>Rule</td><td>Rule ID, category, condition, outcome, owner, effective version.</td></tr>
+<tr><td>AI evaluation record</td><td>Use case, input reference, output, confidence, retrieved sources, human decision / override.</td></tr>
+</tbody>
+</table>
+<h3>What should actually work</h3>
+<table>
+<thead><tr><th>Interaction</th><th>Prototype requirement</th></tr></thead>
+<tbody>
+<tr><td>Create / ingest order</td><td>Must create a persistent canonical order in the demo data store.</td></tr>
+<tr><td>Run validation</td><td>Must execute real rule logic, not only show a static result.</td></tr>
+<tr><td>Dispatch supplier</td><td>Must update assignment / acknowledgement state and demonstrate timeout or rejection fallback.</td></tr>
+<tr><td>Record service event</td><td>Must append to the order timeline and change relevant status.</td></tr>
+<tr><td>Create exception</td><td>Must create a persistent case linked to the order.</td></tr>
+<tr><td>AI assistance</td><td>Must accept case context and return a bounded summary / recommendation with source references or clearly simulated retrieval evidence.</td></tr>
+<tr><td>Human approval</td><td>Must visibly separate AI recommendation from the actual approved action.</td></tr>
+<tr><td>Dashboard</td><td>Must calculate metrics from the prototype dataset rather than display unrelated static numbers where practical.</td></tr>
+</tbody>
+</table>
+<h3>Deliberately out of scope for the first prototype</h3>
+<div class="grid">
+<div class="card"><strong>No production payment processing</strong>Show booking / payment state, but do not build live financial flows for the prototype.</div>
+<div class="card"><strong>No full driver mobile app</strong>A partner view / secure job page is sufficient to demonstrate the interaction model.</div>
+<div class="card"><strong>No live OTA credentials</strong>Use representative mock payloads unless a safe sandbox integration is available.</div>
+<div class="card"><strong>No global supplier coverage</strong>Use a small supplier dataset to demonstrate routing logic clearly.</div>
+<div class="card"><strong>No autonomous high-risk actions</strong>Refunds, policy overrides and recipient exceptions remain simulated human approvals.</div>
+<div class="card"><strong>No fake production metrics</strong>Demo data must be labelled as sample / illustrative until real measurements exist.</div>
+</div>
+<h3>Prototype walkthrough</h3>
+<div class="callout good">
+<strong>End-to-end walkthrough.</strong>
+<p>Start with one incoming distributor booking. Show automatic normalization and validation, supplier dispatch, a service-day event, then deliberately create one exception. Use the AI Decision Support to summarize the case and retrieve the relevant rule, make the human decision, and finish on the dashboard showing which operational metrics the system now makes measurable.</p>
+</div>
 
-  <h3>Prototype data model</h3>
-  <table>
-    <thead><tr><th>Entity</th><th>Minimum fields needed for the demo</th></tr></thead>
-    <tbody>
-      <tr><td>Order</td><td>Internal ID, source, source ID, customer, service type, date/time, route, status, assigned supplier.</td></tr>
-      <tr><td>Shipment</td><td>Bag count / identifiers, pickup / delivery location, chain-of-custody state.</td></tr>
-      <tr><td>Supplier</td><td>ID, market, capability, priority, integration method, response state.</td></tr>
-      <tr><td>Event</td><td>Event type, timestamp, actor, channel, order ID, structured payload.</td></tr>
-      <tr><td>Exception</td><td>Type, severity, owner, SLA due time, status, recommended action, resolution.</td></tr>
-      <tr><td>Rule</td><td>Rule ID, category, condition, outcome, owner, effective version.</td></tr>
-      <tr><td>AI evaluation record</td><td>Use case, input reference, output, confidence, retrieved sources, human decision / override.</td></tr>
-    </tbody>
-  </table>
 
-  <h3>What should actually work</h3>
-  <table>
-    <thead><tr><th>Interaction</th><th>Prototype requirement</th></tr></thead>
-    <tbody>
-      <tr><td>Create / ingest order</td><td>Must create a persistent canonical order in the demo data store.</td></tr>
-      <tr><td>Run validation</td><td>Must execute real rule logic, not only show a static result.</td></tr>
-      <tr><td>Dispatch supplier</td><td>Must update assignment / acknowledgement state and demonstrate timeout or rejection fallback.</td></tr>
-      <tr><td>Record service event</td><td>Must append to the order timeline and change relevant status.</td></tr>
-      <tr><td>Create exception</td><td>Must create a persistent case linked to the order.</td></tr>
-      <tr><td>AI assistance</td><td>Must accept case context and return a bounded summary / recommendation with source references or clearly simulated retrieval evidence.</td></tr>
-      <tr><td>Human approval</td><td>Must visibly separate AI recommendation from the actual approved action.</td></tr>
-      <tr><td>Dashboard</td><td>Must calculate metrics from the prototype dataset rather than display unrelated static numbers where practical.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Deliberately out of scope for the first prototype</h3>
-  <div class="grid">
-    <div class="card"><strong>No production payment processing</strong>Show booking / payment state, but do not build live financial flows for the portfolio prototype.</div>
-    <div class="card"><strong>No full driver mobile app</strong>A partner view / secure job page is sufficient to demonstrate the interaction model.</div>
-    <div class="card"><strong>No live OTA credentials</strong>Use representative mock payloads unless a safe sandbox integration is available.</div>
-    <div class="card"><strong>No global supplier coverage</strong>Use a small supplier dataset to demonstrate routing logic clearly.</div>
-    <div class="card"><strong>No autonomous high-risk actions</strong>Refunds, policy overrides and recipient exceptions remain simulated human approvals.</div>
-    <div class="card"><strong>No fake production metrics</strong>Demo data must be labelled as sample / illustrative until real measurements exist.</div>
-  </div>
-
-  <h3>Portfolio walkthrough</h3>
-  <div class="callout good">
-    <strong>Target demo length: 4–6 minutes.</strong>
-    <p>Start with one incoming KKday booking. Show automatic normalization and validation, supplier dispatch, a service-day event, then deliberately create one exception. Use the AI Copilot to summarize the case and retrieve the relevant rule, make the human decision, and finish on the dashboard showing which operational metrics the system now makes measurable.</p>
-  </div>
-
-  <h3>Why this prototype is strong for an AI Business Analyst portfolio</h3>
-  <p>It demonstrates the complete bridge between business problem and implementation: process diagnosis, target operating model, data design, business rules, integrations, workflow states, AI use-case selection, human controls, UAT, governance and measurable value. The prototype is evidence that the analysis can be translated into a working system rather than remaining a conceptual slide deck.</p>
 </section>
-
-<section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Prototype build specification</span>
-    <p>Convert these seven screens into a technical build brief that can be handed to Codex: app structure, routes, components, sample data, state transitions, rule logic, AI mock / integration boundary and acceptance tests.</p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Prototype Scope — Demonstrable MVP</h2>
-  <p>The prototype should prove the transformation logic, not attempt to reproduce an entire production logistics platform. The strongest portfolio demo is a narrow but coherent end-to-end slice that shows how one booking moves through intake, validation, dispatch, execution, exception handling and AI-assisted operations.</p>
-
-  <div class="callout blue">
-    <strong>Prototype objective</strong>
-    <p>Show that the proposed operating model can convert a fragmented, manually coordinated service into a state-driven workflow with clear system ownership, controlled automation and human-in-the-loop AI.</p>
-  </div>
-
-  <h3>Recommended demo scenario</h3>
-  <div class="flow">
-    <span class="step">KKday booking arrives</span><span class="arrow">→</span>
-    <span class="step">Canonical order created</span><span class="arrow">→</span>
-    <span class="step">Validation passes</span><span class="arrow">→</span>
-    <span class="step">Supplier auto-selected</span><span class="arrow">→</span>
-    <span class="step">Supplier accepts</span><span class="arrow">→</span>
-    <span class="step">Customer ready</span><span class="arrow">→</span>
-    <span class="step">Pickup exception occurs</span><span class="arrow">→</span>
-    <span class="step">AI summarizes + retrieves playbook</span><span class="arrow">→</span>
-    <span class="step">Human resolves</span><span class="arrow">→</span>
-    <span class="step">Delivered</span>
-  </div>
-
-  <p class="small">The demo should include both a happy path and one meaningful exception. A prototype that only shows the normal flow would not demonstrate the most valuable part of the transformation.</p>
-
-  <h3>Core prototype screens</h3>
-  <div class="grid">
-    <div class="card">
-      <strong>1 · Operations Control Tower</strong>
-      Portfolio home for live orders. Show lifecycle state, service date/time, route, supplier, SLA risk, exception status and next required action.
-    </div>
-    <div class="card">
-      <strong>2 · Canonical Order Record</strong>
-      One structured view of source order, customer, service, locations, flight details, supplier assignment, lifecycle history, messages and audit trail.
-    </div>
-    <div class="card">
-      <strong>3 · Validation & Rule Results</strong>
-      Show deterministic checks such as required fields, serviceability, timing and route eligibility with Pass / Fail / Review states.
-    </div>
-    <div class="card">
-      <strong>4 · Supplier Dispatch</strong>
-      Show eligible suppliers, recommended supplier, routing rationale, dispatch status, acknowledgement timer, rejection / timeout and manual override.
-    </div>
-    <div class="card">
-      <strong>5 · Exception Case Workspace</strong>
-      Dedicated case view with category, severity, owner, SLA clock, current order state, recent messages, evidence and resolution controls.
-    </div>
-    <div class="card">
-      <strong>6 · AI Decision Support</strong>
-      AI-generated case summary, extracted intent, relevant rule / playbook retrieval, suggested next action, confidence / warning state and source references.
-    </div>
-    <div class="card">
-      <strong>7 · Event Timeline</strong>
-      Chronological operational history: booking created, validation, dispatch, supplier response, customer message, pickup, exception, resolution and delivery.
-    </div>
-    <div class="card">
-      <strong>8 · Process Metrics</strong>
-      Lightweight dashboard showing manual touches, touchless rate, supplier acceptance latency, exception resolution time and customer update latency.
-    </div>
-  </div>
-
-  <h3>Control Tower — key UI elements</h3>
-  <table>
-    <thead><tr><th>Element</th><th>Purpose</th></tr></thead>
-    <tbody>
-      <tr><td>State badge</td><td>Make lifecycle position immediately visible: New, Validation, Dispatch Ready, Awaiting Supplier, Confirmed, In Service, Exception, Delivered.</td></tr>
-      <tr><td>Risk flag</td><td>Surface incomplete data, unconfirmed supplier, SLA risk or unresolved exception without opening every order.</td></tr>
-      <tr><td>Next action</td><td>Show what the system expects next: no action, supplier response, customer information, Operations review or escalation.</td></tr>
-      <tr><td>Source channel</td><td>Demonstrate that direct and OTA bookings normalize into the same operational workflow.</td></tr>
-      <tr><td>Automation indicator</td><td>Show whether the latest action was system-generated, AI-assisted or human-performed.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>AI interaction design</h3>
-  <p>The prototype should avoid a generic chatbot interface. AI should appear inside the operational workflow at the moment it provides decision support.</p>
-
-  <div class="grid">
-    <div class="card">
-      <strong>Case summary</strong>
-      “Customer is at the airport meeting point. Driver reports luggage cannot be located at the hotel. Order is within SLA but pickup is blocked.”
-    </div>
-    <div class="card">
-      <strong>Structured extraction</strong>
-      Intent: Pickup Issue<br>
-      Exception: Luggage Not Found<br>
-      Urgency: High<br>
-      Confidence: 0.94
-    </div>
-    <div class="card">
-      <strong>Grounded knowledge</strong>
-      Display the relevant exception playbook / rule directly beside the recommendation so the user can verify the basis.
-    </div>
-    <div class="card">
-      <strong>Recommended action</strong>
-      Suggest the next operational step, but require explicit user approval if the action changes policy, fees, location, timing or custody state.
-    </div>
-  </div>
-
-  <h3>Prototype interaction sequence</h3>
-  <table>
-    <thead><tr><th>Step</th><th>User sees / does</th><th>System behavior demonstrated</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>1 · Ingest</td>
-        <td>Open a newly arrived KKday booking.</td>
-        <td>External source fields are already normalized into the canonical order; no manual re-entry.</td>
-      </tr>
-      <tr>
-        <td>2 · Validate</td>
-        <td>Review the validation panel.</td>
-        <td>Required fields, timing and serviceability rules execute automatically.</td>
-      </tr>
-      <tr>
-        <td>3 · Dispatch</td>
-        <td>View the recommended supplier and dispatch state.</td>
-        <td>Eligibility and priority rules select the supplier; dispatch starts an acknowledgement timer.</td>
-      </tr>
-      <tr>
-        <td>4 · Accept</td>
-        <td>Trigger / simulate supplier acceptance.</td>
-        <td>OMS/TMS state changes to Confirmed and an event is written to the timeline.</td>
-      </tr>
-      <tr>
-        <td>5 · Customer ready</td>
-        <td>Simulate an inbound message: “I’m at the meeting point.”</td>
-        <td>AI classifies intent, matches the order and creates the Customer Ready event.</td>
-      </tr>
-      <tr>
-        <td>6 · Exception</td>
-        <td>Simulate supplier message: “Hotel cannot locate luggage.”</td>
-        <td>An exception case is created automatically with severity, owner and SLA clock.</td>
-      </tr>
-      <tr>
-        <td>7 · AI support</td>
-        <td>Open the exception workspace.</td>
-        <td>AI summarizes the case, extracts the issue, retrieves the approved playbook and proposes a next action.</td>
-      </tr>
-      <tr>
-        <td>8 · Human decision</td>
-        <td>Approve / modify the recommended action.</td>
-        <td>The human remains accountable; the decision and reason are logged.</td>
-      </tr>
-      <tr>
-        <td>9 · Resolution</td>
-        <td>Mark the exception resolved and complete delivery.</td>
-        <td>The order timeline closes the exception and progresses to Delivered.</td>
-      </tr>
-      <tr>
-        <td>10 · Measure</td>
-        <td>Open the metrics panel.</td>
-        <td>The prototype shows how structured events enable operational measurement.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Prototype data model — minimum viable entities</h3>
-  <div class="grid3">
-    <div class="card"><strong>Order</strong>Order ID, source, external ID, customer, route, service date/time, status.</div>
-    <div class="card"><strong>Shipment</strong>Bag count, pickup, delivery, proof / custody state.</div>
-    <div class="card"><strong>Supplier</strong>Supplier ID, capability, priority, integration method, status.</div>
-    <div class="card"><strong>Dispatch</strong>Candidate supplier, selected supplier, sent / accepted / rejected / timeout timestamps.</div>
-    <div class="card"><strong>Event</strong>Event type, actor, timestamp, channel, structured payload.</div>
-    <div class="card"><strong>Exception</strong>Category, severity, owner, SLA clock, status, resolution.</div>
-    <div class="card"><strong>Message</strong>Sender, channel, timestamp, order link, content / extracted intent.</div>
-    <div class="card"><strong>Rule</strong>Rule ID, type, condition, outcome, version, owner.</div>
-    <div class="card"><strong>Audit entry</strong>Actor, action, previous value, new value, timestamp, reason.</div>
-  </div>
-
-  <h3>What should be real vs simulated</h3>
-  <table>
-    <thead><tr><th>Prototype element</th><th>Recommended approach</th></tr></thead>
-    <tbody>
-      <tr><td>Booking / OMS screens</td><td><strong>Real interactive UI</strong> with working state changes.</td></tr>
-      <tr><td>Canonical data / rules</td><td><strong>Real structured sample data</strong>, anonymized and synthetic.</td></tr>
-      <tr><td>Supplier dispatch</td><td><strong>Real workflow logic</strong>; external partner transmission may be simulated.</td></tr>
-      <tr><td>OTA API</td><td><strong>Mock integration endpoint</strong> unless an accessible sandbox exists.</td></tr>
-      <tr><td>Customer / supplier messages</td><td><strong>Simulated inbound events</strong> triggered from the demo UI.</td></tr>
-      <tr><td>AI classification / summarization</td><td><strong>Real model call if practical</strong>, with deterministic fallback sample output for a reliable demo.</td></tr>
-      <tr><td>Payments</td><td>Out of scope for the first prototype; show payment state only.</td></tr>
-      <tr><td>Production authentication / security</td><td>Represent roles and controls in the prototype; full enterprise IAM is out of scope.</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Prototype acceptance criteria</h3>
-  <div class="grid">
-    <div class="card"><strong>P-AC01 · End-to-end continuity</strong>The same Order ID persists from intake through delivery and exception handling.</div>
-    <div class="card"><strong>P-AC02 · No duplicate entry</strong>The user never needs to recreate the OTA booking manually in another form.</div>
-    <div class="card"><strong>P-AC03 · State-driven workflow</strong>Actions available to the user change according to the order lifecycle state.</div>
-    <div class="card"><strong>P-AC04 · Auditable automation</strong>Automated, AI-assisted and human actions are distinguishable in the event timeline.</div>
-    <div class="card"><strong>P-AC05 · Controlled AI</strong>The AI recommendation displays supporting context and cannot execute a high-risk action without user approval.</div>
-    <div class="card"><strong>P-AC06 · Exception ownership</strong>An exception cannot exist without visible status, owner and resolution path.</div>
-  </div>
-
-  <h3>Portfolio presentation strategy</h3>
-  <div class="callout good">
-    <strong>Show the reasoning and the product.</strong>
-    <p>The case study should link directly from the Before / After analysis to a working prototype. The strongest signal is not “I built an app”; it is “I diagnosed the operating problem, defined the target model, translated it into requirements and controls, and then prototyped the highest-value workflow to validate the design.”</p>
-  </div>
-
-  <h3>Suggested Codex build brief</h3>
-  <p>The prototype can now be handed to Codex as a bounded implementation task: build a polished responsive operations dashboard with synthetic data, the eight screens above, the ten-step demo scenario, explicit state transitions, exception handling and an AI-assist panel. Keep the architecture modular so the portfolio prototype can later be expanded without rewriting the case-study site.</p>
-</section>
-
-<section>
-  <h2>Next analysis step</h2>
-  <div class="callout">
-    <span class="status">Prototype build specification</span>
-    <p>Convert this scope into a concrete implementation brief for Codex: repository structure, recommended stack, page / component map, seed data, state machine, demo actions and definition of done.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Case-study build status</h2>
-  <table>
-    <thead><tr><th>Workstream</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr><td>Define case and process boundary</td><td><strong>Complete</strong></td></tr>
-      <tr><td>Map As-Is operation</td><td><strong>Complete</strong></td></tr>
-      <tr><td>Diagnose primary bottlenecks</td><td><strong>Complete</strong></td></tr>
-      <tr><td>Root-cause synthesis</td><td><strong>Complete</strong></td></tr>
-      <tr><td>Target operating model / To-Be architecture</td><td><strong>Draft complete</strong></td></tr>
-      <tr><td>Human vs automation vs AI decision matrix</td><td><strong>Complete</strong></td></tr>
-      <tr><td>Requirements / UAT / governance</td><td><strong>Complete — requirements, UAT and governance defined</strong></td></tr>
-      <tr><td>Prototype scope</td><td><strong>Complete — 7-screen demonstrable MVP defined</strong></td></tr>
-      <tr><td>Prototype build</td><td><strong>Next</strong></td></tr>
-      <tr><td>Implementation roadmap</td><td><strong>Complete</strong></td></tr>
-      <tr><td>ROI / value realization</td><td><strong>Complete — value model and measurement framework defined</strong></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<footer>
-  Working case study. Company-sensitive operational details should be reviewed and anonymized before final public release.
-</footer>
-
+<footer>Anonymized transformation case study based on real operating experience. Company and partner identities are intentionally generalized; prototype data is synthetic.</footer>
 </main>
 </body>
 </html>
