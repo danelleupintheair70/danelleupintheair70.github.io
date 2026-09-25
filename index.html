@@ -382,6 +382,308 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
   </div>
 </section>
 
+
+<section>
+  <h2>Human vs Automation vs AI decision matrix</h2>
+  <p>The target model separates work by decision type rather than applying AI everywhere. Deterministic rules handle repeatable operational logic, AI handles ambiguity and unstructured information, and humans retain control where judgement, policy, safety or commercial authority is required.</p>
+
+  <div class="callout blue">
+    <strong>Decision rule</strong>
+    <p><strong>Automate</strong> when the input is structured and the rule is stable. Use <strong>AI</strong> when the input is unstructured or contextual. Keep a <strong>human</strong> in control when the decision is high-risk, policy-sensitive, irreversible or commercially discretionary.</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Process step</th>
+        <th>Primary owner</th>
+        <th>Role of automation</th>
+        <th>Role of AI</th>
+        <th>Human control / guardrail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Direct / OTA booking ingestion</td>
+        <td><strong>Automation</strong></td>
+        <td>Create canonical order, map fields, deduplicate, assign source and timestamps.</td>
+        <td>Fallback extraction when source data arrives in semi-structured email or documents.</td>
+        <td>CS reviews failed mappings or incomplete orders.</td>
+      </tr>
+      <tr>
+        <td>Serviceability & timing validation</td>
+        <td><strong>Automation</strong></td>
+        <td>Execute city, lead-time, airport timing, product-type and required-field rules.</td>
+        <td>Interpret ambiguous addresses or customer-written notes when structured validation is insufficient.</td>
+        <td>Operations approves unclear or policy-edge cases.</td>
+      </tr>
+      <tr>
+        <td>Missing-information follow-up</td>
+        <td><strong>Automation + AI</strong></td>
+        <td>Detect missing required fields and trigger follow-up workflow.</td>
+        <td>Draft context-aware request using order history and customer language.</td>
+        <td>Human review only for non-standard or sensitive cases.</td>
+      </tr>
+      <tr>
+        <td>Supplier eligibility & ranking</td>
+        <td><strong>Automation</strong></td>
+        <td>Filter by service area, capability, timing, route, cost rules and availability; rank eligible suppliers.</td>
+        <td>Optional explanation of why a route is unusual or why historical supplier behavior differs.</td>
+        <td>Operations can override assignment with reason captured.</td>
+      </tr>
+      <tr>
+        <td>Supplier dispatch</td>
+        <td><strong>Automation</strong></td>
+        <td>Generate structured job, send through API / portal / secure link, start acceptance timer, trigger fallback.</td>
+        <td>No AI required for normal dispatch.</td>
+        <td>Human intervention for no-capacity, RFQ or special-service cases.</td>
+      </tr>
+      <tr>
+        <td>Supplier confirmation & reminder</td>
+        <td><strong>Automation</strong></td>
+        <td>Track accept / reject / timeout state and send reminders or escalate automatically.</td>
+        <td>Interpret free-text supplier replies if structured response is unavailable.</td>
+        <td>Operations resolves ambiguous replies.</td>
+      </tr>
+      <tr>
+        <td>Customer service-day updates</td>
+        <td><strong>Automation</strong></td>
+        <td>Trigger notifications from structured events such as ready, picked up, delayed and delivered.</td>
+        <td>Adapt wording / language and summarize relevant context.</td>
+        <td>CS handles complaints, disputes or unclear status.</td>
+      </tr>
+      <tr>
+        <td>Inbound customer messages</td>
+        <td><strong>AI + Automation</strong></td>
+        <td>Attach message to correct order and route to workflow.</td>
+        <td>Classify intent, extract requested change, detect urgency, summarize conversation and retrieve relevant rule.</td>
+        <td>CS approves actions that alter service, fees or policy.</td>
+      </tr>
+      <tr>
+        <td>Operational exception triage</td>
+        <td><strong>AI-assisted Human</strong></td>
+        <td>Create case, start SLA clock, collect order / supplier / customer context.</td>
+        <td>Classify exception, summarize evidence, retrieve playbook and propose next action.</td>
+        <td>Operations makes the actual exception decision.</td>
+      </tr>
+      <tr>
+        <td>Fee waiver / refund / policy exception</td>
+        <td><strong>Human</strong></td>
+        <td>Calculate standard entitlement where rules are explicit.</td>
+        <td>Summarize case and surface comparable precedent.</td>
+        <td>Authorized manager approves discretionary outcome.</td>
+      </tr>
+      <tr>
+        <td>Chain of custody / recipient handover</td>
+        <td><strong>Automation + Human control</strong></td>
+        <td>Use OTP / QR / tag verification, timestamps and evidence requirements.</td>
+        <td>Optional photo-quality or evidence-completeness checks.</td>
+        <td>AI does not independently decide recipient identity or release luggage in high-risk cases.</td>
+      </tr>
+      <tr>
+        <td>Knowledge retrieval</td>
+        <td><strong>AI</strong></td>
+        <td>Maintain versioned rule and supplier data sources.</td>
+        <td>Retrieve the most relevant operational rule, supplier condition or exception playbook for the current case.</td>
+        <td>Responses must cite the governed source; staff can escalate conflicting rules.</td>
+      </tr>
+      <tr>
+        <td>Performance monitoring</td>
+        <td><strong>Automation</strong></td>
+        <td>Calculate SLA, cycle time, rework, acceptance, exception and communication-latency metrics.</td>
+        <td>Summarize recurring patterns and highlight anomalous process variants.</td>
+        <td>Managers validate conclusions before changing policy or supplier strategy.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>AI guardrails</h3>
+  <div class="grid">
+    <div class="card"><strong>AI is not the system of record</strong>The OMS/TMS owns booking state, money, supplier assignment and operational timestamps.</div>
+    <div class="card"><strong>Structured rules beat AI where possible</strong>Serviceability, time windows, pricing formulas and eligibility should be deterministic when the policy is known.</div>
+    <div class="card"><strong>Ground AI in governed knowledge</strong>Operational answers should retrieve from maintained rules, supplier data and approved playbooks rather than rely on model memory.</div>
+    <div class="card"><strong>Escalate uncertainty</strong>Low-confidence extraction, conflicting rules, policy exceptions and safety-sensitive decisions route to a human.</div>
+  </div>
+
+  <h3>What this demonstrates</h3>
+  <div class="callout good">
+    <strong>AI business analysis is not “add a chatbot.”</strong>
+    <p>This design starts from process decomposition, separates deterministic logic from judgement, defines where AI actually adds value, preserves human authority for high-risk decisions, and connects the AI layer to an auditable transaction core. That is the operating model required to move an AI concept into a production business process.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Next analysis step</h2>
+  <div class="callout">
+    <span class="status">Requirements & controls</span>
+    <p>Translate the To-Be model into business requirements, functional requirements, non-functional requirements, acceptance criteria, data requirements and UAT scenarios — starting with booking intake and normalization.</p>
+  </div>
+</section>
+
+
+<section>
+  <h2>Requirements — Booking Intake & Normalization</h2>
+  <p>This first requirements slice translates the target architecture into implementation-ready business analysis for the point where direct and distributor bookings enter the operating system.</p>
+
+  <h3>Business requirements</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Requirement</th><th>Business rationale</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>BR-01</td>
+        <td>All direct and distributor bookings must resolve to one canonical internal order record.</td>
+        <td>Remove duplicate manual order creation and create one source of truth for downstream operations.</td>
+      </tr>
+      <tr>
+        <td>BR-02</td>
+        <td>The booking source must not determine how Operations processes the order after normalization.</td>
+        <td>Website, Klook, KKday and future channels should enter the same fulfilment workflow once mapped.</td>
+      </tr>
+      <tr>
+        <td>BR-03</td>
+        <td>Routine booking ingestion and validation should require no CS intervention when required data is complete and rules are satisfied.</td>
+        <td>Move CS effort away from data entry and toward true exceptions.</td>
+      </tr>
+      <tr>
+        <td>BR-04</td>
+        <td>No booking may disappear silently between an external channel and the internal OMS/TMS.</td>
+        <td>Every ingestion attempt must have an auditable success, exception or failure state.</td>
+      </tr>
+      <tr>
+        <td>BR-05</td>
+        <td>Channel-specific differences must be absorbed by the integration layer rather than by frontline staff.</td>
+        <td>Reduce process variation, training burden and transcription risk.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Functional requirements</h3>
+  <table>
+    <thead><tr><th>ID</th><th>System behavior</th></tr></thead>
+    <tbody>
+      <tr><td>FR-01</td><td>The platform shall accept direct bookings from the owned booking interface and distributor bookings through API, webhook, scheduled sync or controlled fallback ingestion.</td></tr>
+      <tr><td>FR-02</td><td>The integration layer shall map each source schema into a canonical order model before the order enters fulfilment.</td></tr>
+      <tr><td>FR-03</td><td>The platform shall generate one unique internal Order ID and preserve the original external source and external Order ID.</td></tr>
+      <tr><td>FR-04</td><td>The platform shall prevent duplicate creation when the same external booking is received more than once.</td></tr>
+      <tr><td>FR-05</td><td>The platform shall validate required fields such as service date/time, city, service type, customer identity/contact details, pickup/delivery location, and route-specific airport/flight information where applicable.</td></tr>
+      <tr><td>FR-06</td><td>The platform shall run deterministic serviceability and timing rules immediately after normalization.</td></tr>
+      <tr><td>FR-07</td><td>Orders that pass validation shall progress automatically to the next fulfilment state without manual re-entry.</td></tr>
+      <tr><td>FR-08</td><td>Orders with missing, conflicting or non-compliant data shall enter a structured exception queue with the failed rule and required next action.</td></tr>
+      <tr><td>FR-09</td><td>Where source data arrives in semi-structured email or documents, AI-assisted extraction may propose field values, but low-confidence or conflicting fields must require human confirmation.</td></tr>
+      <tr><td>FR-10</td><td>Every create, update, validation result, exception and manual override shall be timestamped in the audit history.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Canonical data requirements</h3>
+  <div class="grid">
+    <div class="card">
+      <strong>Order identity</strong>
+      Internal Order ID, source channel, source Order ID, booking timestamp, current lifecycle status.
+    </div>
+    <div class="card">
+      <strong>Customer</strong>
+      Name, email, contact number, preferred communication channel / app where captured.
+    </div>
+    <div class="card">
+      <strong>Service</strong>
+      Service date, service time, city, service type, pickup type, delivery type.
+    </div>
+    <div class="card">
+      <strong>Locations</strong>
+      Hotel / property name, address, airport, terminal, relevant location notes.
+    </div>
+    <div class="card">
+      <strong>Travel context</strong>
+      Flight number and route-specific timing information where applicable.
+    </div>
+    <div class="card">
+      <strong>Operational metadata</strong>
+      Validation result, failed rule, assigned supplier, SLA timestamps, exception status and audit trail.
+    </div>
+  </div>
+
+  <h3>Non-functional requirements</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td>NFR-01</td><td><strong>Reliability:</strong> ingestion must be retryable and idempotent so retries do not create duplicate orders.</td></tr>
+      <tr><td>NFR-02</td><td><strong>Observability:</strong> failed integrations, schema-mapping errors and validation failures must be visible in an operational dashboard / queue.</td></tr>
+      <tr><td>NFR-03</td><td><strong>Auditability:</strong> the system must retain who/what changed an order, the previous value, the new value and timestamp.</td></tr>
+      <tr><td>NFR-04</td><td><strong>Security:</strong> customer PII must be role-restricted, and integrations must use controlled credentials rather than personal accounts.</td></tr>
+      <tr><td>NFR-05</td><td><strong>Maintainability:</strong> source mappings and business rules should be configurable without rewriting the full application wherever practical.</td></tr>
+      <tr><td>NFR-06</td><td><strong>Extensibility:</strong> adding a new distributor should require a new adapter / mapping, not a new fulfilment process.</td></tr>
+      <tr><td>NFR-07</td><td><strong>Performance:</strong> normal automated booking ingestion and validation should complete within an agreed operational threshold; exact SLA to be defined during implementation.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Acceptance criteria</h3>
+  <div class="grid">
+    <div class="card"><strong>AC-01 · Website booking</strong>A valid direct booking creates exactly one canonical OMS/TMS order with the correct source metadata and proceeds without CS re-entry.</div>
+    <div class="card"><strong>AC-02 · Distributor booking</strong>A valid distributor booking produces the same canonical internal structure as a direct booking while preserving the distributor Order ID.</div>
+    <div class="card"><strong>AC-03 · Duplicate event</strong>Receiving the same external booking twice updates or ignores the duplicate according to policy and never creates a second active order.</div>
+    <div class="card"><strong>AC-04 · Missing field</strong>A booking missing a required contact / route field is stopped before dispatch and appears in the exception queue with a clear reason.</div>
+    <div class="card"><strong>AC-05 · Rule failure</strong>A booking outside a configured service area or timing rule does not progress silently and is routed to the correct exception workflow.</div>
+    <div class="card"><strong>AC-06 · Audit trail</strong>An Operations user can reconstruct how the booking entered the system, what validation ran, what changed and who approved any override.</div>
+  </div>
+
+  <h3>Representative UAT scenarios</h3>
+  <table>
+    <thead><tr><th>Scenario</th><th>Given</th><th>When</th><th>Then</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>UAT-01 · Happy-path direct booking</td>
+        <td>All mandatory website fields are valid.</td>
+        <td>Customer completes payment and booking.</td>
+        <td>One canonical order is created, validation passes and the order advances automatically.</td>
+      </tr>
+      <tr>
+        <td>UAT-02 · Happy-path KKday booking</td>
+        <td>KKday sends a complete supported booking payload.</td>
+        <td>The integration receives it.</td>
+        <td>Fields are mapped correctly, the KKday Order ID is retained, and no CS copy/paste is required.</td>
+      </tr>
+      <tr>
+        <td>UAT-03 · Missing flight information</td>
+        <td>An airport-related booking requires flight data but the source does not supply it.</td>
+        <td>Validation runs.</td>
+        <td>The order enters the exception queue and a missing-information workflow is triggered.</td>
+      </tr>
+      <tr>
+        <td>UAT-04 · Duplicate OTA delivery</td>
+        <td>An external channel retries the same booking event.</td>
+        <td>The same source Order ID is received again.</td>
+        <td>No duplicate active order is created and the event is logged.</td>
+      </tr>
+      <tr>
+        <td>UAT-05 · Non-serviceable address</td>
+        <td>The destination fails the configured service-area rule.</td>
+        <td>Validation runs.</td>
+        <td>The booking is held, the failed rule is visible, and Operations is given the appropriate resolution path.</td>
+      </tr>
+      <tr>
+        <td>UAT-06 · AI extraction uncertainty</td>
+        <td>A fallback email contains an ambiguous hotel address.</td>
+        <td>AI-assisted extraction returns low confidence or conflicting candidate values.</td>
+        <td>The system does not auto-approve the field and requires human confirmation.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Control design</h3>
+  <div class="callout good">
+    <strong>Normal flow should be touchless; uncertainty should be visible.</strong>
+    <p>The objective is not to remove humans from operations. It is to make routine orders deterministic and auditable so human attention is concentrated on incomplete, ambiguous, non-compliant or high-risk cases.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Next analysis step</h2>
+  <div class="callout">
+    <span class="status">Requirements slice 2 — Supplier Dispatch</span>
+    <p>Translate supplier selection, structured dispatch, accept / reject / timeout, fallback routing and manual override into the same requirements + acceptance + UAT format.</p>
+  </div>
+</section>
+
 <section>
   <h2>Case-study build status</h2>
   <table>
@@ -392,8 +694,8 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
       <tr><td>Diagnose primary bottlenecks</td><td><strong>Complete</strong></td></tr>
       <tr><td>Root-cause synthesis</td><td><strong>Complete</strong></td></tr>
       <tr><td>Target operating model / To-Be architecture</td><td><strong>Draft complete</strong></td></tr>
-      <tr><td>Human vs automation vs AI decision matrix</td><td>Next</td></tr>
-      <tr><td>Requirements / UAT / governance</td><td>Not started</td></tr>
+      <tr><td>Human vs automation vs AI decision matrix</td><td><strong>Complete</strong></td></tr>
+      <tr><td>Requirements / UAT / governance</td><td><strong>In progress — booking intake slice complete</strong></td></tr>
       <tr><td>Prototype</td><td>Not started</td></tr>
       <tr><td>ROI / implementation roadmap</td><td>Not started</td></tr>
     </tbody>
