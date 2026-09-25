@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI-Assisted Prospecting Operations System — Zev Pan</title>
+<meta name="description" content="An AI transformation case study on relationship-state management, capacity-aware prioritization, human-in-the-loop AI and action reconciliation.">
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--text:#171717;--muted:#666;--line:#deded8;--soft:#efefeb;--warn:#fff4d6;--good:#e9f7ef;--blue:#edf4ff;--violet:#f1edff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.sitebar{border-bottom:1px solid var(--line);background:rgba(247,247,245,.94);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+.sitebar-inner{max-width:1080px;margin:0 auto;padding:13px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{text-decoration:none;color:var(--text);font-weight:800}
+.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.nav a{text-decoration:none;color:inherit}.nav a:hover{color:var(--text)}
+main{max-width:1080px;margin:0 auto;padding:56px 24px 96px}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-size:48px;line-height:1.08;margin:12px 0 16px;max-width:920px}
+h2{font-size:29px;margin:0 0 16px}
+h3{font-size:19px;margin:24px 0 8px}
+p{margin:8px 0 14px}
+.lead{font-size:20px;color:#383838;max-width:900px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tag{background:var(--soft);border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:13px}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card strong{display:block;margin-bottom:6px}
+.callout{padding:18px;border-radius:12px;background:var(--warn);border:1px solid #ead59a}
+.callout.good{background:var(--good);border-color:#bcdcc8}
+.callout.blue{background:var(--blue);border-color:#cbdcf4}
+.callout.violet{background:var(--violet);border-color:#d9d0f8}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px}
+.arrow{color:#888;font-weight:700}
+ul{margin:8px 0 0 20px;padding:0}
+li{margin:5px 0}
+.small{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff}
+th,td{text-align:left;vertical-align:top;border:1px solid var(--line);padding:12px;font-size:14px}
+th{background:var(--soft)}
+code{background:var(--soft);padding:2px 5px;border-radius:5px}
+.blueprint{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;overflow:auto}
+.blueprint img{display:block;width:100%;height:auto;min-width:780px}
+.linkrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-block;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px}
+.btn:hover{background:var(--soft)}
+footer{padding-top:30px;color:var(--muted);font-size:13px}
+@media(max-width:760px){h1{font-size:36px}.grid,.grid3{grid-template-columns:1fr}.sitebar-inner{align-items:flex-start}.blueprint img{min-width:980px}}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../index.html">Zev Pan</a>
+<nav class="nav"><a href="../../index.html">All Case Studies</a><a href="../travel-logistics-transformation/index.html">Travel Logistics</a></nav>
+</div></header>
+<main>
+<div class="hero">
+<div class="kicker">Case Study 02 · AI Transformation</div>
+<h1>AI-Assisted Prospecting Operations System</h1>
+<p class="lead">Redesigning a fragmented relationship workflow into a governed operating layer that maintains relationship state, identifies the next best actions, allocates limited human capacity, and uses AI for interpretation while keeping external communication human-controlled.</p>
+<div class="meta"><span class="tag">Process Intelligence</span><span class="tag">Workflow Orchestration</span><span class="tag">State Management</span><span class="tag">Human-in-the-Loop AI</span><span class="tag">Decision Governance</span><span class="tag">Requirements & UAT</span></div>
+</div>
+
+<section><h2>Transformation objective</h2>
+<p>Build a relationship-operations layer that converts fragmented network and interaction data into trustworthy state, governed eligibility, transparent priority and a continuously reconciled Action Queue.</p>
+<div class="grid"><div class="card"><strong>Start</strong>New relationship data arrives from professional-network exports, message history, invitation records, research inputs or manual records.</div><div class="card"><strong>End</strong>A human operator receives a current, evidence-backed and capacity-controlled next action with the correct person, relationship context, rationale and audit trail.</div></div>
+</section>
+
+<section><h2>Why the current workflow breaks down</h2>
+<div class="grid3">
+<div class="card"><strong>Fragmented relationship data</strong>Identity, network status, interaction history and account context arrive from different sources and must be reconciled.</div>
+<div class="card"><strong>State cannot be inferred from connection status</strong>A connection can be new, unanswered, active, nurture, reconnect-later, an opportunity, closed or suppressed.</div>
+<div class="card"><strong>Human capacity is scarce</strong>Thousands of records can compete for a finite weekly attention ceiling. The problem is allocation, not maximum send volume.</div>
+<div class="card"><strong>Actions become stale</strong>A new reply can invalidate a follow-up that was correct when the queue was generated.</div>
+<div class="card"><strong>Spreadsheet operations hit scale limits</strong>Full-dataset scans and repeated joins become increasingly fragile as interaction history grows.</div>
+<div class="card"><strong>AI needs governance</strong>Semantic interpretation is useful only when recommendations are evidence-backed, bounded by policy and auditable.</div>
+</div></section>
+
+<section><h2>Current operating model</h2>
+<div class="flow"><span class="step">Network / invitation data</span><span class="arrow">→</span><span class="step">Message history</span><span class="arrow">→</span><span class="step">Workflow orchestration</span><span class="arrow">→</span><span class="step">Spreadsheet masters</span><span class="arrow">→</span><span class="step">AI-assisted analysis</span><span class="arrow">→</span><span class="step">Action Queue</span><span class="arrow">→</span><span class="step">Human action</span></div>
+<div class="callout" style="margin-top:18px"><strong>Diagnosis</strong>The core problem is not message generation. It is maintaining a trustworthy relationship state and continuously deciding which human action is justified under limited capacity.</div></section>
+
+<section><h2>Target operating model</h2>
+<div class="flow"><span class="step">Ingest</span><span class="arrow">→</span><span class="step">Resolve identity</span><span class="arrow">→</span><span class="step">Update canonical state</span><span class="arrow">→</span><span class="step">Eligibility gate</span><span class="arrow">→</span><span class="step">AI interpretation</span><span class="arrow">→</span><span class="step">Priority + capacity</span><span class="arrow">→</span><span class="step">Action Queue</span><span class="arrow">→</span><span class="step">Human decision</span><span class="arrow">→</span><span class="step">Reconcile</span></div>
+<div class="grid3" style="margin-top:18px">
+<div class="card"><strong>Canonical relationship data</strong>Person, Account, Interaction, Network Event, Relationship State, Action, Override and Audit Event.</div>
+<div class="card"><strong>State & eligibility engine</strong>Deterministic control of network state, DNC, cooldowns, reconnect timing, open-action conflict and policy gates.</div>
+<div class="card"><strong>AI relationship analysis</strong>Interpret message meaning, reconnect intent, opportunity signals, nurture / closure and relationship history.</div>
+<div class="card"><strong>Capacity-aware prioritization</strong>Treat the weekly ceiling as a resource constraint with protected capacity for emerging work.</div>
+<div class="card"><strong>Live Action Queue</strong>Actions can be reviewed, completed, dismissed, snoozed, blocked, expired or superseded.</div>
+<div class="card"><strong>Reconciliation loop</strong>Every meaningful new event can recompute state and invalidate an older recommendation.</div>
+</div></section>
+
+<section><h2>AI Transformation Blueprint</h2>
+<p>The blueprint summarizes the current state, target decision architecture, human / automation / AI boundaries, cross-cutting controls and migration roadmap.</p>
+<div class="blueprint"><img src="../../assets/prospecting-operations-blueprint.svg" alt="AI Transformation Blueprint for the Prospecting Operations System"></div>
+<div class="linkrow"><a class="btn" href="../../assets/prospecting-operations-blueprint.svg">Open blueprint full size →</a></div></section>
+
+<section><h2>Human vs Automation vs AI</h2>
+<table><thead><tr><th>Work</th><th>Primary owner</th><th>Examples</th></tr></thead><tbody>
+<tr><td>Stable structured logic</td><td><strong>Deterministic automation</strong></td><td>Identity keys, deduplication, chronology, DNC, cooldowns, capacity arithmetic, action supersession.</td></tr>
+<tr><td>Unstructured relationship meaning</td><td><strong>AI</strong></td><td>Reconnect intent, message meaning, opportunity signals, relationship summary, next-action suggestion.</td></tr>
+<tr><td>External relationship decisions</td><td><strong>Human</strong></td><td>Sending outreach, resolving ambiguity, opportunity qualification, commercial judgement and sensitive overrides.</td></tr>
+</tbody></table>
+<div class="callout blue" style="margin-top:16px"><strong>Control rule</strong>AI produces evidence + confidence + proposal. Deterministic policy decides what is allowed. Human authority remains over external communication.</div></section>
+
+<section><h2>State before priority</h2>
+<p>The design intentionally separates relationship context from action eligibility.</p>
+<div class="grid"><div class="card"><strong>Relationship states</strong><ul><li>No interaction history</li><li>Outbound last / Inbound last</li><li>Active conversation</li><li>Reconnect later</li><li>Opportunity</li><li>Nurture</li><li>Do Not Contact</li><li>Closed</li></ul></div>
+<div class="card"><strong>Eligibility controls</strong><ul><li>DNC and follow-up blocks</li><li>Identity resolution</li><li>Cooldowns</li><li>Reconnect timing</li><li>Existing open actions</li><li>Newer inbound context</li><li>Active opportunity handling</li></ul></div></div>
+<div class="callout good" style="margin-top:16px"><strong>Design principle</strong>State → Eligibility → Priority → Capacity Allocation → Action. AI does not rank prohibited actions first and filter them afterward.</div></section>
+
+<section><h2>Capacity-aware prioritization</h2>
+<p>The weekly follow-up ceiling is a maximum, not a target. The system therefore treats operator capacity as a portfolio-allocation problem.</p>
+<div class="grid"><div class="card"><strong>Protected capacity</strong>Reserve room for inbound replies, newly accepted connections and emergent high-priority cases instead of filling the whole week with generic follow-up.</div><div class="card"><strong>Transparent ranking</strong>Expose priority tier, reason codes, relationship signals and capacity bucket rather than relying on an unexplained black-box score.</div></div></section>
+
+<section><h2>Selected requirements</h2>
+<div class="grid3">
+<div class="card"><strong>Identity quality first</strong>Stable Person IDs, source lineage, deduplication, alias history and a review queue for ambiguous matches.</div>
+<div class="card"><strong>Evidence-backed AI</strong>Semantic recommendations must return structured output, confidence and supporting interaction IDs.</div>
+<div class="card"><strong>Stale-action control</strong>Newer interactions trigger reconciliation and can move an older action to <code>SUPERSEDED</code>.</div>
+<div class="card"><strong>Fail-closed suppression</strong>DNC and explicit blocks take precedence over AI, ranking and prior actions.</div>
+<div class="card"><strong>Idempotent workflows</strong>Repeated source imports or reconciliation retries must not duplicate people, interactions or actions.</div>
+<div class="card"><strong>Decision provenance</strong>Historical actions retain the state, eligibility, ranking, capacity and AI evidence that justified them.</div>
+</div></section>
+
+<section><h2>AI evaluation & governance</h2>
+<div class="grid"><div class="card"><strong>Evaluation by task</strong><ul><li>Relationship-state agreement</li><li>Reconnect-timing extraction accuracy</li><li>Evidence-link correctness</li><li>Unsupported-claim rate</li><li>Human override / dismissal rate</li></ul></div>
+<div class="card"><strong>Release path</strong><ul><li>Offline evaluation</li><li>Shadow mode</li><li>Assisted production</li><li>Selective low-risk auto-application</li></ul></div></div></section>
+
+<section><h2>Migration roadmap</h2>
+<table><thead><tr><th>Phase</th><th>Focus</th><th>Outcome</th></tr></thead><tbody>
+<tr><td>1</td><td>Stabilize current workflow</td><td>Strict IDs, incremental reads, batching and append-oriented interaction history.</td></tr>
+<tr><td>2</td><td>Relational data layer</td><td>Canonical operational entities replace full-sheet scans as system complexity grows.</td></tr>
+<tr><td>3</td><td>Decision services</td><td>State, eligibility, AI analysis and capacity allocation become explicit services.</td></tr>
+<tr><td>4</td><td>Operations console</td><td>Action Queue, relationship history, reconciliation and overrides in one control surface.</td></tr>
+<tr><td>5</td><td>Integrations & intelligence</td><td>Additional connectors, observability, evaluation and continuous improvement.</td></tr>
+</tbody></table></section>
+
+<section><h2>How value would be measured</h2>
+<div class="grid3"><div class="card"><strong>Data quality</strong>Matched interactions, duplicate rate, reconciliation backlog and source freshness.</div><div class="card"><strong>Queue quality</strong>Stale-action rate, supersession, dismissal, backlog age and duplicate prevention.</div><div class="card"><strong>Capacity</strong>Reserved vs consumed capacity and high-priority cases left unallocated.</div><div class="card"><strong>AI quality</strong>Classification agreement, evidence accuracy, unsupported claims and human overrides.</div><div class="card"><strong>Workflow reliability</strong>Run success, processing latency, retries and resource failures.</div><div class="card"><strong>Relationship outcomes</strong>Meaningful replies, meetings / opportunity progression, reconnect conversion and opt-outs.</div></div>
+<p class="small">The measurement model intentionally separates system health, decision quality, operating efficiency and business outcomes so activity volume is not mistaken for value.</p></section>
+
+<section><h2>Architecture decision</h2><div class="callout violet"><strong>Build a relationship-operations system, not an autonomous outreach agent.</strong><p>The system should remove repeated reconciliation, state reconstruction and prioritization work while concentrating human effort on genuine conversations, relationship judgement and commercial decisions.</p></div></section>
+
+<footer>Anonymized transformation case study based on a real operating workflow. Public examples use generalized sources and synthetic identities; private prospect and message data is excluded.</footer>
+</main>
+</body>
+</html>

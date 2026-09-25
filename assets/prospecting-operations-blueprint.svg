@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1160" viewBox="0 0 1600 1160">
+<defs>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#1d2430}.muted{fill:#667085}.zone{fill:#fbfaf7;stroke:#aeb6c1;stroke-width:1.5;stroke-dasharray:6 6}
+    .box{fill:#fff;stroke:#cfd5dd;stroke-width:1.3}.blue{fill:#dfeeff}.green{fill:#e1f3e7}.amber{fill:#fff0c9}.red{fill:#ffe3e3}.violet{fill:#ece6ff}.slate{fill:#eef1f4}
+    .h1{font-size:34px;font-weight:700}.h2{font-size:13px;font-weight:700;letter-spacing:1.4px}.b{font-size:13px;font-weight:700}.s{font-size:11px}.m{font-size:12px}
+    .arrow{stroke:#7b8490;stroke-width:2;fill:none;marker-end:url(#ah)}
+  </style>
+  <marker id="ah" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#7b8490"/></marker>
+</defs>
+<rect width="1600" height="1160" fill="#f6f4ef"/>
+<text x="40" y="45" class="t h2 muted">AI TRANSFORMATION BLUEPRINT</text>
+<text x="40" y="88" class="t h1">AI-Assisted Prospecting Operations System</text>
+<text x="40" y="116" class="t m muted">From fragmented relationship data to a governed, capacity-aware decision system that preserves human control.</text>
+<rect x="40" y="135" width="1520" height="42" rx="10" class="box"/>
+<text x="58" y="160" class="t m"><tspan font-weight="700">Business objective:</tspan> Maintain trustworthy relationship state, allocate limited weekly attention, and prevent stale follow-up.</text>
+
+<!-- zones -->
+<rect x="40" y="198" width="410" height="620" rx="16" class="zone"/>
+<rect x="470" y="198" width="660" height="620" rx="16" class="zone"/>
+<rect x="1150" y="198" width="410" height="620" rx="16" class="zone"/>
+<text x="58" y="222" class="t h2 muted">A. CURRENT STATE</text>
+<text x="488" y="222" class="t h2 muted">B. TRANSFORMATION LAYER</text>
+<text x="1168" y="222" class="t h2 muted">C. TARGET STATE</text>
+
+<!-- Current state boxes -->
+<rect x="68" y="246" width="354" height="68" rx="10" class="box slate"/><text x="86" y="271" class="t b">Source Data</text><text x="86" y="291" class="t s">Connections · invitations · messages · research · manual records</text>
+<line x1="245" y1="314" x2="245" y2="335" class="arrow"/>
+<rect x="68" y="338" width="354" height="58" rx="10" class="box"/><text x="86" y="362" class="t b">n8n Orchestration</text><text x="86" y="382" class="t s">Imports · normalization · matching · workflow logic</text>
+<line x1="245" y1="396" x2="245" y2="417" class="arrow"/>
+<rect x="68" y="420" width="354" height="70" rx="10" class="box"/><text x="86" y="445" class="t b">Spreadsheet Masters</text><text x="86" y="465" class="t s">People Master · Interaction Log · Company Master · Action Queue</text>
+<line x1="245" y1="490" x2="245" y2="511" class="arrow"/>
+<rect x="68" y="514" width="354" height="70" rx="10" class="box amber"/><text x="86" y="539" class="t b">AI-Assisted Interpretation</text><text x="86" y="559" class="t s">Relationship history · prioritization rationale · suggested action</text>
+<line x1="245" y1="584" x2="245" y2="605" class="arrow"/>
+<rect x="68" y="608" width="354" height="88" rx="10" class="box red"/><text x="86" y="633" class="t b">Human Reconstruction Load</text><text x="86" y="653" class="t s">Verify identity, state, latest context, priority and whether</text><text x="86" y="670" class="t s">the recommendation is still valid.</text>
+
+<!-- Transformation boxes -->
+<rect x="500" y="246" width="600" height="58" rx="10" class="box blue"/><text x="518" y="270" class="t b">1. Ingestion &amp; Normalization</text><text x="518" y="290" class="t s">Schema validation · fingerprinting · deduplication · incremental refresh</text>
+<line x1="800" y1="304" x2="800" y2="322" class="arrow"/>
+<rect x="500" y="325" width="600" height="58" rx="10" class="box blue"/><text x="518" y="349" class="t b">2. Identity Resolution</text><text x="518" y="369" class="t s">Stable Person ID · alias history · composite match · reconciliation queue</text>
+<line x1="800" y1="383" x2="800" y2="401" class="arrow"/>
+<rect x="500" y="404" width="600" height="62" rx="10" class="box green"/><text x="518" y="429" class="t b">3. Canonical Relationship Data</text><text x="518" y="449" class="t s">Person · Account · Interaction · Network Event · State · Action · Override · Audit</text>
+<line x1="800" y1="466" x2="800" y2="484" class="arrow"/>
+<rect x="500" y="487" width="286" height="92" rx="10" class="box"/><text x="518" y="512" class="t b">Deterministic State &amp; Eligibility</text><text x="518" y="532" class="t s">DNC · cooldown · reconnect timing</text><text x="518" y="549" class="t s">open-action conflict · supersession</text><text x="518" y="566" class="t s">capacity arithmetic</text>
+<rect x="814" y="487" width="286" height="92" rx="10" class="box"/><text x="832" y="512" class="t b">AI Relationship Analysis</text><text x="832" y="532" class="t s">Message meaning · reconnect intent</text><text x="832" y="549" class="t s">opportunity signal · summary</text><text x="832" y="566" class="t s">suggested next action</text>
+<line x1="800" y1="579" x2="800" y2="597" class="arrow"/>
+<rect x="500" y="600" width="600" height="62" rx="10" class="box violet"/><text x="518" y="625" class="t b">4. Capacity-Aware Prioritization</text><text x="518" y="645" class="t s">≤ 200/week · inbound reserve · new-connection reserve · warm follow-up · buffer</text>
+<line x1="800" y1="662" x2="800" y2="680" class="arrow"/>
+<rect x="500" y="683" width="600" height="62" rx="10" class="box green"/><text x="518" y="708" class="t b">5. Live Action Queue</text><text x="518" y="728" class="t s">Why this action · priority · rationale · OPEN / SNOOZED / COMPLETED / SUPERSEDED</text>
+<line x1="800" y1="745" x2="800" y2="763" class="arrow"/>
+<rect x="500" y="766" width="600" height="42" rx="10" class="box"/><text x="518" y="792" class="t b">6. Human Review &amp; Action → 7. Reconciliation Loop</text>
+
+<!-- Target state -->
+<rect x="1178" y="246" width="354" height="76" rx="10" class="box green"/><text x="1196" y="271" class="t b">Authoritative Relationship State</text><text x="1196" y="291" class="t s">No repeated manual reconstruction of relationship context.</text>
+<rect x="1178" y="334" width="354" height="76" rx="10" class="box green"/><text x="1196" y="359" class="t b">Policy Before Priority</text><text x="1196" y="379" class="t s">Only eligible records enter ranking.</text>
+<rect x="1178" y="422" width="354" height="76" rx="10" class="box green"/><text x="1196" y="447" class="t b">Evidence-Backed AI</text><text x="1196" y="467" class="t s">Confidence · rationale · source interaction IDs.</text>
+<rect x="1178" y="510" width="354" height="76" rx="10" class="box green"/><text x="1196" y="535" class="t b">Capacity as a Resource</text><text x="1196" y="555" class="t s">Weekly ceiling is a constraint, not a send target.</text>
+<rect x="1178" y="598" width="354" height="76" rx="10" class="box green"/><text x="1196" y="623" class="t b">Human Relationship Control</text><text x="1196" y="643" class="t s">Humans retain authority over external communication.</text>
+<rect x="1178" y="686" width="354" height="76" rx="10" class="box green"/><text x="1196" y="711" class="t b">Operational Scale</text><text x="1196" y="731" class="t s">Incremental processing + relational storage when justified.</text>
+
+<!-- governance -->
+<text x="40" y="854" class="t h2 muted">CROSS-CUTTING CONTROLS</text>
+<g>
+<rect x="40" y="870" width="235" height="84" rx="10" class="box"/><text x="56" y="895" class="t b">Audit Trail</text><text x="56" y="915" class="t s">State · eligibility · ranking · AI</text><text x="56" y="932" class="t s">override · action outcome</text>
+<rect x="292" y="870" width="235" height="84" rx="10" class="box"/><text x="308" y="895" class="t b">RBAC</text><text x="308" y="915" class="t s">Operator · Ops Admin · AI/Product</text><text x="308" y="932" class="t s">Admin · Business Owner</text>
+<rect x="544" y="870" width="235" height="84" rx="10" class="box"/><text x="560" y="895" class="t b">DNC / Suppression</text><text x="560" y="915" class="t s">Fail-closed · higher precedence</text><text x="560" y="932" class="t s">than ranking or AI</text>
+<rect x="796" y="870" width="235" height="84" rx="10" class="box"/><text x="812" y="895" class="t b">AI Governance</text><text x="812" y="915" class="t s">Model/prompt versioning · eval</text><text x="812" y="932" class="t s">set · shadow mode · release gates</text>
+<rect x="1048" y="870" width="235" height="84" rx="10" class="box"/><text x="1064" y="895" class="t b">Privacy</text><text x="1064" y="915" class="t s">Data minimization · controlled</text><text x="1064" y="932" class="t s">exports · synthetic public examples</text>
+<rect x="1300" y="870" width="260" height="84" rx="10" class="box"/><text x="1316" y="895" class="t b">Observability</text><text x="1316" y="915" class="t s">Data · queue · capacity · AI</text><text x="1316" y="932" class="t s">quality · workflow reliability</text>
+</g>
+
+<!-- migration roadmap -->
+<text x="40" y="995" class="t h2 muted">MIGRATION ROADMAP</text>
+
+<rect x="40" y="1012" width="288" height="108" rx="10" class="box"/>
+<text x="56" y="1035" class="t s muted">PHASE 1</text>
+<text x="56" y="1057" class="t b">Stabilize Current Workflow</text>
+<text x="56" y="1078" class="t s">Strict IDs · incremental reads · batching</text>
+<text x="56" y="1095" class="t s">Append-only interaction history</text>
+
+<rect x="344" y="1012" width="288" height="108" rx="10" class="box"/>
+<text x="360" y="1035" class="t s muted">PHASE 2</text>
+<text x="360" y="1057" class="t b">Relational Data Layer</text>
+<text x="360" y="1078" class="t s">People · Accounts · Interactions · Actions</text>
+<text x="360" y="1095" class="t s">Overrides · Audit Events</text>
+
+<rect x="648" y="1012" width="288" height="108" rx="10" class="box"/>
+<text x="664" y="1035" class="t s muted">PHASE 3</text>
+<text x="664" y="1057" class="t b">Decision Services</text>
+<text x="664" y="1078" class="t s">State engine · eligibility · AI analysis</text>
+<text x="664" y="1095" class="t s">Capacity-aware prioritization</text>
+
+<rect x="952" y="1012" width="288" height="108" rx="10" class="box"/>
+<text x="968" y="1035" class="t s muted">PHASE 4</text>
+<text x="968" y="1057" class="t b">Operations Console</text>
+<text x="968" y="1078" class="t s">Action Queue · relationship history</text>
+<text x="968" y="1095" class="t s">Reconciliation · overrides</text>
+
+<rect x="1256" y="1012" width="304" height="108" rx="10" class="box"/>
+<text x="1272" y="1035" class="t s muted">PHASE 5</text>
+<text x="1272" y="1057" class="t b">Integrations &amp; Intelligence</text>
+<text x="1272" y="1078" class="t s">CRM / email · metrics · AI evaluation</text>
+<text x="1272" y="1095" class="t s">Continuous improvement</text>
+
+<text x="40" y="1142" class="t s muted">Design stance: build a governed relationship-operations system, not an autonomous outreach agent.</text>
+
+</svg>
