@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs>
+<style>
+.t{font-family:Arial,Helvetica,sans-serif;fill:#18212f}.muted{fill:#667085}.zone{fill:#fbfaf7;stroke:#aeb6c1;stroke-width:1.5;stroke-dasharray:6 6}.box{fill:#fff;stroke:#cfd5dd;stroke-width:1.3}.blue{fill:#e3efff}.green{fill:#e3f4e8}.amber{fill:#fff0c9}.red{fill:#ffe5e5}.violet{fill:#eee8ff}.slate{fill:#eef1f4}.h1{font-size:34px;font-weight:700}.h2{font-size:13px;font-weight:700;letter-spacing:1.4px}.b{font-size:13px;font-weight:700}.m{font-size:12px}.s{font-size:11px}.arrow{stroke:#77808c;stroke-width:2;fill:none;marker-end:url(#ah)}
+</style>
+<marker id="ah" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#77808c"/></marker>
+</defs>
+<rect width="1600" height="1120" fill="#f6f4ef"/>
+<text x="40" y="44" class="t h2 muted">TRANSFORMATION BLUEPRINT · CASE STUDY 03</text>
+<text x="40" y="86" class="t h1">Warehouse Decision Support &amp; Finance Workflow Automation</text>
+<text x="40" y="114" class="t m muted">Two operational problems require two different designs: decision support where judgement matters, deterministic automation where work is repetitive.</text>
+
+<rect x="40" y="136" width="1520" height="48" rx="10" class="box"/>
+<text x="58" y="165" class="t m"><tspan font-weight="700">Working assumption:</tspan> finance POs may contain 1,000+ items requiring repetitive manual entry into one existing target system; validate with finance stakeholder.</text>
+
+<!-- left current state -->
+<rect x="40" y="208" width="360" height="638" rx="16" class="zone"/>
+<text x="58" y="232" class="t h2 muted">A. CURRENT STATE</text>
+<rect x="68" y="258" width="304" height="94" rx="10" class="box blue"/>
+<text x="86" y="283" class="t b">Warehouse Data</text>
+<text x="86" y="304" class="t s">Picking activity · SKU history · locations</text>
+<text x="86" y="321" class="t s">Outbound QC records · SOP checkpoints</text>
+<text x="86" y="338" class="t s">Experienced operator context</text>
+<line x1="220" y1="352" x2="220" y2="378" class="arrow"/>
+<rect x="68" y="382" width="304" height="108" rx="10" class="box red"/>
+<text x="86" y="407" class="t b">Manual Warehouse Review</text>
+<text x="86" y="428" class="t s">Large datasets must be narrowed manually</text>
+<text x="86" y="445" class="t s">Patterns do not explain operational reasons</text>
+<text x="86" y="462" class="t s">QC exceptions require contextual judgement</text>
+<line x1="220" y1="490" x2="220" y2="516" class="arrow"/>
+<rect x="68" y="520" width="304" height="90" rx="10" class="box amber"/>
+<text x="86" y="545" class="t b">Finance Batch Input</text>
+<text x="86" y="566" class="t s">Large PO item sets</text>
+<text x="86" y="583" class="t s">Repetitive copy / paste or re-entry</text>
+<text x="86" y="600" class="t s">One existing finance system</text>
+<line x1="220" y1="610" x2="220" y2="636" class="arrow"/>
+<rect x="68" y="640" width="304" height="112" rx="10" class="box red"/>
+<text x="86" y="665" class="t b">Manual Finance Work</text>
+<text x="86" y="686" class="t s">Validate rows by eye</text>
+<text x="86" y="703" class="t s">Map fields repeatedly</text>
+<text x="86" y="720" class="t s">Enter items into target system</text>
+<text x="86" y="737" class="t s">Correct failed / ambiguous records</text>
+
+<!-- transformation middle -->
+<rect x="422" y="208" width="760" height="638" rx="16" class="zone"/>
+<text x="440" y="232" class="t h2 muted">B. TRANSFORMATION LAYER</text>
+
+<text x="452" y="268" class="t b">WAREHOUSE TRACK — DECISION SUPPORT</text>
+<rect x="452" y="282" width="700" height="64" rx="10" class="box blue"/>
+<text x="470" y="307" class="t b">1. Ingest Historical / Operational Evidence</text>
+<text x="470" y="328" class="t s">Picking activity · SKU movement · location history · outbound QC data · approved rules</text>
+<line x1="802" y1="346" x2="802" y2="366" class="arrow"/>
+<rect x="452" y="370" width="700" height="64" rx="10" class="box blue"/>
+<text x="470" y="395" class="t b">2. Detect Patterns / Exceptions</text>
+<text x="470" y="416" class="t s">High-runner candidates · location spread · repeated movement · missing QC checkpoints</text>
+<line x1="802" y1="434" x2="802" y2="454" class="arrow"/>
+<rect x="452" y="458" width="700" height="72" rx="10" class="box green"/>
+<text x="470" y="483" class="t b">3. Evidence-Backed Review</text>
+<text x="470" y="504" class="t s">Show why the item was flagged · retrieve relevant context · prepare review question</text>
+<text x="470" y="521" class="t s">AI can summarize; it does not make the final warehouse decision.</text>
+<line x1="802" y1="530" x2="802" y2="550" class="arrow"/>
+<rect x="452" y="554" width="700" height="62" rx="10" class="box violet"/>
+<text x="470" y="579" class="t b">4. Human Warehouse Decision</text>
+<text x="470" y="600" class="t s">Keep · relocate candidate · investigate · confirm expected QC exception · record reason</text>
+
+<text x="452" y="654" class="t b">FINANCE TRACK — WORKFLOW AUTOMATION</text>
+<rect x="452" y="668" width="700" height="64" rx="10" class="box amber"/>
+<text x="470" y="693" class="t b">1. Read PO Item Batch</text>
+<text x="470" y="714" class="t s">Working model: 1,000+ items per PO · structured source data</text>
+<line x1="802" y1="732" x2="802" y2="752" class="arrow"/>
+<rect x="452" y="756" width="216" height="62" rx="10" class="box green"/>
+<text x="470" y="781" class="t b">Validate</text><text x="470" y="802" class="t s">Required fields · duplicate checks</text>
+<rect x="694" y="756" width="216" height="62" rx="10" class="box green"/>
+<text x="712" y="781" class="t b">Map / Transform</text><text x="712" y="802" class="t s">Target field format</text>
+<rect x="936" y="756" width="216" height="62" rx="10" class="box green"/>
+<text x="954" y="781" class="t b">Automated Entry</text><text x="954" y="802" class="t s">Existing finance system</text>
+
+<!-- target state -->
+<rect x="1204" y="208" width="356" height="638" rx="16" class="zone"/>
+<text x="1222" y="232" class="t h2 muted">C. TARGET STATE</text>
+<rect x="1232" y="258" width="300" height="92" rx="10" class="box green"/>
+<text x="1250" y="283" class="t b">Warehouse: Review, Not Guess</text>
+<text x="1250" y="304" class="t s">Evidence narrows the review set</text>
+<text x="1250" y="321" class="t s">Human context explains anomalies</text>
+<text x="1250" y="338" class="t s">Feedback improves future review</text>
+<rect x="1232" y="366" width="300" height="92" rx="10" class="box green"/>
+<text x="1250" y="391" class="t b">High-Runner Inbound</text>
+<text x="1250" y="412" class="t s">Support slotting / placement decisions</text>
+<text x="1250" y="429" class="t s">without replacing the WMS</text>
+<rect x="1232" y="474" width="300" height="92" rx="10" class="box green"/>
+<text x="1250" y="499" class="t b">Outbound QC</text>
+<text x="1250" y="520" class="t s">Surface checkpoint exceptions</text>
+<text x="1250" y="537" class="t s">route only uncertain cases to review</text>
+<rect x="1232" y="582" width="300" height="108" rx="10" class="box green"/>
+<text x="1250" y="607" class="t b">Finance: Straight-Through Entry</text>
+<text x="1250" y="628" class="t s">Automate repetitive deterministic rows</text>
+<text x="1250" y="645" class="t s">preserve existing finance system</text>
+<text x="1250" y="662" class="t s">human handles only failed / unclear rows</text>
+<rect x="1232" y="706" width="300" height="104" rx="10" class="box green"/>
+<text x="1250" y="731" class="t b">Measured &amp; Auditable</text>
+<text x="1250" y="752" class="t s">Decision reasons · row-level status</text>
+<text x="1250" y="769" class="t s">retry history · exception outcomes</text>
+<text x="1250" y="786" class="t s">before/after operational metrics</text>
+
+<!-- controls -->
+<text x="40" y="886" class="t h2 muted">CROSS-CUTTING CONTROLS</text>
+<rect x="40" y="902" width="288" height="84" rx="10" class="box"/><text x="56" y="927" class="t b">Evidence &amp; Audit</text><text x="56" y="948" class="t s">Source data · recommendation · decision</text><text x="56" y="965" class="t s">submission result · human override</text>
+<rect x="344" y="902" width="288" height="84" rx="10" class="box"/><text x="360" y="927" class="t b">Human-in-the-Loop</text><text x="360" y="948" class="t s">Warehouse judgement remains human</text><text x="360" y="965" class="t s">finance humans review exceptions only</text>
+<rect x="648" y="902" width="288" height="84" rx="10" class="box"/><text x="664" y="927" class="t b">Fail-Safe Processing</text><text x="664" y="948" class="t s">No silent row loss · retry · duplicate</text><text x="664" y="965" class="t s">prevention · target rejection capture</text>
+<rect x="952" y="902" width="288" height="84" rx="10" class="box"/><text x="968" y="927" class="t b">Use AI Selectively</text><text x="968" y="948" class="t s">Interpretation where needed</text><text x="968" y="965" class="t s">deterministic rules for stable mapping</text>
+<rect x="1256" y="902" width="304" height="84" rx="10" class="box"/><text x="1272" y="927" class="t b">Existing Systems Stay</text><text x="1272" y="948" class="t s">No greenfield WMS or finance rebuild</text><text x="1272" y="965" class="t s">augmentation / automation layer only</text>
+
+<!-- roadmap -->
+<text x="40" y="1024" class="t h2 muted">DELIVERY PATH</text>
+<rect x="40" y="1040" width="288" height="54" rx="10" class="box"><title>Phase 1</title></rect><text x="56" y="1063" class="t b">1 · Confirm workflows</text><text x="56" y="1081" class="t s">Data fields · decisions · target-entry steps</text>
+<rect x="344" y="1040" width="288" height="54" rx="10" class="box"/><text x="360" y="1063" class="t b">2 · File-first POC</text><text x="360" y="1081" class="t s">Historical warehouse + finance batch</text>
+<rect x="648" y="1040" width="288" height="54" rx="10" class="box"/><text x="664" y="1063" class="t b">3 · Human validation</text><text x="664" y="1081" class="t s">Tune review logic + finance exceptions</text>
+<rect x="952" y="1040" width="288" height="54" rx="10" class="box"/><text x="968" y="1063" class="t b">4 · Operationalize</text><text x="968" y="1081" class="t s">Scheduled processing + review queues</text>
+<rect x="1256" y="1040" width="304" height="54" rx="10" class="box"/><text x="1272" y="1063" class="t b">5 · Integrate &amp; measure</text><text x="1272" y="1081" class="t s">Connect systems when value is proven</text>
+</svg>
