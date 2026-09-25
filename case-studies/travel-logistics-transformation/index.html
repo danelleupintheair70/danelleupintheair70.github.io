@@ -59,6 +59,15 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 .nav{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 .nav a{text-decoration:none;color:inherit}.nav a:hover{color:var(--text)}
 
+
+.diagram{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;overflow:auto;margin-top:16px}
+.diagram img{display:block;width:100%;height:auto;min-width:980px}
+.diagram-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.diagram-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.diagram-card img{display:block;width:100%;height:auto}
+.asset-link{display:inline-block;margin-top:10px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-weight:700;font-size:13px}
+@media(max-width:760px){.diagram-grid{grid-template-columns:1fr}.diagram img{min-width:1100px}}
+
 </style>
 </head>
 <body>
@@ -68,7 +77,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 </div></header>
 <main>
 <div class="hero">
-<div class="kicker">Case Study 01</div>
+<div class="kicker">Case Study</div>
 <h1>Global Travel Logistics Operations Transformation</h1>
 <p class="lead">From fragmented, manually coordinated fulfilment to a unified booking platform, integrated OMS/TMS, distributor APIs, automated dispatch, event-driven status updates and exception-led operations.</p>
 <div class="meta">
@@ -169,6 +178,38 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 <p>The target state should not merely automate email forwarding. It needs a proper transaction core: one booking / shipment record, a lifecycle state model, a maintained rules layer, structured partner execution and an exception-management workspace.</p>
 </div>
 </section>
+
+<section>
+<h2>Visual process architecture</h2>
+<p>The detailed operating model was mapped as a set of process flows rather than a single funnel. The public diagrams below consolidate that work into an anonymized view of the service lifecycle, current-state handoffs, dispatch logic, exception handling and Human / Automation / AI boundaries.</p>
+
+<h3>1. End-to-end service automation overview</h3>
+<div class="diagram"><img src="../../assets/travel-service-automation-overview.png" alt="End-to-end travel logistics service automation overview"></div>
+<a class="asset-link" href="../../assets/travel-service-automation-overview.png">Open full-size overview →</a>
+
+<h3>2. AS-IS operational swimlane</h3>
+<div class="diagram"><img src="../../assets/travel-as-is-operational-swimlane.png" alt="Anonymized AS-IS travel logistics operational swimlane"></div>
+<a class="asset-link" href="../../assets/travel-as-is-operational-swimlane.png">Open full-size AS-IS map →</a>
+
+<h3>3. Process deep dives</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <img src="../../assets/travel-dispatch-fulfilment-deep-dive.png" alt="Supplier dispatch and fulfilment process deep dive">
+    <a class="asset-link" href="../../assets/travel-dispatch-fulfilment-deep-dive.png">Dispatch & fulfilment →</a>
+  </div>
+  <div class="diagram-card">
+    <img src="../../assets/travel-exception-architecture.png" alt="Travel logistics exception architecture">
+    <a class="asset-link" href="../../assets/travel-exception-architecture.png">Exception architecture →</a>
+  </div>
+</div>
+
+<h3>4. Human / Automation / AI transformation blueprint</h3>
+<div class="diagram"><img src="../../assets/travel-human-automation-ai-blueprint.png" alt="Human Automation and AI transformation blueprint"></div>
+<a class="asset-link" href="../../assets/travel-human-automation-ai-blueprint.png">Open full-size blueprint →</a>
+
+<div class="callout blue" style="margin-top:18px"><strong>Design sequence</strong> Structure the transactional core first, automate stable operating rules second, and add AI only where unstructured interpretation, evidence review or communication creates additional leverage.</div>
+</section>
+
 <section>
 <h2>After — target operating model</h2>
 <p>The recommended future state follows the way modern logistics and commerce platforms separate the customer channel, transaction core, integration layer, partner execution and exception-management functions.</p>
