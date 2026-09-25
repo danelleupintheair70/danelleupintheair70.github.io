@@ -212,11 +212,65 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
     <p class="small">No quantitative impact is claimed yet. These implications will be validated later using actual message volume, handling-time or service data where available.</p>
   </section>
 
+
+  <section>
+    <h2>Bottleneck 2 diagnosis — fragmented order context + duplicate manual order entry</h2>
+    <p>A normal KKday booking requires CS / Operations to reconstruct the order across multiple systems before it can enter the company’s normal execution flow.</p>
+
+    <div class="flow" style="margin-top:18px">
+      <span class="step">KKday notification email</span>
+      <span class="arrow">→</span>
+      <span class="step">Gmail</span>
+      <span class="arrow">→</span>
+      <span class="step">KKday management system</span>
+      <span class="arrow">→</span>
+      <span class="step">Manual copy / paste</span>
+      <span class="arrow">→</span>
+      <span class="step">LuggAgent website / Ecwid order flow</span>
+      <span class="arrow">→</span>
+      <span class="step">Ecwid booking email</span>
+      <span class="arrow">→</span>
+      <span class="step">Supplier / driver</span>
+    </div>
+
+    <h3>Representative KKday flow</h3>
+    <table>
+      <thead>
+        <tr><th>Step</th><th>Current As-Is activity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1. Notification</td><td>Gmail receives a new-order notification containing the KKday order number.</td></tr>
+        <tr><td>2. Retrieve booking</td><td>CS logs into the KKday management system, copies the order number, searches for the booking, and opens the customer details.</td></tr>
+        <tr><td>3. Extract data</td><td>CS retrieves booking date, service time, city, service type, customer name, email, contact number, preferred chat app, hotel / Airbnb name and address, flight number, airport and terminal.</td></tr>
+        <tr><td>4. Validate</td><td>CS manually checks city, hotel address, service-area eligibility, meeting / service timing requirements, contact number, and whether any required information is missing.</td></tr>
+        <tr><td>5. Re-enter order</td><td>CS manually pastes / types the distributor booking details into LuggAgent’s main website using the Ecwid “place an order” flow, creating the internal booking record.</td></tr>
+        <tr><td>6. Generate internal booking email</td><td>Ecwid sends the booking email to the LuggAgent mailbox and the customer.</td></tr>
+        <tr><td>7. Dispatch onward</td><td>The booking email is then forwarded to the relevant driver / supplier for execution.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Root cause</h3>
+    <div class="callout">
+      <strong>Distributor order data is not natively normalized into the internal booking record.</strong>
+      <p>CS must manually retrieve the source booking, interpret and validate it, then recreate the same order in the company’s own Ecwid-based workflow before the normal downstream process can continue.</p>
+    </div>
+
+    <h3>Operational implications</h3>
+    <div class="grid">
+      <div class="card"><strong>Duplicate data entry</strong>The same booking information is entered once by the distributor/customer and again manually by CS.</div>
+      <div class="card"><strong>Transcription risk</strong>Copying names, dates, addresses, flight details and contact information creates opportunities for mismatch or omission.</div>
+      <div class="card"><strong>Context switching</strong>CS moves between Gmail, KKday and the LuggAgent / Ecwid order flow to complete one booking.</div>
+      <div class="card"><strong>Manual validation dependency</strong>Service-area, timing and completeness checks rely on staff judgement before the booking can proceed.</div>
+    </div>
+
+    <p class="small">This diagnosis is based on the current KKday workflow supplied by Zev. No time-saved or error-rate claim is made yet; those remain to be measured.</p>
+  </section>
+
   <section>
     <h2>Next analysis step</h2>
     <div class="callout">
-      <span class="status">Task 3 — Bottleneck 2 root-cause diagnosis</span>
-      <p>Map one representative distributor / OTA booking from incoming notification to the final internal booking record, including every system opened and every manual copy / paste step.</p>
+      <span class="status">Task 3 — Bottleneck 3 root-cause diagnosis</span>
+      <p>Map one representative supplier-dispatch flow from internal booking creation to confirmed assignment, including the supplier-selection rule, communication channel, acceptance / rejection handling, and escalation path.</p>
     </div>
   </section>
 
@@ -227,7 +281,7 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
       <tbody>
         <tr><td>Task 1 — Define flagship process</td><td><strong>Complete</strong></td></tr>
         <tr><td>Task 2 — Extract clean As-Is inventory</td><td><strong>Complete</strong></td></tr>
-        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress — Bottleneck 1 diagnosed</strong></td></tr>
+        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress — Bottlenecks 1–2 diagnosed</strong></td></tr>
         <tr><td>To-Be redesign</td><td>Not started</td></tr>
         <tr><td>Human / Automation / AI decision matrix</td><td>Not started</td></tr>
         <tr><td>Prototype, evaluation, ROI, implementation</td><td>Not started</td></tr>
