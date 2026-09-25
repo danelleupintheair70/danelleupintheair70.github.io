@@ -1,4 +1,4 @@
-# Zev Pan — AI Transformation Case Studies
+# AI Transformation Case Studies
 
 A collection of case studies focused on AI-enabled business transformation, process redesign, automation, and applied AI.
 
