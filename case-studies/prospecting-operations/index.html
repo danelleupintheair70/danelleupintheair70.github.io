@@ -50,6 +50,13 @@ code{background:var(--soft);padding:2px 5px;border-radius:5px}
 .btn:hover{background:var(--soft)}
 footer{padding-top:30px;color:var(--muted);font-size:13px}
 @media(max-width:760px){h1{font-size:36px}.grid,.grid3{grid-template-columns:1fr}.sitebar-inner{align-items:flex-start}.blueprint img{min-width:980px}}
+
+.diagram-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.diagram-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.diagram-card img{display:block;width:100%;height:auto}
+.asset-link{display:inline-block;margin-top:10px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-weight:700;font-size:13px}
+@media(max-width:760px){.diagram-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -95,10 +102,27 @@ footer{padding-top:30px;color:var(--muted);font-size:13px}
 <div class="card"><strong>Reconciliation loop</strong>Every meaningful new event can recompute state and invalidate an older recommendation.</div>
 </div></section>
 
-<section><h2>AI Transformation Blueprint</h2>
-<p>The blueprint summarizes the current state, target decision architecture, human / automation / AI boundaries, cross-cutting controls and migration roadmap.</p>
-<div class="blueprint"><img src="../../assets/prospecting-operations-blueprint.svg" alt="AI Transformation Blueprint for the Prospecting Operations System"></div>
-<div class="linkrow"><a class="btn" href="../../assets/prospecting-operations-blueprint.svg">Open blueprint full size →</a></div></section>
+<section>
+<h2>Visual process architecture</h2>
+<p>The case is easier to understand as three connected visual layers: the current fragmented operating flow, the target relationship-operations architecture, and the control boundary between deterministic automation, AI assistance and human authority.</p>
+
+<h3>1. AS-IS relationship operations flow</h3>
+<div class="blueprint"><img src="../../assets/prospecting-as-is-relationship-operations.png" alt="AS-IS relationship operations flow"></div>
+<a class="asset-link" href="../../assets/prospecting-as-is-relationship-operations.png">Open full-size AS-IS map →</a>
+
+<h3>2. TO-BE relationship operations architecture</h3>
+<div class="blueprint"><img src="../../assets/prospecting-to-be-relationship-operations.png" alt="TO-BE relationship operations architecture"></div>
+<a class="asset-link" href="../../assets/prospecting-to-be-relationship-operations.png">Open full-size TO-BE architecture →</a>
+
+<h3>3. Human / Automation / AI blueprint</h3>
+<div class="blueprint"><img src="../../assets/prospecting-human-automation-ai-blueprint.png" alt="Human Automation and AI blueprint for relationship operations"></div>
+<a class="asset-link" href="../../assets/prospecting-human-automation-ai-blueprint.png">Open full-size control blueprint →</a>
+
+<h3>4. Executive transformation overview</h3>
+<p>The earlier executive blueprint remains useful as a one-page summary of current state, transformation layers, target state, governance controls and migration roadmap.</p>
+<div class="blueprint"><img src="../../assets/prospecting-operations-blueprint.svg" alt="Executive AI Transformation Blueprint for the Prospecting Operations System"></div>
+<a class="asset-link" href="../../assets/prospecting-operations-blueprint.svg">Open executive blueprint →</a>
+</section>
 
 <section><h2>Human vs Automation vs AI</h2>
 <table><thead><tr><th>Work</th><th>Primary owner</th><th>Examples</th></tr></thead><tbody>
