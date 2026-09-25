@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operations Automation Workspace — Prototype</title>
+<style>
+:root{--bg:#f4f6f8;--panel:#fff;--ink:#17202b;--muted:#687385;--line:#dde2e7;--nav:#17202b;--blue:#eaf2ff;--green:#e9f7ef;--amber:#fff3d1;--red:#ffe7e7;--slate:#eef1f4}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}aside{background:var(--nav);color:white;padding:22px 16px}.logo{font-size:18px;font-weight:800}.ws{font-size:12px;color:#9dadbf;margin:6px 0 25px}
+nav button{display:block;width:100%;text-align:left;border:0;background:transparent;color:#c9d2dc;padding:10px 12px;border-radius:9px;cursor:pointer;margin:3px 0}nav button:hover,nav button.active{background:#273445;color:white}
+main{padding:26px;max-width:1300px;width:100%}.top{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px}h1{margin:0 0 5px;font-size:29px}.sub{font-size:14px;color:var(--muted)}
+.badges{display:flex;gap:7px;flex-wrap:wrap}.badge{font-size:11px;padding:5px 8px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.panel{display:none}.panel.active{display:block}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.metric,.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.metric b{font-size:28px}.metric span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card h3{margin:0 0 9px}.small{font-size:12px;color:var(--muted)}.note{background:var(--blue);border-left:4px solid #7995bd;padding:12px;border-radius:8px;font-size:13px;margin-top:12px}
+.kv{border:1px solid var(--line);background:#f8fafb;padding:11px;border-radius:10px}.kv b{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.detail{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.btn{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:9px;font-weight:700;cursor:pointer}.btn.primary{background:#17202b;color:#fff;border-color:#17202b}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}th{background:#f3f5f7;color:#52606d}.status{font-size:11px;padding:4px 7px;border-radius:999px;display:inline-block}.ok{background:var(--green)}.warn{background:var(--amber)}.err{background:var(--red)}.ready{background:var(--blue)}
+.progress{height:10px;background:#e9edf1;border-radius:999px;overflow:hidden;margin:10px 0}.bar{height:100%;width:82%;background:#526b8e}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.track{padding:18px;border-radius:14px;border:1px solid var(--line);background:#fff}.track.wh{border-top:5px solid #6487b7}.track.fn{border-top:5px solid #73a37d}
+@media(max-width:900px){.app{grid-template-columns:1fr}.metrics,.grid2,.grid3,.split,.detail{grid-template-columns:1fr}aside{position:static}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+<div class="logo">Operations Automation</div>
+<div class="ws">Acme Industrial Operations · synthetic prototype</div>
+<nav>
+<button class="active" data-view="home">Overview</button>
+<button data-view="runner">High-Runner Inbound</button>
+<button data-view="qc">Outbound QC</button>
+<button data-view="finance">Finance Batch Entry</button>
+<button data-view="exceptions">Exceptions</button>
+<button data-view="audit">Audit</button>
+</nav>
+</aside>
+<main>
+<div class="top"><div><h1 id="title">Two different automation problems. Two different designs.</h1><div class="sub" id="sub">Use decision support where judgement matters; deterministic automation where work is repetitive.</div></div><div class="badges"><span class="badge">Human-in-the-loop warehouse</span><span class="badge">Deterministic finance automation</span></div></div>
+
+<section id="home" class="panel active">
+<div class="split">
+<div class="track wh"><h3>Warehouse Decision Support</h3><p>High-runner inbound placement and outbound QC use operational evidence to narrow what needs human judgement.</p><div class="note">The system recommends what to review. Warehouse users decide what to do.</div></div>
+<div class="track fn"><h3>Finance Workflow Automation</h3><p>Large repetitive batches are validated, transformed and entered into one existing finance system automatically.</p><div class="note">The target finance system remains the system of record. Humans handle only exceptions.</div></div>
+</div>
+<div class="metrics" style="margin-top:16px">
+<div class="metric"><b>100</b><span>synthetic high-runner candidates in review set</span></div>
+<div class="metric"><b>5</b><span>warehouse candidates escalated for human review</span></div>
+<div class="metric"><b>96%</b><span>synthetic finance batch ready after validation</span></div>
+<div class="metric"><b>4%</b><span>synthetic finance rows routed to exception review</span></div>
+</div>
+</section>
+
+<section id="runner" class="panel">
+<div class="card"><h3>High-Runner Inbound / Slotting Review</h3>
+<div class="detail">
+<div class="kv"><b>SKU</b>AX-184</div><div class="kv"><b>Current Location</b>A-17-03</div>
+<div class="kv"><b>Historical Pattern</b>Sustained high picking activity</div><div class="kv"><b>Location Evidence</b>Spread across several locations</div>
+<div class="kv"><b>System Finding</b>Candidate for slotting review</div><div class="kv"><b>Decision Owner</b>Warehouse Lead</div>
+</div>
+<div class="note"><b>Why review?</b> High activity and location spread may indicate an inbound placement opportunity, but physical size, route, handling and layout constraints must be checked before relocation.</div>
+<div class="actions"><button class="btn primary" onclick="msg('Relocation candidate recorded')">Relocate candidate</button><button class="btn" onclick="msg('Current placement confirmed')">Keep current</button><button class="btn" onclick="msg('More evidence requested')">Investigate</button></div>
+</div>
+</section>
+
+<section id="qc" class="panel">
+<div class="card"><h3>Outbound QC Review</h3>
+<div class="detail">
+<div class="kv"><b>Outbound Record</b>OB-240918-27</div><div class="kv"><b>Checkpoint</b>Final quantity verification</div>
+<div class="kv"><b>Expected</b>QC checkpoint completed</div><div class="kv"><b>Observed</b>Verification field missing</div>
+<div class="kv"><b>Relevant Rule</b>Outbound QC SOP · current version</div><div class="kv"><b>Status</b>Needs human confirmation</div>
+</div>
+<div class="note"><b>Review question:</b> Was the final verification completed but not recorded, or was the checkpoint actually missed?</div>
+<div class="actions"><button class="btn primary" onclick="msg('QC issue confirmed')">Issue confirmed</button><button class="btn" onclick="msg('Expected exception recorded')">Expected / normal</button><button class="btn" onclick="msg('Warehouse lead asked to investigate')">Investigate</button></div>
+</div>
+</section>
+
+<section id="finance" class="panel">
+<div class="card"><h3>Finance Batch Entry Automation</h3>
+<p class="small">Working assumption: a PO may contain 1,000+ items requiring repetitive entry into the existing finance system. The figures below are synthetic for demonstration.</p>
+<div class="metrics">
+<div class="metric"><b>1,240</b><span>synthetic items in one PO batch</span></div>
+<div class="metric"><b>1,191</b><span>validated and ready</span></div>
+<div class="metric"><b>31</b><span>missing / invalid fields</span></div>
+<div class="metric"><b>18</b><span>duplicates or target-system rejects</span></div>
+</div>
+<div class="progress"><div class="bar"></div></div>
+<div class="small">Assumed operating pattern: 1,000+ items per PO → validate → map fields → enter into the existing finance system → route only exceptions to a human.</div>
+<table style="margin-top:15px">
+<tr><th>Row</th><th>Source ID</th><th>Validation</th><th>Target entry</th><th>Action</th></tr>
+<tr><td>0021</td><td>FIN-88231</td><td><span class="status ok">Valid</span></td><td><span class="status ok">Submitted</span></td><td>None</td></tr>
+<tr><td>0044</td><td>FIN-88254</td><td><span class="status warn">Missing code</span></td><td><span class="status warn">Held</span></td><td>Review mapping</td></tr>
+<tr><td>0102</td><td>FIN-88312</td><td><span class="status ok">Valid</span></td><td><span class="status err">Rejected</span></td><td>Retry after correction</td></tr>
+<tr><td>0118</td><td>FIN-88328</td><td><span class="status err">Duplicate</span></td><td><span class="status ready">Not submitted</span></td><td>Confirm duplicate</td></tr>
+</table>
+<div class="actions"><button class="btn primary" onclick="msg('Validated rows queued for target-system entry')">Process validated rows</button><button class="btn" onclick="showView('exceptions')">Review exceptions</button></div>
+</div>
+</section>
+
+<section id="exceptions" class="panel">
+<div class="card"><h3>Exception Queue</h3>
+<table>
+<tr><th>Track</th><th>Item</th><th>Reason</th><th>Owner</th><th>Status</th></tr>
+<tr><td>Warehouse</td><td>SKU AX-184</td><td>Location spread requires context</td><td>Warehouse Lead</td><td><span class="status warn">Review</span></td></tr>
+<tr><td>Outbound QC</td><td>OB-240918-27</td><td>QC checkpoint missing</td><td>QC Lead</td><td><span class="status warn">Review</span></td></tr>
+<tr><td>Finance</td><td>FIN-88254</td><td>Required mapping code missing</td><td>Finance Ops</td><td><span class="status warn">Held</span></td></tr>
+<tr><td>Finance</td><td>FIN-88312</td><td>Target-system rejection</td><td>Finance Ops</td><td><span class="status err">Failed</span></td></tr>
+</table>
+</div>
+</section>
+
+<section id="audit" class="panel">
+<div class="card"><h3>Audit & Feedback</h3>
+<table>
+<tr><th>Time</th><th>Track</th><th>Event</th><th>Actor</th></tr>
+<tr><td>14:31</td><td>Finance</td><td>1,191 validated rows prepared for submission</td><td>Automation</td></tr>
+<tr><td>14:18</td><td>Warehouse</td><td>SKU AX-184 flagged for slotting review</td><td>Decision-support workflow</td></tr>
+<tr><td>14:02</td><td>QC</td><td>Missing outbound QC checkpoint detected</td><td>Control workflow</td></tr>
+<tr><td>13:49</td><td>Warehouse</td><td>Bulky-item exception confirmed as normal</td><td>Warehouse Lead</td></tr>
+</table>
+</div>
+</section>
+</main>
+</div>
+<script>
+const copy={
+home:["Two different automation problems. Two different designs.","Use decision support where judgement matters; deterministic automation where work is repetitive."],
+runner:["High-Runner Inbound Decision Support","Evidence narrows which SKUs deserve slotting review; the warehouse team makes the decision."],
+qc:["Outbound QC Decision Support","Surface checkpoint mismatches and route them to the right human reviewer."],
+finance:["Finance Batch Entry Automation","Validate and enter large repetitive batches into the existing target system."],
+exceptions:["Exception Queue","Only ambiguous, invalid or failed items should require human attention."],
+audit:["Audit & Feedback","Record what the system found, what the human decided and what happened next."]
+};
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+function showView(id){
+document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelector(`nav button[data-view="${id}"]`).classList.add("active");
+title.textContent=copy[id][0];sub.textContent=copy[id][1];
+}
+function msg(t){alert(t)}
+</script>
+</body>
+</html>
