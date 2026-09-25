@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Luggage Delivery Operations Transformation</title>
+<style>
+:root{
+  --bg:#f7f7f5;--panel:#ffffff;--text:#171717;--muted:#666;--line:#deded8;
+  --soft:#efefeb;--accent:#222;--warn:#fff4d6;--good:#e9f7ef;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+main{max-width:1040px;margin:0 auto;padding:56px 24px 96px}
+.hero{padding:42px 0 26px;border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-size:48px;line-height:1.08;margin:12px 0 16px;max-width:900px}
+.lead{font-size:20px;color:#383838;max-width:820px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tag{background:var(--soft);border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:13px}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+h2{font-size:28px;margin:0 0 16px}
+h3{font-size:19px;margin:22px 0 8px}
+p{margin:8px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card strong{display:block;margin-bottom:6px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px}
+.arrow{color:#888}
+ul{margin:8px 0 0 20px;padding:0}
+li{margin:5px 0}
+.callout{padding:16px 18px;border-radius:12px;background:var(--warn);border:1px solid #ead59a}
+.good{background:var(--good);border-color:#bcdcc8}
+.small{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff}
+th,td{text-align:left;vertical-align:top;border:1px solid var(--line);padding:12px;font-size:14px}
+th{background:var(--soft)}
+.status{font-weight:700}
+footer{padding-top:30px;color:var(--muted);font-size:13px}
+@media(max-width:720px){
+  h1{font-size:36px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="hero">
+    <div class="kicker">Portfolio Case Study · Work in Progress</div>
+    <h1>Global Luggage Delivery Operations Transformation</h1>
+    <p class="lead">Redesigning a multi-channel, multi-supplier luggage-delivery operation to reduce manual coordination, improve exception handling, and identify where deterministic automation and AI can improve speed, visibility, and service reliability.</p>
+    <div class="meta">
+      <span class="tag">Process Transformation</span>
+      <span class="tag">Business Analysis</span>
+      <span class="tag">AI / Automation</span>
+      <span class="tag">Service Operations</span>
+      <span class="tag">Case Study v0.1</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>Case objective</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Start</strong>
+        Customer places a booking through the company website or a supported distribution / OTA channel.
+      </div>
+      <div class="card">
+        <strong>Current As-Is end</strong>
+        Service is operationally completed and final delivery / collection evidence is recorded.
+      </div>
+    </div>
+    <h3>Success measures</h3>
+    <div class="grid">
+      <div class="card">Manual touchpoints per booking</div>
+      <div class="card">Operations handling time per booking</div>
+      <div class="card">Exception-resolution time</div>
+      <div class="card">SLA adherence and customer-update latency</div>
+    </div>
+    <p class="small">Baseline values are not yet established. No metrics will be invented; unknowns remain TBD until measured.</p>
+  </section>
+
+  <section>
+    <h2>Current operating model</h2>
+    <div class="callout good">
+      <strong>Dominant communication pattern</strong>
+      <div class="flow">
+        <span class="step">Customer</span><span class="arrow">↔</span>
+        <span class="step">CS / Operations</span><span class="arrow">↔</span>
+        <span class="step">Supplier / Driver</span>
+      </div>
+      <p>Drivers usually do not communicate directly with the end customer. Customer-service staff acts as the coordination layer and manually relays service-day status between both sides.</p>
+    </div>
+
+    <h3>Typical examples</h3>
+    <ul>
+      <li>Customer reaches the airport meeting point → CS receives the update → CS forwards it to the supplier / driver.</li>
+      <li>Driver drops luggage at hotel concierge → driver reports status to CS → CS updates the customer.</li>
+      <li>Operational evidence and exception status are often relayed through the same CS layer.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Current-state process</h2>
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>As-Is activity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1. Booking & confirmation</td><td>Website bookings use an e-commerce platform with payment processing. Customers receive confirmation by email; a copy reaches the central operations mailbox. OTA/distributor bookings arrive through channel-specific email or backend flows.</td></tr>
+        <tr><td>2. Order normalization</td><td>Distributor / OTA details may need to be manually copied into the company’s own booking flow to create the internal booking record.</td></tr>
+        <tr><td>3. Validation</td><td>CS/Ops checks lead time, service date, address/product fit, flight/airport timing, and other service rules. Exceptions trigger customer follow-up, fee collection, changes, or cancellation.</td></tr>
+        <tr><td>4. Supplier dispatch</td><td>Ops checks the supplier list, forwards the booking, waits for acceptance, checks alternates if rejected, and may request/compare quotes for RFQ routes.</td></tr>
+        <tr><td>5. Pre-service QC</td><td>Ops checks order-entry accuracy, pending changes, supplier/driver confirmation, hotel details, and unresolved service risks. Missing customer details are collected manually.</td></tr>
+        <tr><td>6. Customer preparation</td><td>Confirmation content provides service instructions and FAQ links. CS intervenes when customers need additional guidance, such as meeting-point or luggage-label instructions.</td></tr>
+        <tr><td>7. Pickup / handover</td><td>Customer or hotel provides readiness information. CS relays necessary details to the supplier/driver. Pickup evidence is captured.</td></tr>
+        <tr><td>8. Transport & delivery</td><td>Supplier/driver transports the luggage and records destination handover evidence.</td></tr>
+        <tr><td>9. Exception handling</td><td>Pickup, waiting, delivery, hotel, address, flight, supplier and external disruption issues are manually coordinated through CS/Ops according to operational rules.</td></tr>
+        <tr><td>10. Service completion</td><td>Final handover evidence is recorded. Direct website customers do not currently receive a systematic owned review request; OTA reviews remain within the OTA platform.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Three primary bottlenecks</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>1 · CS as manual communication relay</strong>
+        Customer and supplier/driver status is repeatedly passed through CS, creating manual touchpoints and potential update latency.
+      </div>
+      <div class="card">
+        <strong>2 · Fragmented order context + duplicate entry</strong>
+        Information is distributed across email, e-commerce, messaging, OTA and supplier systems. Distributor orders may require manual re-entry into the company booking flow.
+      </div>
+      <div class="card">
+        <strong>3 · Manual supplier dispatch</strong>
+        Supplier selection, forwarding, acceptance monitoring, alternates, RFQs, quote collection and some external bookings are handled manually.
+      </div>
+      <div class="card">
+        <strong>Secondary control risk</strong>
+        Existing handover evidence does not necessarily verify the correct recipient. A recent wrong-person handover demonstrates a chain-of-custody weakness.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current-state evidence and controls</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Hotel → Airport</strong>
+        Driver confirms customer collection using a photo of the person collecting the luggage.
+      </div>
+      <div class="card">
+        <strong>Airport → Hotel</strong>
+        Driver submits a photo of the luggage tag issued by the destination hotel.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Next analysis step</h2>
+    <div class="callout">
+      <span class="status">Task 3 — Bottleneck 1 root-cause diagnosis</span>
+      <p>Capture one representative communication relay from customer → CS → supplier/driver → CS → customer, including the actual channels used at each handoff.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Case-study build status</h2>
+    <table>
+      <thead><tr><th>Task</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Task 1 — Define flagship process</td><td><strong>Complete</strong></td></tr>
+        <tr><td>Task 2 — Extract clean As-Is inventory</td><td><strong>Complete</strong></td></tr>
+        <tr><td>Task 3 — Diagnose primary bottlenecks</td><td><strong>In progress</strong></td></tr>
+        <tr><td>To-Be redesign</td><td>Not started</td></tr>
+        <tr><td>Human / Automation / AI decision matrix</td><td>Not started</td></tr>
+        <tr><td>Prototype, evaluation, ROI, implementation</td><td>Not started</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Working portfolio artifact. Operationally sensitive names and implementation details should be reviewed and anonymized before public publishing.
+  </footer>
+</main>
+</body>
+</html>
